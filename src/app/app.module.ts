@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { PrimeNgModule } from './shared/primeng.module';
 import { HomeComponent } from './components/home/home.component';
+import { FormsModule } from '@angular/forms';
 
 const COMPONENTS = [AppComponent, HeaderComponent, FooterComponent, HomeComponent];
 
-const MODULES = [BrowserModule, AppRoutingModule, PrimeNgModule];
+const PRIMENGS = [];
+
+const MODULES = [BrowserModule, AppRoutingModule, FormsModule];
 
 @NgModule({
     declarations: [...COMPONENTS],
