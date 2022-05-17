@@ -9,7 +9,7 @@ $desktop-width: 1024px;
 }
 
 @mixin tablet {
-    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @media (min-width: #{$tablet-width}) {
         @content;
     }
 }
@@ -18,4 +18,16 @@ $desktop-width: 1024px;
     @media (min-width: #{$desktop-width}) {
         @content;
     }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

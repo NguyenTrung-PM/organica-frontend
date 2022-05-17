@@ -1,0 +1,173 @@
+@import '../../../../scss/abstracts/mixin';
+@import '../../../../scss/abstracts/variables';
+
+.header {
+    width: 100%;
+    height: $header-height;
+    border-bottom: 1px solid $first-color;
+}
+
+.logo {
+    content: '';
+    background-image: url('/assets/image/logo_s.png');
+    background-size: contain;
+    background-repeat: none !important;
+    width: 38px;
+    height: 31px;
+    display: block;
+    margin-right: 0.5rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    &__list {
+        @include flex-center;
+        gap: 1rem;
+    }
+
+    &__item {
+        @include flex-center;
+        cursor: pointer;
+        color: $white-color;
+
+        .menu__icon {
+            border-radius: 0.25rem;
+            transition: 0.4s;
+        }
+
+        &:hover,
+        &:focus {
+            .menu__icon {
+                background: $background-color;
+            }
+        }
+    }
+
+    &__icon {
+        font-size: 1.125rem;
+        padding: 0.5rem;
+    }
+
+    &__wrapper {
+        position: fixed;
+        top: $header-height;
+        right: -100%;
+        width: 100%;
+        transition: 0.4s;
+        box-shadow: 1px 1px 4px $border-color;
+    }
+
+    &__input {
+        width: 100%;
+        outline: none;
+        color: $text-color-light;
+        border-radius: 0.25rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+.show {
+    right: 0;
+}
+
+@include tablet {
+    .logo {
+        background-image: url('/assets/image/logo.png');
+        width: 91px;
+        height: 39px;
+        margin-right: 1rem;
+    }
+}
+
+@include desktop {
+    .header {
+        height: calc($header-height + 1rem);
+        padding: 0.5rem 12rem;
+    }
+
+    .logo {
+        width: 114px;
+        height: 48px;
+        margin-right: 1.5rem;
+    }
+
+    .menu {
+        &__wrapper {
+            position: relative;
+            top: 0;
+            right: 0;
+            box-shadow: none;
+        }
+
+        &__item--wrapper {
+            @include flex-center;
+            border: 1px solid $border-color;
+            border-radius: 0.25rem;
+
+            .menu__icon{
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        &__input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+}
+
+:host::ng-deep {
+    .p-menubar {
+        height: $header-height;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0;
+        background: none;
+
+        .p-menubar-root-list > .p-menuitem > .p-menuitem-link:focus,
+        .p-menuitem-link:focus {
+            box-shadow: none;
+        }
+
+        .p-menubar-button {
+            &:focus {
+                background: $background-color;
+                box-shadow: none;
+                border-radius: 0.25rem;
+            }
+        }
+
+        .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
+            font-size: $medium-font-size;
+            font-weight: $font-regular;
+            color: $text-color-dark;
+        }
+    }
+
+    .p-inputtext {
+        width: 100%;
+
+        &:enabled:focus {
+            box-shadow: none;
+            border-color: $border-color;
+        }
+    }
+
+    @include desktop{
+        .p-menubar-root-list>.p-menuitem-active>p-menubarsub>.p-submenu-list{
+            margin-top: 0.5rem;
+            border: 1px solid $first-color;
+            border-top: none;
+        }
+
+        .p-menubar .p-submenu-list{
+            border: 1px solid $first-color;
+        }
+    }
+}
