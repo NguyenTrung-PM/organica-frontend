@@ -1,1 +1,100 @@
-<p>footer works!</p>
+<footer class="footer">
+    <div class="grid grid-nogutter footer-qoute">
+        <div class="lg:col-offset-2 md:col-offset-1 lg:col-6 md:col-7 col-12 footer-qoute-text">
+            Organica có trang trại rau nhiệt đới đầu tiên tại Việt Nam đạt chứng nhận hữu cơ của Bộ Nông nghiệp Mỹ (USDA) & EU Organic Farming (Liên minh châu Âu)
+        </div>
+        <div class="lg:col-4 md:col-4 col-12 footer-qoute-badge">
+            <ul class="footer-badge-list flex list-none">
+                <li class="footer-badge-item"><img src="../../../../assets/image/img_badge01.png" alt="" /></li>
+                <li class="footer-badge-item"><img src="../../../../assets/image/img_badge02.png" alt="" /></li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid grid-nogutter footer-bot">
+        <div class="lg:col-1 md:col-1 flex justify-content-center col-12">
+            <a href="" class="logo-s"> <img src="../../../../assets/image/logo_s.png" alt="" /> </a>
+        </div>
+        <div class="lg:col-3 md:col-3 sm:col-6 col-12">
+            <ul class="footer-bot-list">
+                <li class="footer-bot-title">
+                    <a href="" class="footer-bot-link"> Trang chủ </a>
+                </li>
+
+                <li class="footer-bot-title">
+                    <a href="" class="footer-bot-link">Khuyến mãi</a>
+                </li>
+
+                <li class="footer-bot-title">
+                    <a href="" class="footer-bot-link">Sản phẩm </a>
+                    <ul class="footer-bot-list" *ngFor="let group of groups">
+                        <li class="footer-bot-item">
+                            <a href="" class="footer-bot-link">{{ group.name }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="lg:col-3 md:col-3 sm:col-6 col-12">
+            <ul class="footer-bot-list">
+                <li class="footer-bot-title">
+                    <a href="" class="footer-bot-link"> Về Organica </a>
+
+                    <ul class="footer-bot-list">
+                        <li class="footer-bot-item">
+                            <a href="" class="footer-bot-link">Giới thiệu </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="footer-bot-title">
+                    <a href="" class="footer-bot-link">Trò chuyện cùng Organica</a>
+                </li>
+
+                <li class="footer-bot-title">
+                    <a href="" class="footer-bot-link">Hỗ trợ khách hàng </a>
+                </li>
+            </ul>
+        </div>
+        <div class="lg:col-5 md:col-5 col-12">
+            <form class="footer-bot-subcribe" [formGroup]="subcribeForm" (ngSubmit)="onSubcribe()">
+                <label>Đăng ký nhận khuyến mãi</label>
+                <div class="subcribe-group">
+                    <input class="subcribe-input" formControlName="emailSubcribe" type="text" pInputText placeholder="Nhập email nhận thông tin khuyến mãi" />
+                    <button [disabled]="!subcribeForm.valid" class="subcribe-btn" pButton type="submit">Gửi</button>
+                </div>
+            </form>
+            <div class="footer-bot-social">
+                <label for="">Liên kết với Organica trên</label>
+                <ul class="social-list">
+                    <li class="social-img">
+                        <a href="" class="social-link"><i class="social-icon-facebook fa-brands fa-facebook"></i></a>
+                    </li>
+                    <li class="social-img">
+                        <a href="" class="social-link"><i class="social-icon-google fa-brands fa-google-plus"></i> </a>
+                    </li>
+                    <li class="social-img">
+                        <a href="" class="social-link"> <i class="social-icon-youtube fa-brands fa-youtube"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-bot-social">
+                <label for="">Phương thức thanh toán</label>
+                <ul class="social-list">
+                    <li class="social-img">
+                        <a href="" class="social-link"><img src="../../../../assets/image/social_zalo.png" alt="" /></a>
+                    </li>
+                    <li class="social-img">
+                        <a href="" class="social-link"><img src="../../../../assets/image/social_vnpay.png" alt="" /></a>
+                    </li>
+                    <li class="social-img">
+                        <a href="" class="social-link"><img src="../../../../assets/image/social_momo.png" alt="" /> </a>
+                    </li>
+                    <li class="social-img">
+                        <a href="" class="social-link"> <img src="../../../../assets/image/social_moca.png" alt="" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

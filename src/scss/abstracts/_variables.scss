@@ -1,31 +1,26 @@
-$first-color: hsl(138, 68%, 42%);
+$first-color: hsl(134, 62%, 44%);
 $second-color: hsl(0, 100%, 50%);
-
+$third-color: hsl(81, 59%, 52%);
 $white-color: hsl(0, 0%, 100%);
-
 $text-color-dark: hsl(0, 0%, 20%);
 $text-color: hsl(0, 0%, 35%);
 $text-color-light: hsl(0, 0%, 40%);
-
 $border-color-dark: hsl(0, 0%, 80%);
 $border-color: hsl(0, 0%, 84%);
 $border-color-light: hsl(0, 0%, 88%);
-
-$font-family: 'Lato', sans-serif;
+$font-family: 'Lato',
+sans-serif;
 $font-light: 300;
 $font-regular: 400;
 $font-bold: 700;
-
-$small-font-size: 0.875rem;
-$normal-font-sze: 0.9375rem;
-$medium-font-size: 1rem;
-$big-font-size: 1.5rem;
-
+$small-font-size: 0.875rem; //14px
+$normal-font-sze: 0.9375rem; //15px
+$medium-font-size: 1rem; //16px
+$large-font-size: 1.125rem; //18px
+$big-font-size: 1.5rem; //24px
 $header-height: 3rem;
-
 $background-color: hsl(210, 17%, 90%);
 $background-color-light: hsl(210, 17%, 96%);
-
 $z-1: 1;
 $z-10: 10;
 $z-100: 100;
