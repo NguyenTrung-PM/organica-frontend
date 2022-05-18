@@ -1,1 +1,27 @@
-<p>header works!</p>
+<header class="header">
+    <p-menubar [model]="items" [autoDisplay]="true">
+        <ng-template pTemplate="start">
+            <span class="logo"></span>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div class="menu">
+                <ul class="menu__list">
+                    <li class="menu__item item__search">
+                        <div class="menu__item--wrapper">
+                            <div class="menu__wrapper" [ngClass]="{ show: !toggleSearch }">
+                                <input type="text" placeholder="Tìm kiếm..." [(ngModel)]="searchValue" class="menu__input" />
+                            </div>
+                            <i class="fa fa-search menu__icon" (click)="onToggleSearch()"></i>
+                        </div>
+                    </li>
+                    <li class="menu__item">
+                        <i class="fa fa-box menu__icon"></i>
+                    </li>
+                    <li class="menu__item">
+                        <i class="fa fa-user menu__icon"></i>
+                    </li>
+                </ul>
+            </div>
+        </ng-template>
+    </p-menubar>
+</header>
