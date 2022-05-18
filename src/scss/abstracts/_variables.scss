@@ -1,18 +1,17 @@
-$first-color: hsl(138, 68%, 42%);
+$first-color: hsl(134, 62%, 44%);
 $second-color: hsl(0, 100%, 50%);
-
+$third-color: hsl(81, 59%, 52%);
 $white-color: hsl(0, 0%, 100%);
-
 $text-color-dark: hsl(0, 0%, 20%);
 $text-color: hsl(0, 0%, 35%);
 $text-color-light: hsl(0, 0%, 40%);
-
-$font-family: 'Lato', sans-serif;
+$font-family: 'Lato',
+sans-serif;
 $font-light: 300;
 $font-regular: 400;
 $font-bold: 700;
-
-$small-font-size: 0.875em;
-$normal-font-sze: 0.9375em;
-$medium-font-size: 1em;
-$big-font-size:1.5em;
+$small-font-size: 0.875em; //14px
+$normal-font-sze: 0.9375em; //15px
+$medium-font-size: 1em; //16px
+$large-font-size: 1.125em; //18px
+$big-font-size: 1.5em; //24px

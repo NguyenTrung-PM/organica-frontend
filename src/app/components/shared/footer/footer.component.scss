@@ -1,0 +1,119 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
+.footer {}
+
+.footer-qoute {
+    background-image: linear-gradient(-90deg, $first-color, $third-color);
+    align-items: center;
+    padding: 12px 0;
+    &-text {
+        font-size: $large-font-size;
+        color: $white-color;
+        text-align: center;
+        padding: 0 8px;
+        margin: 16px 0;
+        line-height: $big-font-size;
+    }
+    &-badge {
+        .footer-badge-list {
+            align-items: center;
+            justify-content: center;
+            .footer-badge-item {
+                margin: 0 8px;
+            }
+        }
+    }
+}
+
+.footer-bot {
+    padding: 32px 24px;
+    &-list {
+        list-style-type: none;
+    }
+    .logo-s {}
+     :hover.logo-s {
+        opacity: 0.8;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+}
+
+.footer-bot-list .footer-bot-title {
+    padding-bottom: 20px;
+}
+
+.footer-bot-title>.footer-bot-list {
+    margin: 10px 0 0 10px;
+}
+
+.footer-bot-link:hover {
+    color: $first-color;
+    transition: all 0.3s ease;
+}
+
+.footer-bot-list .footer-bot-title {
+    color: $text-color-dark;
+    text-transform: uppercase;
+    font-size: $small-font-size;
+    font-weight: 700;
+}
+
+.footer-bot-list .footer-bot-item {
+    color: $text-color-dark;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.footer-bot-link {
+    text-decoration: none;
+}
+
+.footer-bot-list .footer-bot-item {
+    padding: 7px 0 0;
+}
+
+.footer-bot-subcribe {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 15px 20px;
+    label {
+        font-size: $medium-font-size;
+        font-weight: 700;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .subcribe-group {
+        display: flex;
+    }
+    .subcribe-input {
+        flex: 1;
+        font-size: $small-font-size;
+    }
+    .subcribe-btn {
+        background-color: $first-color;
+    }
+}
+
+.footer-bot-social {
+    margin-top: 20px;
+    label {
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        display: block;
+    }
+    .social-list {
+        list-style-type: none;
+        display: flex;
+        .social-img {
+            cursor: pointer;
+            margin-right: 5px;
+            display: block;
+            &:hover .social-link {
+                transform: translateY(-10px);
+                display: block;
+                transition: all 0.4s ease;
+            }
+        }
+    }
+}
