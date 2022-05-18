@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "cli": {
-        "analytics": "1a7c06b8-25b8-4c68-8a3e-8a5692030d9b"
+      "analytics": "e959cd3a-490d-422f-8730-cfb7a0317939"
     },
     "version": 1,
     "newProjectRoot": "projects",
@@ -51,12 +51,16 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "assets": ["src/favicon.ico", "src/assets"],
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
                         "styles": [
                             "node_modules/primeng/resources/primeng.min.css",
                             "node_modules/primeicons/primeicons.css",
-                            "node_modules/primeng/resources/themes/saga-blue/theme.css",
+                            "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
                             "node_modules/primeflex/primeflex.min.css",
+                            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
                             "src/scss/styles.scss"
                         ],
                         "scripts": []
@@ -117,8 +121,13 @@
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "inlineStyleLanguage": "scss",
-                        "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.scss"],
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.scss"
+                        ],
                         "scripts": []
                     }
                 }

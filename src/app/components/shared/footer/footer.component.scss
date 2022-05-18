@@ -1,6 +1,8 @@
 @import '../../../../scss/abstracts/_mixin.scss';
 @import '../../../../scss/abstracts/variables.scss';
-.footer {}
+.footer {
+    margin-top: 50px;
+}
 
 .footer-qoute {
     background-image: linear-gradient(-90deg, $first-color, $third-color);
@@ -30,7 +32,9 @@
     &-list {
         list-style-type: none;
     }
-    .logo-s {}
+    .logo-s {
+        margin-bottom: 24px;
+    }
      :hover.logo-s {
         opacity: 0.8;
         cursor: pointer;
@@ -38,17 +42,16 @@
     }
 }
 
-.footer-bot-list .footer-bot-title {
-    padding-bottom: 20px;
-}
-
-.footer-bot-title>.footer-bot-list {
+.footer-bot-title .footer-bot-list {
     margin: 10px 0 0 10px;
 }
 
-.footer-bot-link:hover {
-    color: $first-color;
-    transition: all 0.3s ease;
+.footer-bot-link {
+    text-decoration: none;
+    &:hover {
+        color: $first-color;
+        transition: all 0.3s ease;
+    }
 }
 
 .footer-bot-list .footer-bot-title {
@@ -56,19 +59,13 @@
     text-transform: uppercase;
     font-size: $small-font-size;
     font-weight: 700;
+    padding-bottom: 20px;
 }
 
 .footer-bot-list .footer-bot-item {
     color: $text-color-dark;
     text-transform: capitalize;
     font-weight: 400;
-}
-
-.footer-bot-link {
-    text-decoration: none;
-}
-
-.footer-bot-list .footer-bot-item {
     padding: 7px 0 0;
 }
 
@@ -92,6 +89,9 @@
     .subcribe-btn {
         background-color: $first-color;
     }
+    .p-inputtext.ng-invalid.ng-touched {
+        box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.377);
+    }
 }
 
 .footer-bot-social {
@@ -99,7 +99,7 @@
     label {
         font-weight: 400;
         text-transform: uppercase;
-        margin-bottom: 24px;
+        margin: 16px 0;
         display: block;
     }
     .social-list {
@@ -113,6 +113,18 @@
                 transform: translateY(-10px);
                 display: block;
                 transition: all 0.4s ease;
+            }
+            i {
+                font-size: 36px;
+            }
+            .social-icon-facebook {
+                color: #4267b2;
+            }
+            .social-icon-google {
+                color: #c4a03e;
+            }
+            .social-icon-youtube {
+                color: #ff0000;
             }
         }
     }

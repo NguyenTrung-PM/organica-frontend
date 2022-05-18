@@ -5,13 +5,23 @@ $white-color: hsl(0, 0%, 100%);
 $text-color-dark: hsl(0, 0%, 20%);
 $text-color: hsl(0, 0%, 35%);
 $text-color-light: hsl(0, 0%, 40%);
+$border-color-dark: hsl(0, 0%, 80%);
+$border-color: hsl(0, 0%, 84%);
+$border-color-light: hsl(0, 0%, 88%);
 $font-family: 'Lato',
 sans-serif;
 $font-light: 300;
 $font-regular: 400;
 $font-bold: 700;
-$small-font-size: 0.875em; //14px
-$normal-font-sze: 0.9375em; //15px
-$medium-font-size: 1em; //16px
-$large-font-size: 1.125em; //18px
-$big-font-size: 1.5em; //24px
+$small-font-size: 0.875rem; //14px
+$normal-font-sze: 0.9375rem; //15px
+$medium-font-size: 1rem; //16px
+$large-font-size: 1.125rem; //18px
+$big-font-size: 1.5rem; //24px
+$header-height: 3rem;
+$background-color: hsl(210, 17%, 90%);
+$background-color-light: hsl(210, 17%, 96%);
+$z-1: 1;
+$z-10: 10;
+$z-100: 100;
+$z-1000: 1000;

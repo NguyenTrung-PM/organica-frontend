@@ -14,7 +14,7 @@
         <div class="lg:col-1 md:col-1 flex justify-content-center col-12">
             <a href="" class="logo-s"> <img src="../../../../assets/image/logo_s.png" alt="" /> </a>
         </div>
-        <div class="lg:col-3 md:col-3 col-12">
+        <div class="lg:col-3 md:col-3 sm:col-6 col-12">
             <ul class="footer-bot-list">
                 <li class="footer-bot-title">
                     <a href="" class="footer-bot-link"> Trang chủ </a>
@@ -26,21 +26,15 @@
 
                 <li class="footer-bot-title">
                     <a href="" class="footer-bot-link">Sản phẩm </a>
-                    <ul class="footer-bot-list">
+                    <ul class="footer-bot-list" *ngFor="let group of groups">
                         <li class="footer-bot-item">
-                            <a href="" class="footer-bot-link">Rau củ quả</a>
-                        </li>
-                        <li class="footer-bot-item">
-                            <a href="" class="footer-bot-link">Trái cây</a>
-                        </li>
-                        <li class="footer-bot-item">
-                            <a href="" class="footer-bot-link">Thịt và Thủy hải sản </a>
+                            <a href="" class="footer-bot-link">{{ group.name }}</a>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
-        <div class="lg:col-3 md:col-3 col-12">
+        <div class="lg:col-3 md:col-3 sm:col-6 col-12">
             <ul class="footer-bot-list">
                 <li class="footer-bot-title">
                     <a href="" class="footer-bot-link"> Về Organica </a>
@@ -62,24 +56,24 @@
             </ul>
         </div>
         <div class="lg:col-5 md:col-5 col-12">
-            <form class="footer-bot-subcribe">
+            <form class="footer-bot-subcribe" [formGroup]="subcribeForm" (ngSubmit)="onSubcribe()">
                 <label>Đăng ký nhận khuyến mãi</label>
                 <div class="subcribe-group">
-                    <input class="subcribe-input" type="text" pInputText placeholder="Nhập email nhận thông tin khuyến mãi" />
-                    <button class="subcribe-btn" pButton type="button">Gửi</button>
+                    <input class="subcribe-input" formControlName="emailSubcribe" type="text" pInputText placeholder="Nhập email nhận thông tin khuyến mãi" />
+                    <button [disabled]="!subcribeForm.valid" class="subcribe-btn" pButton type="submit">Gửi</button>
                 </div>
             </form>
             <div class="footer-bot-social">
                 <label for="">Liên kết với Organica trên</label>
                 <ul class="social-list">
                     <li class="social-img">
-                        <a href="" class="social-link"><i class="pi-facebook"></i></a>
+                        <a href="" class="social-link"><i class="social-icon-facebook fa-brands fa-facebook"></i></a>
                     </li>
                     <li class="social-img">
-                        <a href="" class="social-link"><img src="../../../../assets/image/social_momo.png" alt="" /> </a>
+                        <a href="" class="social-link"><i class="social-icon-google fa-brands fa-google-plus"></i> </a>
                     </li>
                     <li class="social-img">
-                        <a href="" class="social-link"> <img src="../../../../assets/image/social_moca.png" alt="" /></a>
+                        <a href="" class="social-link"> <i class="social-icon-youtube fa-brands fa-youtube"></i></a>
                     </li>
                 </ul>
             </div>
