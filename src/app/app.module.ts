@@ -11,15 +11,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { SharedModule } from 'primeng/api';
-
+import { HomeCarouselComponent } from './components/shared/home-carousel/home-carousel.component';
+import { CarouselModule } from 'primeng/carousel';
 const COMPONENTS = [AppComponent, HeaderComponent, FooterComponent, HomeComponent];
 
-const PRIMENGS = [SharedModule, MenubarModule, InputTextModule, ButtonModule];
+const PRIMENGS = [SharedModule, MenubarModule, InputTextModule, ButtonModule, CarouselModule];
 
 const MODULES = [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule];
 
 @NgModule({
-    declarations: [...COMPONENTS],
+    declarations: [...COMPONENTS, HomeCarouselComponent],
 
     imports: [...MODULES, ...PRIMENGS],
     providers: [],
