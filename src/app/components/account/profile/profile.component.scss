@@ -1,0 +1,11 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
+.profile {
+    @include wrapperMain;
+}
+
+:host::ng-deep {
+    .profile-form-submit {
+        @include btnPrimary;
+    }
+}
