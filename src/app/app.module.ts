@@ -9,7 +9,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { SharedModule } from 'primeng/api';
 import { CarouselModule } from 'primeng/carousel';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table/table';
 //component
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,12 +20,12 @@ import { HomeCarouselComponent } from './components/shared/home-carousel/home-ca
 import { ProductSidebarComponent } from './components/shared/product-sidebar/product-sidebar.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { ProfileComponent } from './components/account/profile/profile.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+
 const COMPONENTS = [AppComponent, HeaderComponent, FooterComponent, HomeComponent];
 
 const PRIMENGS = [SharedModule, MenubarModule, InputTextModule, ButtonModule, CarouselModule, PanelMenuModule, TableModule];
 
-const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule, ScrollingModule];
+const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule];
 
 @NgModule({
     declarations: [...COMPONENTS, HomeCarouselComponent, ProductSidebarComponent, LoginComponent, ProfileComponent],
