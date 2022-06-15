@@ -4,8 +4,137 @@
     @include wrapperMain;
 }
 
+.profile-wrapper {
+    .wrapper-heading {
+        text-transform: uppercase;
+        margin: 10px 0;
+        h4 {
+            font-weight: $font-regular;
+        }
+    }
+    .wrapper-content {
+        tr {
+            border-radius: 3px;
+        }
+        &-heading {
+            text-align: left;
+            th {
+                padding: 12px 6px;
+                font-weight: $font-regular;
+            }
+        }
+        &-list {
+            list-style-type: none;
+        }
+        &-item {
+            font-size: $small-font-size;
+            position: relative;
+            margin: 12px 0;
+            tr {
+                border-radius: 3px;
+            }
+            .item-heading {
+                th {
+                    padding: 6px 6px;
+                    font-weight: $font-regular;
+                }
+            }
+            .item-content {
+                td {
+                    font-weight: $font-regular;
+                    padding: 6px 6px;
+                }
+                .item-link {
+                    display: block;
+                    text-decoration: none;
+                    color: $first-color;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
 :host::ng-deep {
     .profile-form-submit {
         @include btnPrimary;
     }
+    .p-inputgroup {
+        position: relative;
+        .p-inputtext {
+            font-size: $small-font-size;
+        }
+    }
+}
+
+.delivery-list {
+    list-style-type: none;
+    .delivery-item {
+        background-color: #f1f1f1;
+        border-radius: 3px;
+        padding: 15px 15px 15px 35px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.delivery-item-infor {
+    .infor {
+        margin: 4px 0;
+        .infor-icon {
+            font-size: $small-font-size;
+            color: #888;
+            min-width: 1.5rem;
+        }
+        .infor-icon-checked {
+            color: $first-color;
+        }
+        label {
+            color: $text-color-dark;
+            font-weight: $font-bold;
+            font-size: $small-font-size;
+        }
+    }
+}
+
+.delivery-item-edit {
+    .edit-icon {
+        color: #888;
+        font-size: 12px;
+    }
+}
+
+.delivery-footer {
+    label {
+        font-size: $normal-font-size;
+    }
+    margin-bottom: 12px;
+    &-form {
+        select {
+            padding: 6px 8px;
+            border-radius: 3px;
+            border: 1px solid #ced4da;
+            font-size: $small-font-size;
+            outline: none;
+            &:focus-visible {
+                box-shadow: 0 0 0 0.2rem rgb(38 143 255 / 50%);
+            }
+        }
+    }
+}
+
+.delivery-link {
+    color: $first-color;
+    cursor: pointer;
+    margin-left: 8px;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+select {
+    border: 1px solid $first-color;
 }
