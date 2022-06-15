@@ -1,0 +1,45 @@
+<div class="grid grid-nogutter account">
+    <div class="lg:col-8 lg:col-offset-2 md:col-8 md:col-offset-2 sm:col-8 sm:col-offset-2 col-10 col-offset-1">
+        <h3 class="account-heading">{{ loginMode ? 'Đăng nhập' : 'Đăng ký' }}</h3>
+        <div class="account-wrapper">
+            <div class="grid">
+                <div class="col-10 col-offset-1">
+                    <p-button class="flex justify-content-end" styleClass="account-form-switch p-button-sm p-button-raised" label="{{ loginMode ? 'Đăng ký' : 'Đăng nhập' }}" icon="pi pi-sync" iconPos="left" (onClick)="switchMode()"></p-button>
+                </div>
+            </div>
+
+            <form class="account-form">
+                <div class="grid">
+                    <div class="col-10 col-offset-1">
+                        <div class="p-inputgroup" *ngIf="!loginMode">
+                            <input type="text" pInputText placeholder="Họ tên" />
+                        </div>
+                        <div class="p-inputgroup">
+                            <input type="text" pInputText placeholder="Địa chỉ email" />
+                        </div>
+                        <div class="grid">
+                            <div [ngClass]="loginMode ? 'col-12' : 'col-6'">
+                                <div class="p-inputgroup m-0">
+                                    <input type="text" pInputText placeholder="Mật khẩu" />
+                                </div>
+                            </div>
+                            <div class="col-6" *ngIf="!loginMode">
+                                <div class="p-inputgroup m-0">
+                                    <input type="text" pInputText placeholder="Số điện thoại" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-nogutter account-form-footer">
+                            <div class="lg:col-5 md:col-5 sm:col-5 col-12">
+                                <p-button styleClass="account-form-forgot p-button-link" label="Quên mật khẩu" *ngIf="loginMode"></p-button>
+                            </div>
+                            <div class="lg:col-7 md:col-7 sm:col-7 col-12">
+                                <button pButton pRipple type="button" label="{{ loginMode ? 'Đăng nhập' : 'Đăng ký' }}" class="p-button-rounded account-form-submit"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,6 @@
 $mobile-width: 480px;
 $tablet-width: 768px;
 $desktop-width: 1024px;
-
 @mixin mobile {
     @media (max-width: #{$mobile-width - 1px}) {
         @content;
@@ -30,4 +29,45 @@ $desktop-width: 1024px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@mixin btnPrimary {
+    padding: 8px 36px;
+    border: 1px solid $first-color;
+    background-color: $first-color;
+    .p-button-label {
+        color: $white-color;
+        text-transform: uppercase;
+    }
+    &:hover {
+        border: 1px solid $first-color;
+        background-color: transparent;
+        .p-button-label {
+            color: $first-color;
+            transition: all 0.4s ease-in-out;
+        }
+    }
+}
+
+@mixin wrapperMain {
+    margin-top: 36px;
+    &-heading {
+        font-size: $big-font-size;
+        text-transform: uppercase;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            border-bottom: 2px solid $third-color;
+            width: 20%;
+            left: 0;
+            bottom: -50%;
+        }
+    }
+    &-wrapper {
+        margin-top: 40px;
+        background-color: $background-color;
+        border-radius: 2px;
+        padding: 15px 20px;
+    }
 }
