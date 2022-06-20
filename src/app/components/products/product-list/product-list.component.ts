@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { ProductService } from 'src/app/services/products/product.service';
+import { Product } from 'src/app/shared/interface';
 
 @Component({
-    selector: 'app-product-sidebar',
-    templateUrl: './product-sidebar.component.html',
-    styleUrls: ['./product-sidebar.component.scss'],
+    selector: 'app-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.scss'],
 })
-export class ProductSidebarComponent implements OnInit {
+export class ProductListComponent implements OnInit {
     items!: MenuItem[];
-
-    constructor() {}
+    products!: Product[];
+    constructor(private productService: ProductService) {}
 
     ngOnInit(): void {
+        this.productService.getAllProducts().subscribe((data) => {
+            this.products = data;
+        });
         this.items = [
             {
                 label: 'Rau củ quả',

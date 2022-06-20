@@ -1,0 +1,15 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
+.category-heading {
+    margin-left: 8px;
+    font-size: $big-font-size;
+    font-weight: $font-regular;
+}
+
+.group {
+    margin-left: 8px;
+    margin-bottom: 24px;
+    @include wrapperMain;
+}
+
+app-product-item {}

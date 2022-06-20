@@ -13,6 +13,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DialogModule } from 'primeng/dialog';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { CardModule } from 'primeng/card';
+import { InputNumberModule } from 'primeng/inputnumber';
 //component
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,18 +23,44 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeCarouselComponent } from './components/shared/home-carousel/home-carousel.component';
-import { ProductSidebarComponent } from './components/shared/product-sidebar/product-sidebar.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { ProfileComponent } from './components/account/profile/profile.component';
-
+import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
+import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
+import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { ProductItemComponent } from './components/products/product-list/product-item/product-item.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { CutStringsPipe } from './pipes/cut-strings.pipe';
 const COMPONENTS = [AppComponent, HeaderComponent, FooterComponent, HomeComponent];
 
-const PRIMENGS = [SharedModule, MenubarModule, InputTextModule, ButtonModule, CarouselModule, PanelMenuModule, DialogModule, CascadeSelectModule];
+const PRIMENGS = [
+    SharedModule,
+    MenubarModule,
+    InputTextModule,
+    ButtonModule,
+    CarouselModule,
+    PanelMenuModule,
+    DialogModule,
+    CascadeSelectModule,
+    CardModule,
+    GalleriaModule,
+    InputNumberModule,
+];
 
 const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule];
 
 @NgModule({
-    declarations: [...COMPONENTS, HomeCarouselComponent, ProductSidebarComponent, LoginComponent, ProfileComponent],
+    declarations: [
+        ...COMPONENTS,
+        HomeCarouselComponent,
+        LoginComponent,
+        ProfileComponent,
+        ProductDetailComponent,
+        ProductEditComponent,
+        ProductListComponent,
+        ProductItemComponent,
+        CutStringsPipe,
+    ],
     imports: [...MODULES, ...PRIMENGS],
     providers: [],
     bootstrap: [AppComponent],

@@ -1,6 +1,13 @@
+$mobile-xs: 400px;
 $mobile-width: 480px;
 $tablet-width: 768px;
 $desktop-width: 1024px;
+@mixin mobile-xs {
+    @media (max-width: #{$mobile-xs - 1px}) {
+        @content;
+    }
+}
+
 @mixin mobile {
     @media (max-width: #{$mobile-width - 1px}) {
         @content;
@@ -32,21 +39,56 @@ $desktop-width: 1024px;
 }
 
 @mixin btnPrimary {
-    padding: 8px 36px;
     border: 1px solid $first-color;
     background-color: $first-color;
+    transition: all 0.3s ease;
     .p-button-label {
         color: $white-color;
         text-transform: uppercase;
     }
     &:hover {
         border: 1px solid $first-color;
-        background-color: transparent;
+        background-color: $white-color;
         .p-button-label {
             color: $first-color;
-            transition: all 0.4s ease-in-out;
         }
     }
+}
+
+@mixin btnDanger {
+    border: 1px dashed $second-color;
+    background-color: $white-color;
+    .p-button-label {
+        color: $second-color;
+        text-transform: uppercase;
+    }
+    &:hover {
+        border: 1px dashed $second-color;
+        background-color: $white-color;
+    }
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+@mixin btnPrimary-l {
+    padding: 6px 32px;
+    @include btnPrimary;
+}
+
+@mixin btnPrimary-m {
+    padding: 4px 16px;
+    @include btnPrimary;
+}
+
+@mixin btnPrimary-s {
+    font-size: $smaller-font-size;
+    @include btnPrimary;
+}
+
+@mixin btnDanger-s {
+    font-size: $smaller-font-size;
+    @include btnDanger;
 }
 
 @mixin wrapperMain {
