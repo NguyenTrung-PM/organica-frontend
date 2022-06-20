@@ -1,0 +1,105 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
+.product-detail {
+    margin: 0 15px;
+    &-name {
+        font-size: $bigest-font-size;
+        font-weight: $font-bold;
+        color: $text-color-dark;
+        position: relative;
+        margin-bottom: 20px;
+        &::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            bottom: -20px;
+            left: 0;
+            border-bottom: 1px solid $first-color;
+        }
+    }
+    &-price {
+        margin: 40px 0;
+        .price-new {
+            position: relative;
+            margin-right: 8px;
+            font-size: $bigest-font-size;
+            color: $first-color;
+            font-weight: $font-bold;
+            &::after {
+                position: absolute;
+                content: 'đ';
+                text-decoration: underline;
+                top: -4px;
+                right: -8px;
+                font-size: $medium-font-size;
+            }
+        }
+        .price-unit {
+            font-size: $bigest-font-size;
+            color: $first-color;
+            font-weight: $font-bold;
+        }
+    }
+    &-quantity {
+        margin: 20px 0;
+        label {
+            width: 50%;
+            font-size: $normal-font-size;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.product-describe {
+    margin: 40px 15px 20px;
+    &-heading {
+        color: $text-color-lightest;
+    }
+    &-line {
+        width: 100%;
+        border-top: 1px solid $first-color;
+        margin: 15px 0;
+    }
+    &-list {
+        list-style-type: none;
+    }
+    &-item {
+        margin-bottom: 20px;
+        text-align: justify;
+        line-height: $big-font-size;
+        .describe-title {
+            font-size: $normal-font-size;
+            font-weight: $font-bold;
+            display: inline-block;
+        }
+        .describe-content {
+            font-size: $small-font-size;
+            font-weight: $font-regular;
+        }
+    }
+}
+
+:host::ng-deep {
+    .product-buy-btn {
+        width: 100%;
+        @include btnPrimary;
+    }
+    .product-sold-out {
+        width: 100%;
+        @include btnDanger;
+    }
+    p-galleriaitem {
+        border: 1px solid $border-color-light;
+        p-galleriaitemslot {
+            img {
+                @include mobile-xs {
+                    height: 200px !important;
+                }
+            }
+        }
+    }
+    .p-inputtext {
+        width: 100%;
+        text-align: center;
+    }
+}

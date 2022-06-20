@@ -59,7 +59,7 @@
 
 :host::ng-deep {
     .profile-form-submit {
-        @include btnPrimary;
+        @include btnPrimary-l;
     }
     .p-inputgroup {
         position: relative;

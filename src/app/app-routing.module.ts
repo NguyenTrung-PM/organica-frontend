@@ -4,6 +4,8 @@ import { LoginComponent } from './components/account/login/login.component';
 import { ProfileComponent } from './components/account/profile/profile.component';
 
 import { HomeComponent } from './components/home/home.component';
+import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
+import { ProductListComponent } from './components/products/product-list/product-list.component';
 
 const routes: Routes = [
     {
@@ -12,6 +14,7 @@ const routes: Routes = [
     },
     {
         path: 'account',
+
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'login', component: LoginComponent },
@@ -19,6 +22,15 @@ const routes: Routes = [
             { path: 'profile', component: ProfileComponent },
         ],
     },
+    {
+        path: 'product',
+        component: ProductListComponent,
+    },
+    {
+        path: 'product/:id',
+        component: ProductDetailComponent,
+    },
+
     {
         path: '**',
         redirectTo: '/home',
