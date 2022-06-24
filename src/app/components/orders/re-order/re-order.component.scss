@@ -1,0 +1,155 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
+.order {
+    @include wrapperMain;
+}
+
+.order-wrapper {
+    padding: 15px 20px 15px;
+    &-name {
+        margin-bottom: 10px;
+    }
+    .wrapper-heading {
+        text-transform: uppercase;
+        margin: 10px 0;
+        h4 {
+            font-weight: $font-regular;
+        }
+    }
+    .wrapper-content {
+        tr {
+            border-radius: 3px;
+        }
+        &-heading {
+            text-align: left;
+            th {
+                padding: 12px 6px;
+                font-weight: $font-regular;
+            }
+        }
+        &-list {
+            list-style-type: none;
+        }
+        &-item {
+            font-size: $small-font-size;
+            position: relative;
+            margin: 12px 0;
+            tr {
+                border-radius: 3px;
+            }
+            .item-heading {
+                th {
+                    padding: 6px 6px;
+                    font-weight: $font-regular;
+                }
+            }
+            .item-content {
+                td {
+                    font-weight: $font-regular;
+                    padding: 6px 6px;
+                }
+                .item-link {
+                    display: block;
+                    text-decoration: none;
+                    color: $first-color;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.order-table {
+    display: block;
+    margin-top: 15px;
+    .order-table-heading {
+        border-bottom: 2px solid $border-color;
+        padding-bottom: 10px;
+    }
+    .order-title {
+        font-size: $small-font-size;
+    }
+    .order-title:first-child {
+        text-align: left;
+        padding-left: 8px;
+    }
+    .order-title:last-child {
+        padding-right: 8px;
+        text-align: right;
+    }
+    .order-list {
+        list-style-type: none;
+    }
+}
+
+.order-item {
+    border-bottom: 1px solid $border-color-light;
+    position: relative;
+    @include flex-center;
+    td {
+        display: block;
+    }
+    &-img {
+        img {
+            width: 100%;
+        }
+    }
+    &-name {
+        span:first-child {
+            text-transform: uppercase;
+        }
+        span {
+            margin-bottom: 6px;
+            color: $text-color-light;
+        }
+    }
+    &-quantity {
+        text-align: center;
+    }
+    &-total {
+        span {
+            @include sup-price;
+        }
+        text-align: right;
+    }
+}
+
+.order-btn {
+    margin-top: 20px;
+}
+
+:host::ng-deep {
+    .order-form-submit {
+        @include btnPrimary-l;
+    }
+    .p-inputnumber-input {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+    .product-sold-out {
+        @include btnDanger-s;
+    }
+    .order-button {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        .p-button-icon {
+            color: $white-color;
+        }
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    .profile-form-submit {
+        margin-top: 10px;
+        font-size: $small-font-size;
+        @include btnPrimary-l;
+    }
+}

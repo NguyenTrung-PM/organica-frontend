@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { ProductService } from 'src/app/services/products/product.service';
-import { Product } from 'src/app/shared/interface';
+import { Category, Group, Product } from 'src/app/shared/interface';
 
 @Component({
     selector: 'app-product-list',
@@ -10,13 +10,18 @@ import { Product } from 'src/app/shared/interface';
 })
 export class ProductListComponent implements OnInit {
     items!: MenuItem[];
-    products!: Product[];
+    products!: Product[] | any;
+    isLoading: boolean = false;
+    groups!: Group[];
+    categorys!: Category[];
+    title: string = 'Tất cả sản phẩm';
+    subTitle: string = 'Rau củ quả';
+    size: number = 30;
     constructor(private productService: ProductService) {}
 
     ngOnInit(): void {
-        this.productService.getAllProducts().subscribe((data) => {
-            this.products = data;
-        });
+        this.initData();
+
         this.items = [
             {
                 label: 'Rau củ quả',
@@ -26,7 +31,7 @@ export class ProductListComponent implements OnInit {
                         command: (event) => {
                             //event.originalEvent: Browser event
                             //event.item: menuitem metadata
-                            // console.log(event.item);
+                            console.log(event.item);
                         },
                         // style: { marginLeft: '50px' },
                     },
@@ -95,5 +100,26 @@ export class ProductListComponent implements OnInit {
                 ],
             },
         ];
+    }
+    initData() {
+        this.isLoading = true;
+        this.productService.getAllProducts().subscribe((data) => {
+            this.isLoading = false;
+            this.products = data.content;
+        });
+        this.productService.getAllGroups().subscribe((data) => {
+            this.groups = data;
+            data.forEach((group) => {
+                this.categorys = group.categories;
+            });
+        });
+    }
+    loadMore() {
+        this.productService.loadMoreProductsBySize(this.size).subscribe((data) => {
+            this.products = data.content;
+            // console.log(data.content);
+            this.size += 10;
+        });
+        this.initData();
     }
 }

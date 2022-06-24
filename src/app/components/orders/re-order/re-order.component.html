@@ -1,0 +1,114 @@
+<div class="grid grid-nogutter order">
+    <div class="lg:col-8 lg:col-offset-2 md:col-8 md:col-offset-2 sm:col-8 sm:col-offset-2 col-10 col-offset-1">
+        <h3 class="order-heading">Đặt lại</h3>
+        <div class="order-wrapper">
+            <p class="order-wrapper-name">Chào <strong>Nguyễn Quốc Việt</strong>, quý khách có muốn đặt lại đơn hàng này không?</p>
+            <table class="grid grid-nogutter wrapper-content">
+                <tr class="bg-white hidden lg:block md:block lg:col-12 md:col-12">
+                    <div class="grid grid-nogutter wrapper-content-heading">
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Mã đơn hàng</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày đặt</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Tình trạng</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày giao</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12"></th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12"></th>
+                    </div>
+                </tr>
+                <ul class="wrapper-content-list" style="width: 100%">
+                    <li class="grid grid-nogutter wrapper-content-item">
+                        <tr class="block bg-white lg:hidden md:hidden sm:col-6 col-6">
+                            <div class="grid grid-nogutter item-heading">
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12">Mã đơn hàng</th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày đặt</th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12">Tình trạng</th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày giao</th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12"></th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12"></th>
+                            </div>
+                        </tr>
+                        <tr class="bg-white lg:col-12 md:col-12 sm:col-6 col-6">
+                            <div class="grid grid-nogutter item-content">
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">00c-455acd</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">10/5/2022</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">Mới</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">12/05/2022</td>
+                                <td class="lg:col-2 md:col-2 sm:col-6 col-6"></td>
+                                <td class="lg:col-2 md:col-2 sm:col-6 col-6"></td>
+                            </div>
+                        </tr>
+                    </li>
+                </ul>
+            </table>
+        </div>
+
+        <table class="order-table">
+            <tr class="grid grid-nogutter">
+                <ul class="order-list">
+                    <li class="order-item sm:flex flex-wrap block">
+                        <td class="sm:col-3 col-12 order-item-img"><img src="assets/image/products/product-1.png" alt="" /></td>
+                        <td class="sm:col-3 col-12 order-item-name sm:text-left text-center block flex flex-column justify-content-between">
+                            <span>Nấm rơm</span> <span>400g</span>
+                            <button pButton pRipple type="button" label="Tạm hết" class="product-sold-out p-button-rounded"></button>
+                        </td>
+                        <td class="md:col-3 sm:col-5 col-12 text-center order-item-quantity">
+                            <p-inputNumber [(ngModel)]="countProduct" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" [min]="1" [ariaRequired]="true" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success p-button-sm"
+                                incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus p-button-sm" mode="decimal">
+                            </p-inputNumber>
+                        </td>
+                        <td class="md:col-3 col-12 sm:text-right text-center order-item-total"><span>64.000</span></td>
+                        <button pButton pRipple type="button" icon="pi pi-times" class="order-button p-button-danger"></button>
+                    </li>
+                </ul>
+            </tr>
+        </table>
+        <div class="grid grid-nogutter order-btn">
+            <div class="lg:col-3 md:col-4 col-12 lg:col-offset-4 flex justify-content-center">
+                <button pButton pRipple type="button" label="Đặt lại" class="p-button-rounded profile-form-submit"></button>
+            </div>
+            <div class="lg:col-5 md:col-8 col-12 flex justify-content-center">
+                <button pButton pRipple type="button" label="Đặt lại và tiếp tục mua sắm" class="p-button-rounded profile-form-submit"></button>
+            </div>
+        </div>
+        <div class="order-wrapper">
+            <div class="flex justify-content-between align-items-center wrapper-heading">
+                <h4 class="">Các đơn hàng cũ hơn</h4>
+            </div>
+            <table class="grid grid-nogutter wrapper-content">
+                <tr class="bg-white hidden lg:block md:block lg:col-12 md:col-12">
+                    <div class="grid grid-nogutter wrapper-content-heading">
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Mã đơn hàng</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày đặt</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Tình trạng</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày giao</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12"></th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12"></th>
+                    </div>
+                </tr>
+                <ul class="wrapper-content-list" style="width: 100%">
+                    <li class="grid grid-nogutter wrapper-content-item">
+                        <tr class="block bg-white lg:hidden md:hidden sm:col-6 col-6">
+                            <div class="grid grid-nogutter item-heading">
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12">Mã đơn hàng</th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày đặt</th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12">Tình trạng</th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày giao</th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12"></th>
+                                <th class="lg:col-2 md:col-2 sm:col-12 col-12"></th>
+                            </div>
+                        </tr>
+                        <tr class="bg-white lg:col-12 md:col-12 sm:col-6 col-6">
+                            <div class="grid grid-nogutter item-content">
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">00c-455acd</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">10/5/2022</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">Mới</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">12/05/2022</td>
+                                <td class="lg:col-2 md:col-2 sm:col-6 col-6"><a class="item-link" href="">Chi tiết</a></td>
+                                <td class="lg:col-2 md:col-2 sm:col-6 col-6"><a class="item-link" href="">Đặt lại</a></td>
+                            </div>
+                        </tr>
+                    </li>
+                </ul>
+            </table>
+        </div>
+    </div>
+</div>

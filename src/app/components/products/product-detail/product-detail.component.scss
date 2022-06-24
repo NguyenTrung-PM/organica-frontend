@@ -20,19 +20,7 @@
     &-price {
         margin: 40px 0;
         .price-new {
-            position: relative;
-            margin-right: 8px;
-            font-size: $bigest-font-size;
-            color: $first-color;
-            font-weight: $font-bold;
-            &::after {
-                position: absolute;
-                content: 'đ';
-                text-decoration: underline;
-                top: -4px;
-                right: -8px;
-                font-size: $medium-font-size;
-            }
+            @include sup-price-l;
         }
         .price-unit {
             font-size: $bigest-font-size;
@@ -54,6 +42,8 @@
     margin: 40px 15px 20px;
     &-heading {
         color: $text-color-lightest;
+        text-transform: uppercase;
+        margin-right: 6px;
     }
     &-line {
         width: 100%;
@@ -72,10 +62,22 @@
             font-weight: $font-bold;
             display: inline-block;
         }
+        img {
+            margin: 10px auto;
+            display: block;
+        }
         .describe-content {
             font-size: $small-font-size;
             font-weight: $font-regular;
         }
+    }
+    &-item.describe-nature {
+        display: inline-block;
+        margin-right: 6px;
+        border: 1px solid $border-color-light;
+        padding: 4px 6px;
+        // cursor: pointer;
+        cursor: default;
     }
 }
 
@@ -97,6 +99,13 @@
                 }
             }
         }
+    }
+    .p-galleria-thumbnail-container {
+        background-color: $white-color;
+        // border: 1px solid $border-color-light;
+        border-width: 0 1px 1px 1px;
+        border-color: $border-color-light;
+        border-style: solid;
     }
     .p-inputtext {
         width: 100%;

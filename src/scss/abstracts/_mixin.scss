@@ -113,3 +113,51 @@ $desktop-width: 1024px;
         padding: 15px 20px;
     }
 }
+
+@mixin sup-price-l {
+    font-size: $bigest-font-size;
+    position: relative;
+    margin-right: 8px;
+    color: $first-color;
+    font-weight: $font-bold;
+    &::after {
+        position: absolute;
+        content: 'đ';
+        text-decoration: underline;
+        top: -4px;
+        right: -8px;
+        font-size: $medium-font-size;
+    }
+}
+
+@mixin sup-price {
+    font-size: $large-font-size;
+    color: $first-color;
+    font-weight: $font-bold;
+    position: relative;
+    margin-right: 8px;
+    &::after {
+        position: absolute;
+        content: 'đ';
+        text-decoration: underline;
+        top: -4px;
+        right: -8px;
+        font-size: $small-font-size;
+    }
+}
+
+@mixin sup-price-s {
+    font-size: $medium-font-size;
+    color: $first-color;
+    font-weight: $font-bold;
+    position: relative;
+    margin-right: 8px;
+    &::after {
+        position: absolute;
+        content: 'đ';
+        text-decoration: underline;
+        top: -4px;
+        right: -8px;
+        font-size: $smaller-font-size;
+    }
+}

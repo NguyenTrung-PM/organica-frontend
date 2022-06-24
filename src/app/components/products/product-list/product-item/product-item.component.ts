@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from 'src/app/shared/interface';
+import { ProductService } from 'src/app/services/products/product.service';
+import { Image, Product } from 'src/app/shared/interface';
 
 @Component({
     selector: 'app-product-item',
@@ -9,7 +10,7 @@ import { Product } from 'src/app/shared/interface';
 })
 export class ProductItemComponent implements OnInit {
     @Input() product!: Product;
-    constructor(private router: Router, private route: ActivatedRoute) {}
+    constructor(private productService: ProductService, private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit(): void {}
     chooseProduct(id: number) {

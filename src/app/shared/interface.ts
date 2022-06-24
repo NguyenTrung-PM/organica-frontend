@@ -1,24 +1,28 @@
 export interface Group {
     id: number;
     name: string;
-    // categorys: Category[];
+    categories: Category[];
 }
 export interface Category {
     id: number;
     name: string;
-    product: Product[];
+}
+export interface Content {
+    content: Product[] | Image[] | Descriped[];
+    size: number;
 }
 export interface Product {
     id: number;
     name: string;
     price: number;
+    image: string;
     discount: number;
     quantity: number;
     quality: number;
     unit: string;
-    describes: Descriped[];
-    images: Image[];
+    categorys: Category[];
 }
+
 export interface Descriped {
     id: number;
     title: string;

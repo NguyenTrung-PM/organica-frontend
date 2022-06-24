@@ -1,82 +1,61 @@
 @import '../../../../../scss/abstracts/_mixin.scss';
 @import '../../../../../scss/abstracts/variables.scss';
-.product-item {
+.product {
     position: relative;
-    display: block;
     overflow: hidden;
     margin: 8px;
-    border-radius: 2px;
     border: 1px solid $border-color-lightest;
     transition: all 0.5s ease;
-    cursor: pointer;
-    &:hover {
-        border: 1px solid $first-color;
-        .product-favorite {
-            transform: translateX(0) !important;
-            color: white;
-        }
-        .product-buy {
-            transform: translateX(0) !important;
-            color: white;
-        }
-    }
-    .product-card {
-        &-discount {
-            position: relative;
-            height: 30px;
-            .discount-img {
-                width: 90px;
-                position: absolute;
-                right: -15px;
-                bottom: 0;
-            }
-            .discount-text {
-                position: absolute;
-                right: -8px;
-                bottom: -2px;
-                transform: translateY(-50%);
-                font-size: $small-font-size;
-                color: $white-color;
-                font-weight: $font-bold;
-            }
-        }
-        &-name {
-            font-weight: $font-regular;
-            text-transform: uppercase;
-            margin-top: 15px;
-            height: 40px;
-            line-height: 22px;
-            overflow: hidden;
-        }
-        &-price {
-            height: 40px;
-            margin: 15px 0 5px 0;
-            .price-old {
-                font-size: $small-font-size;
-                color: $text-color-lightest;
-                text-decoration: line-through;
-                font-weight: $font-bold;
-                margin-bottom: 6px;
-            }
-            .price-new {
-                font-size: $large-font-size;
-                color: $first-color;
-                font-weight: $font-bold;
+    border-radius: 2px;
+    .product-item {
+        display: block;
+        cursor: pointer;
+        .product-card {
+            &-discount {
                 position: relative;
-                margin-right: 8px;
-                &::after {
+                height: 30px;
+                .discount-img {
+                    width: 90px;
                     position: absolute;
-                    content: 'đ';
-                    text-decoration: underline;
-                    top: -4px;
+                    right: -15px;
+                    bottom: 0;
+                }
+                .discount-text {
+                    position: absolute;
                     right: -8px;
+                    bottom: -2px;
+                    transform: translateY(-50%);
                     font-size: $small-font-size;
+                    color: $white-color;
+                    font-weight: $font-bold;
                 }
             }
-            .price-unit {
-                font-size: $large-font-size;
-                color: $first-color;
-                font-weight: $font-bold;
+            &-name {
+                font-weight: $font-regular;
+                text-transform: uppercase;
+                margin-top: 15px;
+                height: 40px;
+                line-height: 22px;
+                overflow: hidden;
+            }
+            &-price {
+                height: 40px;
+                margin: 15px 0 5px 0;
+                .price-old {
+                    font-size: $small-font-size;
+                    color: $text-color-lightest;
+                    text-decoration: line-through;
+                    font-weight: $font-bold;
+                    margin-bottom: 6px;
+                }
+                .price-new {
+                    @include sup-price;
+                }
+                .price-unit {
+                    font-size: $large-font-size;
+                    color: $first-color;
+                    font-weight: $font-bold;
+                }
             }
         }
     }
@@ -89,6 +68,7 @@
         .product-favorite {
             transition: all 0.5s ease;
             padding-left: 8px;
+            cursor: pointer;
             i {
                 color: $white-color;
                 background-color: $first-color;
@@ -105,6 +85,17 @@
         .product-buy {
             transition: all 0.5s ease;
             padding-right: 8px;
+        }
+    }
+    &:hover {
+        border: 1px solid $first-color;
+        .product-favorite {
+            transform: translateX(0) !important;
+            color: white;
+        }
+        .product-buy {
+            transform: translateX(0) !important;
+            color: white;
         }
     }
 }
