@@ -4,6 +4,9 @@ import { LoginComponent } from './components/account/login/login.component';
 import { ProfileComponent } from './components/account/profile/profile.component';
 
 import { HomeComponent } from './components/home/home.component';
+import { OrderDetailComponent } from './components/orders/order-detail/order-detail.component';
+import { OrderListComponent } from './components/orders/order-list/order-list.component';
+import { ReOrderComponent } from './components/orders/re-order/re-order.component';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 
@@ -30,7 +33,14 @@ const routes: Routes = [
         path: 'product/:id',
         component: ProductDetailComponent,
     },
-
+    {
+        path: 'order',
+        children: [
+            { path: '', component: OrderListComponent },
+            { path: 'detail', component: OrderDetailComponent },
+            { path: 'reorder', component: ReOrderComponent },
+        ],
+    },
     {
         path: '**',
         redirectTo: '/home',

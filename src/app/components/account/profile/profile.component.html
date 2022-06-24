@@ -1,10 +1,11 @@
+<!-- <app-order-list></app-order-list> -->
 <div class="grid grid-nogutter profile">
     <div class="lg:col-8 lg:col-offset-2 md:col-8 md:col-offset-2 sm:col-8 sm:col-offset-2 col-10 col-offset-1">
         <h3 class="profile-heading">Tài khoản \ deptraiphaithe258@gmail.com</h3>
         <div class="profile-wrapper">
             <div class="flex justify-content-between align-items-center wrapper-heading">
                 <h4 class="">Quản lý đơn hàng</h4>
-                <button pButton pRipple type="button" label="Xem tất cả" class="p-button-rounded profile-form-submit"></button>
+                <button pButton pRipple type="button" [routerLink]="['/order']" routerLinkActive="router-link-active" label="Xem tất cả" class="p-button-rounded profile-form-submit"></button>
             </div>
 
             <table class="grid grid-nogutter wrapper-content">

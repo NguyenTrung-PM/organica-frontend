@@ -12,4 +12,10 @@
     @include wrapperMain;
 }
 
-app-product-item {}
+:host::ng-deep {
+    .p-toggleable-content {
+        display: block;
+        overflow: visible !important;
+        height: auto !important;
+    }
+}

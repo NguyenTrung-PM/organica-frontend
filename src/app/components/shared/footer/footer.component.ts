@@ -9,9 +9,9 @@ import { Group } from 'src/app/shared/interface';
 })
 export class FooterComponent implements OnInit {
     groups: Group[] = [
-        { id: 1, name: 'Rau củ quả' },
-        { id: 2, name: 'Trái cây' },
-        { id: 3, name: 'Thịt & Thủy hải sản' },
+        { id: 1, name: 'Rau củ quả', categories: [] },
+        { id: 2, name: 'Trái cây', categories: [] },
+        { id: 3, name: 'Thịt & Thủy hải sản', categories: [] },
     ];
     subcribeForm: FormGroup | any;
     constructor() {}
