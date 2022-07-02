@@ -10,6 +10,7 @@ export interface Category {
 export interface Content {
     content: Product[] | Image[] | Descriped[];
     size: number;
+    totalElements: number;
 }
 export interface Product {
     id: number;

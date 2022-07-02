@@ -1,2 +1,14 @@
 <!-- carousel home -->
 <app-home-carousel></app-home-carousel>
+<div class="grid grid-nogutter">
+    <div class="container lg:col-offset-1 lg:col-10 col-12">
+        <app-spinner *ngIf="isLoading"></app-spinner>
+
+        <div class="home">
+            <h3 class="home-heading"><span> Sản phẩm nổi bật </span></h3>
+        </div>
+        <div class="grid grid-nogutter" *ngIf="!isLoading">
+            <app-product-item class="lg:col-2 md:col-3 sm:col-4 col-6" *ngFor="let productEl of products" [product]="productEl"></app-product-item>
+        </div>
+    </div>
+</div>
