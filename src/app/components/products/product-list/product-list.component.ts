@@ -11,12 +11,14 @@ import { Category, Group, Product } from 'src/app/shared/interface';
 export class ProductListComponent implements OnInit {
     items!: MenuItem[];
     products!: Product[] | any;
+    productsDisplay: Product[] | any;
     isLoading: boolean = false;
     groups!: Group[];
     categorys!: Category[];
     title: string = 'Tất cả sản phẩm';
     subTitle: string = 'Rau củ quả';
     size: number = 30;
+    totalElements!: number;
     constructor(private productService: ProductService) {}
 
     ngOnInit(): void {
@@ -103,9 +105,13 @@ export class ProductListComponent implements OnInit {
     }
     initData() {
         this.isLoading = true;
-        this.productService.getAllProducts().subscribe((data) => {
+        this.productService.getProductsDisplay().subscribe((data) => {
             this.isLoading = false;
-            this.products = data.content;
+            this.productsDisplay = data.content;
+            this.totalElements = data.totalElements;
+            this.productService.getAllProducts(this.totalElements).subscribe((data) => {
+                this.products = data.content;
+            });
         });
         this.productService.getAllGroups().subscribe((data) => {
             this.groups = data;
@@ -115,11 +121,16 @@ export class ProductListComponent implements OnInit {
         });
     }
     loadMore() {
-        this.productService.loadMoreProductsBySize(this.size).subscribe((data) => {
-            this.products = data.content;
-            // console.log(data.content);
-            this.size += 10;
-        });
-        this.initData();
+        // this.productService.loadMoreProductsBySize(this.size).subscribe((data) => {
+        //     this.products = data.content;
+        //     // console.log(data.content);
+        //     this.size += 10;
+        // });
+        // this.initData();
+        let newLength = this.productsDisplay.length + 10;
+        if (newLength > this.products.length) {
+            newLength = this.products.length;
+        }
+        this.productsDisplay = this.products.slice(0, newLength);
     }
 }

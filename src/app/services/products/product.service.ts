@@ -17,10 +17,18 @@ export class ProductService {
     };
     constructor(private httpClient: HttpClient) {}
 
-    getAllProducts(): Observable<Content> {
+    getAllProducts(size?: number): Observable<Content> {
+        let URL = `${this.URL_PRODUCTS_API}?size=${size}`;
+        return this.httpClient.get<Content>(URL, this.httpOptions).pipe(catchError(this.handleError));
+    }
+    getProductsDisplay(): Observable<Content> {
         let URL = this.URL_PRODUCTS_API;
         return this.httpClient.get<Content>(URL, this.httpOptions).pipe(catchError(this.handleError));
     }
+    // getAllProducts(): Observable<Content> {
+    //     let URL = this.URL_PRODUCTS_API;
+    //     return this.httpClient.get<Content>(URL, this.httpOptions).pipe(catchError(this.handleError));
+    // }
     getProductById(id: number): Observable<Product> {
         let URL = `${this.URL_PRODUCTS_API}/${id}`;
         return this.httpClient.get<Product>(URL, this.httpOptions).pipe(catchError(this.handleError));

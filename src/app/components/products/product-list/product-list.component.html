@@ -1,5 +1,9 @@
 <div class="grid grid-nogutter group">
-    <h3 class="lg:col-7 md:col-7 col-12 lg:col-offset-3 md:col-offset-3 group-heading">{{ title }}</h3>
+    <h3 class="lg:col-7 md:col-7 col-12 lg:col-offset-3 md:col-offset-3 group-heading">
+        <span>
+            {{ title }}
+        </span>
+    </h3>
 </div>
 <div class="grid grid-nogutter">
     <div class="lg:col-2 lg:col-offset-1 md:col-3 lg:block md:block hidden">
@@ -11,8 +15,8 @@
         <h3 class="category-heading">{{ subTitle }}</h3>
 
         <div class="grid grid-nogutter" *ngIf="!isLoading">
-            <app-product-item class="lg:col-3 sm:col-4 col-6" *ngFor="let productEl of products" [product]="productEl"></app-product-item>
+            <app-product-item class="lg:col-3 sm:col-4 col-6" *ngFor="let productEl of productsDisplay" [product]="productEl"></app-product-item>
         </div>
-        <button (click)="loadMore()">Xem thêm 10 sp</button>
+        <a (click)="loadMore()">Xem thêm 10 sp</a>
     </div>
 </div>

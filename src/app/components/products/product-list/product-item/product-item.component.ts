@@ -14,6 +14,11 @@ export class ProductItemComponent implements OnInit {
 
     ngOnInit(): void {}
     chooseProduct(id: number) {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
         this.router.navigate(['product', id]);
     }
 }

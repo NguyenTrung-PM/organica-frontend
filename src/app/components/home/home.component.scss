@@ -1,0 +1,14 @@
+@import '../../../scss/abstracts/mixin';
+@import '../../../scss/abstracts/variables.scss';
+@include desktop-s {
+    .lg\:col-offset-1 {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+}
+
+.home {
+    margin-bottom: 24px;
+    text-align: center;
+    @include wrapperMain;
+}
