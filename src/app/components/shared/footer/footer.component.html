@@ -56,12 +56,15 @@
             </ul>
         </div>
         <div class="lg:col-5 md:col-5 col-12">
-            <form class="footer-bot-subcribe" [formGroup]="subcribeForm" (ngSubmit)="onSubcribe()">
+            <form class="footer-bot-subcribe" #form="ngForm" (ngSubmit)="onSubcribe()">
                 <label>Đăng ký nhận khuyến mãi</label>
                 <div class="subcribe-group">
-                    <input class="subcribe-input" formControlName="emailSubcribe" type="text" pInputText placeholder="Nhập email nhận thông tin khuyến mãi" />
-                    <button [disabled]="!subcribeForm.valid" class="subcribe-btn" pButton type="submit">Gửi</button>
+                    <input class="subcribe-input" [formControl]="emailSubcribe" type="text" pInputText placeholder="Nhập email nhận thông tin khuyến mãi" />
+                    <button [disabled]="!emailSubcribe.valid" class="subcribe-btn" pButton type="submit">Gửi</button>
                 </div>
+                <span class="error-message" *ngIf="emailSubcribe.errors?.['required'] && emailSubcribe.touched "> Vui lòng nhập email</span>
+                <span class="error-message" *ngIf="emailSubcribe.errors?.['pattern'] &&emailSubcribe.touched "> Email không đúng định dạng</span>
+                <span class="error-message" *ngIf="emailSubcribe.errors?.['isForbidden'] &&emailSubcribe.touched  "> Email đã tồn tại</span>
             </form>
             <div class="footer-bot-social">
                 <label for="">Liên kết với Organica trên</label>

@@ -55,17 +55,8 @@
             }
         }
     }
-}
-
-:host::ng-deep {
-    .profile-form-submit {
-        @include btnPrimary-l;
-    }
-    .p-inputgroup {
-        position: relative;
-        .p-inputtext {
-            font-size: $small-font-size;
-        }
+    .error-message {
+        @include err-message;
     }
 }
 
@@ -137,4 +128,18 @@
 
 select {
     border: 1px solid $first-color;
+}
+
+:host::ng-deep {
+    .profile-form-submit {
+        @include btnPrimary-l;
+    }
+    .p-inputgroup {
+        position: relative;
+    }
+    .p-inputtext {
+        width: 100%;
+        font-size: $small-font-size;
+    }
+    @include inputErr;
 }
