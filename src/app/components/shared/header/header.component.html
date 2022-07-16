@@ -1,7 +1,7 @@
 <header class="header">
-    <p-menubar [model]="items" [autoDisplay]="true">
+    <p-menubar [model]="menuItem" [autoDisplay]="true">
         <ng-template pTemplate="start">
-            <span class="logo"></span>
+            <span class="logo cursor-pointer" routerLink="/home"></span>
         </ng-template>
         <ng-template pTemplate="end">
             <div class="menu">

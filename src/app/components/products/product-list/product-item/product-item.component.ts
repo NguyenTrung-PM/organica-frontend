@@ -19,6 +19,6 @@ export class ProductItemComponent implements OnInit {
             left: 0,
             behavior: 'smooth',
         });
-        this.router.navigate(['product', id]);
+        this.router.navigate(['products', id]);
     }
 }

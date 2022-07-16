@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { GroupService } from 'src/app/services/groups/group.service';
 import { ProductService } from 'src/app/services/products/product.service';
 import { Category, Group, Product } from 'src/app/shared/interface';
 
@@ -8,100 +10,45 @@ import { Category, Group, Product } from 'src/app/shared/interface';
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.scss'],
 })
-export class ProductListComponent implements OnInit {
-    items!: MenuItem[];
+export class ProductListComponent implements OnInit, OnDestroy {
+    menuItem!: MenuItem[];
+    items: any = [];
     products!: Product[] | any;
     productsDisplay: Product[] | any;
     isLoading: boolean = false;
     groups!: Group[];
-    categorys!: Category[];
+    categories!: Category[];
     title: string = 'Tất cả sản phẩm';
     subTitle: string = 'Rau củ quả';
     size: number = 30;
     totalElements!: number;
-    constructor(private productService: ProductService) {}
+
+    subscription: Subscription[] = [];
+
+    constructor(private productService: ProductService, private groupService: GroupService) {}
 
     ngOnInit(): void {
+        this.subscription.push(
+            this.groupService.getGroups().subscribe((groups: any[]) => {
+                groups.forEach((group) => {
+                    this.groupService.getCategories(group.id).subscribe((categories: any[]) => {
+                        this.items.push({
+                            label: group.name,
+                            routerLink: `/groups/${group.id}`,
+                            items: categories.map((category: any) => {
+                                return {
+                                    label: category.name,
+                                    routerLink: `/categories/${category.id}`,
+                                };
+                            }),
+                        });
+
+                        this.menuItem = [...this.items];
+                    });
+                });
+            }),
+        );
         this.initData();
-
-        this.items = [
-            {
-                label: 'Rau củ quả',
-                items: [
-                    {
-                        label: 'Rau ăn lá',
-                        command: (event) => {
-                            //event.originalEvent: Browser event
-                            //event.item: menuitem metadata
-                            console.log(event.item);
-                        },
-                        // style: { marginLeft: '50px' },
-                    },
-                    {
-                        label: 'Rau ăn củ',
-                        command: (event) => {
-                            //event.originalEvent: Browser event
-                            //event.item: menuitem metadata
-                            // console.log(event.item);
-                        },
-                    },
-                    {
-                        label: 'Rau ăn quả',
-                    },
-
-                    {
-                        label: 'Rau ăn hoa',
-                    },
-                    {
-                        label: 'Rau ăn thân',
-                    },
-                    {
-                        label: 'Rau gia vị',
-                    },
-                    {
-                        label: 'Nấm',
-                    },
-                    {
-                        label: 'Rau củ quả đông lạnh',
-                    },
-                ],
-            },
-            {
-                label: 'Trái cây',
-
-                items: [
-                    {
-                        label: 'Trái cây trong nước',
-                    },
-                    {
-                        label: 'Trái cây nhập khẩu',
-                    },
-                    {
-                        label: 'Trái cây đông lạnh',
-                    },
-                    {
-                        label: 'Trái cây sấy',
-                    },
-                ],
-            },
-            {
-                label: 'Thịt & Thủy hải sản',
-                items: [
-                    {
-                        label: 'Thịt heo',
-                    },
-                    {
-                        label: 'Thịt bò',
-                    },
-                    {
-                        label: 'Gia cầm & Trứng',
-                    },
-                    {
-                        label: 'Thủy hải sản',
-                    },
-                ],
-            },
-        ];
     }
     initData() {
         this.isLoading = true;
@@ -116,7 +63,7 @@ export class ProductListComponent implements OnInit {
         this.productService.getAllGroups().subscribe((data) => {
             this.groups = data;
             data.forEach((group) => {
-                this.categorys = group.categories;
+                this.categories = group.categories;
             });
         });
     }
@@ -132,5 +79,11 @@ export class ProductListComponent implements OnInit {
             newLength = this.products.length;
         }
         this.productsDisplay = this.products.slice(0, newLength);
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.forEach(_x => {
+            _x.unsubscribe();
+        })
     }
 }

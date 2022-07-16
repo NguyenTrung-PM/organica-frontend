@@ -1,4 +1,4 @@
-<p-carousel [value]="imgHomeCarousel" [showNavigators]="true" [showIndicators]="false" [autoplayInterval]="3000" [circular]="true" [numVisible]="1" [numScroll]="1" styleClass="home-carousel" indicatorStyleClass="paging-carousel">
+<p-carousel [value]="imgHomeCarousel" [showNavigators]="false" [showIndicators]="false" [autoplayInterval]="3000" [circular]="true" [numVisible]="1" [numScroll]="1" styleClass="home-carousel" indicatorStyleClass="paging-carousel">
     <ng-template let-img pTemplate="item">
         <a [routerLink]="['/']" class="img-badge-link">
             <img class="img-badge" src="assets/image/home-carousel/{{ img }}" alt="" />

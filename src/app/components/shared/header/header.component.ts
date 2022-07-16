@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
+import { GroupService } from 'src/app/services/groups/group.service';
 
 @Component({
     selector: 'app-header',
@@ -10,43 +11,46 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent implements OnInit {
     searchValue: string = '';
     toggleSearch: boolean = true;
-    items: MenuItem[] = [
-        {
-            label: 'Khuyến mãi',
-        },
-        {
-            label: 'Sản phẩm',
-            items: [
-                {
-                    label: 'Rau củ quả',
-                    items: [
-                        { label: 'Rau ăn lá' },
-                        { label: 'Rau ăn củ' },
-                        { label: 'Rau ăn quả' },
-                        { label: 'Rau ăn hoa' },
-                        { label: 'Rau ăn thân' },
-                        { label: 'Rau gia vị' },
-                        { label: 'Nấm' },
-                    ],
-                },
-                {
-                    label: 'Trái cây',
-                    items: [{ label: 'Trái cây trong nước' }, { label: 'Trái cây nhập khẩu' }, { label: 'Trái cây đông lạnh' }],
-                },
-                { label: 'Thịt & thủy hải sản', items: [{ label: 'Thịt heo' }, { label: 'Thịt bò' }, { label: 'Trái cây đông lạnh' }] },
-            ],
-        },
-        {
-            label: 'Combo',
-        },
-        {
-            label: 'Cửa hàng',
-        },
-    ];
+    items: any[] = [];
+    menuItem: MenuItem[] = [];
 
-    constructor() {}
+    constructor(private groupService: GroupService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.groupService.getGroups().subscribe((groups: any[]) => {
+            groups.forEach((group) => {
+                this.groupService.getCategories(group.id).subscribe((categories: any[]) => {
+                    this.items.push({
+                        label: group.name,
+                        routerLink: `/groups/${group.id}`,
+                        items: categories.map((category: any) => {
+                            return {
+                                label: category.name,
+                                routerLink: `/categories/${category.id}`,
+                            };
+                        }),
+                    });
+                });
+            });
+        });
+
+        this.menuItem = [
+            {
+                label: 'Khuyến mãi',
+            },
+            {
+                label: 'Sản phẩm',
+                items: this.items,
+                routerLink: '/products',
+            },
+            {
+                label: 'Combo',
+            },
+            {
+                label: 'Cửa hàng',
+            },
+        ];
+    }
 
     onToggleSearch() {
         this.toggleSearch = !this.toggleSearch;

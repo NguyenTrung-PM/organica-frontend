@@ -26,12 +26,11 @@ const routes: Routes = [
         ],
     },
     {
-        path: 'product',
-        component: ProductListComponent,
-    },
-    {
-        path: 'product/:id',
-        component: ProductDetailComponent,
+        path: 'products',
+        children: [
+            { path: '', component: ProductListComponent },
+            { path: ':id', component: ProductDetailComponent },
+        ],
     },
     {
         path: 'order',

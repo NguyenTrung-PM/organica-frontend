@@ -18,4 +18,14 @@
         overflow: visible !important;
         height: auto !important;
     }
+
+    .p-toggleable-content::hover {
+        display: block;
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    .p-panelmenu .p-panelmenu-header > a:focus {
+        box-shadow: none;
+    }
 }
