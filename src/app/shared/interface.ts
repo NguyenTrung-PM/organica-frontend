@@ -33,3 +33,9 @@ export interface Image {
     id: number;
     source: string;
 }
+
+export interface CartProduct {
+    product: Product;
+    quantity: number;
+    subPrice: number;
+}

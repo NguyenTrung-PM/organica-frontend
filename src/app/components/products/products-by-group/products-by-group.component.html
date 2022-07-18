@@ -1,0 +1,7 @@
+<div *ngFor="let i of productByGroup">
+    <h3 class="category-heading">{{ i.title }}</h3>
+    <div class="grid grid-nogutter">
+        <app-product-item class="lg:col-3 sm:col-4 col-6" *ngFor="let productEl of i.products" [product]="productEl"></app-product-item>
+    </div>
+    <!-- <a (click)="loadMore()">Xem thêm 10 sp</a> -->
+</div>

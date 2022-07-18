@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //primeng
 import { InputTextModule } from 'primeng/inputtext';
@@ -28,8 +28,7 @@ import { LoginComponent } from './components/account/login/login.component';
 import { ProfileComponent } from './components/account/profile/profile.component';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
-import { ProductListComponent } from './components/products/product-list/product-list.component';
-import { ProductItemComponent } from './components/products/product-list/product-item/product-item.component';
+import { ProductItemComponent } from './components/products/product-item/product-item.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { CutStringsPipe } from './pipes/cut-strings.pipe';
 import { OrderListComponent } from './components/orders/order-list/order-list.component';
@@ -37,6 +36,11 @@ import { OrderItemComponent } from './components/orders/order-list/order-item/or
 import { OrderDetailComponent } from './components/orders/order-detail/order-detail.component';
 import { ReOrderComponent } from './components/orders/re-order/re-order.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
+import { ProductsComponent } from './components/products/products.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { ProductsByGroupComponent } from './components/products/products-by-group/products-by-group.component';
+import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
 const COMPONENTS = [AppComponent, HeaderComponent, FooterComponent, HomeComponent];
 
 const PRIMENGS = [
@@ -64,7 +68,6 @@ const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, Forms
         ProfileComponent,
         ProductDetailComponent,
         ProductEditComponent,
-        ProductListComponent,
         ProductItemComponent,
         CutStringsPipe,
         OrderListComponent,
@@ -72,9 +75,19 @@ const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, Forms
         OrderDetailComponent,
         ReOrderComponent,
         SpinnerComponent,
+        SidebarComponent,
+        ProductsComponent,
+        ProductsByGroupComponent,
+        ProductsByCategoryComponent,
     ],
     imports: [...MODULES, ...PRIMENGS],
-    providers: [],
+    providers: [
+        {
+            provide:HTTP_INTERCEPTORS,
+            useClass:LoadingInterceptor,
+            multi:true
+        }
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

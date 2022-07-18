@@ -17,16 +17,16 @@ export class HeaderComponent implements OnInit {
     constructor(private groupService: GroupService) {}
 
     ngOnInit(): void {
-        this.groupService.getGroups().subscribe((groups: any[]) => {
+        this.groupService.getAll().subscribe((groups: any[]) => {
             groups.forEach((group) => {
                 this.groupService.getCategories(group.id).subscribe((categories: any[]) => {
                     this.items.push({
                         label: group.name,
-                        routerLink: `/groups/${group.id}`,
+                        routerLink: `/products/groups/${group.id}`,
                         items: categories.map((category: any) => {
                             return {
                                 label: category.name,
-                                routerLink: `/categories/${category.id}`,
+                                routerLink: `/products/categories/${category.id}`,
                             };
                         }),
                     });

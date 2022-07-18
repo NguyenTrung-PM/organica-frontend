@@ -3,12 +3,11 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class CategoryService {
-    private URL_PRODUCTS_API = 'http://localhost:8080/api/products';
-    private URL_GROUPS_API = 'http://localhost:8080/api/groups';
+    private URL_CATEGORIES_API = 'http://localhost:8080/api/categories';
+    private products = 'products';
 
     private httpOptions = {
         headers: new HttpHeaders({
@@ -17,8 +16,8 @@ export class CategoryService {
     };
     constructor(private httpClient: HttpClient) {}
 
-    getGroups(): Observable<any> {
-        let URL = `${this.URL_GROUPS_API}`;
+    getProducts(id: number): Observable<any> {
+        let URL = `${this.URL_CATEGORIES_API}/${id}/${this.products} `;
         return this.httpClient.get<any>(URL, this.httpOptions).pipe(catchError(this.handleError));
     }
 

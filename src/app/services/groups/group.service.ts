@@ -6,7 +6,6 @@ import { catchError, Observable, throwError } from 'rxjs';
     providedIn: 'root',
 })
 export class GroupService {
-    private URL_PRODUCTS_API = 'http://localhost:8080/api/products';
     private URL_GROUPS_API = 'http://localhost:8080/api/groups';
 
     private httpOptions = {
@@ -16,7 +15,7 @@ export class GroupService {
     };
     constructor(private httpClient: HttpClient) {}
 
-    getGroups(): Observable<any> {
+    getAll(): Observable<any> {
         let URL = `${this.URL_GROUPS_API}`;
         return this.httpClient.get<any>(URL, this.httpOptions).pipe(catchError(this.handleError));
     }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/services/products/product.service';
 import { Product } from 'src/app/shared/interface';
 
@@ -7,29 +8,37 @@ import { Product } from 'src/app/shared/interface';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
     isLoading: boolean = false;
     products!: Product[] | any;
-    size: number = 30;
+    discounts!: Product[];
+    size: number = 24;
+    subscription: Subscription[] = [];
 
     constructor(private productService: ProductService) {}
 
     ngOnInit(): void {
         this.initData();
     }
+
     initData() {
         this.isLoading = true;
-        this.productService.getAllProducts().subscribe((data) => {
-            this.isLoading = false;
-            this.products = data.content;
+        this.subscription.push(
+            this.productService.getAllProducts(this.size).subscribe((data) => {
+                this.isLoading = false;
+                this.products = data.content;
+            }),
+
+            this.productService.getByDiscount(this.size).subscribe((data: any) => {
+                this.isLoading = false;
+                this.discounts = data.content
+            }),
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.forEach((_sub) => {
+            _sub.unsubscribe();
         });
     }
-    // loadMore() {
-    //     this.productService.loadMoreProductsBySize(this.size).subscribe((data) => {
-    //         this.products = data.content;
-    //         // console.log(data.content);
-    //         this.size += 10;
-    //     });
-    //     this.initData();
-    // }
 }
