@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'primeng/api';
 import { CartService } from 'src/app/services/cart.service';
+
 import { ProductService } from 'src/app/services/products/product.service';
 import { Image, Product } from 'src/app/shared/interface';
 

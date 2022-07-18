@@ -4,9 +4,11 @@
             <ng-template styleClass="product-card-img" pTemplate="header">
                 <img src="assets/image/products/{{ product.image }}" alt="" />
             </ng-template>
-            <div *ngIf="product.discount != 0" class="product-card-discount">
-                <img class="discount-img" src="assets/image/img_discount.png" alt="" />
-                <p class="discount-text">{{ product.discount }}</p>
+            <div class="product-card-discount">
+                <div *ngIf="product.discount != 0">
+                    <img class="discount-img" src="assets/image/img_discount.png" alt="" />
+                    <p class="discount-text">{{ product.discount }}</p>
+                </div>
             </div>
 
             <h3 class="product-card-name">{{ product.name }}</h3>
