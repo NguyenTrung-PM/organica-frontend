@@ -23,7 +23,7 @@
             <i class="product-favorite-icon fa-solid fa-heart"></i>
         </div>
         <div class="lg:translate-x-100 product-buy">
-            <button pButton pRipple type="button" label="{{ product.quantity != 0 ? 'Mua hàng' : 'Tạm hết' }}" [ngClass]="product.quantity != 0 ? 'product-buy-btn' : 'product-sold-out'" class="p-button-rounded"></button>
+            <button pButton pRipple type="button" label="{{ product.quantity != 0 ? 'Mua hàng' : 'Tạm hết' }}" [ngClass]="product.quantity != 0 ? 'product-buy-btn' : 'product-sold-out'" (click)="addToCart()" class="p-button-rounded"></button>
             <!-- product-sold-out -->
         </div>
     </div>

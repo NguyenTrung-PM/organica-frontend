@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, Message } from 'primeng/api';
 import { ProductService } from 'src/app/services/products/product.service';
 import { Category, Group, Product } from 'src/app/shared/interface';
 
@@ -9,6 +9,7 @@ import { Category, Group, Product } from 'src/app/shared/interface';
     styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
+    msgs: Message[] = [];
     items!: MenuItem[];
     products!: Product[] | any;
     productsDisplay: Product[] | any;
@@ -132,5 +133,12 @@ export class ProductListComponent implements OnInit {
             newLength = this.products.length;
         }
         this.productsDisplay = this.products.slice(0, newLength);
+    }
+
+    showMessage(event: any) {
+        setTimeout(() => {
+            this.msgs = [];
+        }, 1500);
+        this.msgs = event;
     }
 }
