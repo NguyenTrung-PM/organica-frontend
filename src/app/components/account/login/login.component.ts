@@ -31,7 +31,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     // ],
 })
 export class LoginComponent implements OnInit {
-    loginMode: boolean = false;
+    loginMode: boolean = true;
     loginForm!: FormGroup;
     registerForm!: FormGroup;
     constructor(private fb: FormBuilder) {}

@@ -1,0 +1,124 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
+.product {
+    position: relative;
+    overflow: hidden;
+    margin: 8px;
+    border: 1px solid $border-color-lightest;
+    transition: all 0.5s ease;
+    border-radius: 2px;
+    .product-item {
+        display: block;
+        cursor: pointer;
+        .product-card {
+            &-discount {
+                position: relative;
+                height: 30px;
+                .discount-img {
+                    width: 90px;
+                    position: absolute;
+                    right: -15px;
+                    bottom: 0;
+                }
+                .discount-text {
+                    position: absolute;
+                    right: -8px;
+                    bottom: -2px;
+                    transform: translateY(-50%);
+                    font-size: $small-font-size;
+                    color: $white-color;
+                    font-weight: $font-bold;
+                }
+            }
+            &-name {
+                font-weight: $font-regular;
+                text-transform: uppercase;
+                margin-top: 15px;
+                height: 40px;
+                line-height: 22px;
+                overflow: hidden;
+            }
+            &-price {
+                height: 40px;
+                margin: 15px 0 5px 0;
+                .price-old {
+                    font-size: $small-font-size;
+                    color: $text-color-lightest;
+                    text-decoration: line-through;
+                    font-weight: $font-bold;
+                    margin-bottom: 6px;
+                }
+                .price-new {
+                    @include sup-price;
+                }
+                .price-unit {
+                    font-size: $large-font-size;
+                    color: $first-color;
+                    font-weight: $font-bold;
+                }
+            }
+        }
+    }
+    .product-action {
+        position: absolute;
+        top: 110px;
+        left: -1px;
+        @include flex-between;
+        width: 102%;
+        .product-favorite {
+            transition: all 0.5s ease;
+            padding-left: 8px;
+            cursor: pointer;
+            i {
+                color: $white-color;
+                background-color: $first-color;
+                border-radius: 50%;
+                text-align: center;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+            }
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+        .product-buy {
+            transition: all 0.5s ease;
+            padding-right: 8px;
+        }
+    }
+    &:hover {
+        border: 1px solid $first-color;
+        .product-favorite {
+            transform: translateX(0) !important;
+            color: white;
+        }
+        .product-buy {
+            transform: translateX(0) !important;
+            color: white;
+        }
+    }
+}
+
+:host::ng-deep {
+    .product-card {
+        box-shadow: none;
+    }
+    .p-card-body {
+        padding: 15px;
+        .p-card-content {
+            padding: 0;
+        }
+    }
+    .p-card-footer {
+        font-size: $small-font-size;
+        color: $text-color-lightest;
+        height: 50px;
+    }
+    .product-buy-btn {
+        @include btnPrimary-s;
+    }
+    .product-sold-out {
+        @include btnDanger-s;
+    }
+}

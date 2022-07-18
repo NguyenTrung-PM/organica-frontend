@@ -9,7 +9,9 @@ import { OrderDetailComponent } from './components/orders/order-detail/order-det
 import { OrderListComponent } from './components/orders/order-list/order-list.component';
 import { ReOrderComponent } from './components/orders/re-order/re-order.component';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
-import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
+import { ProductsByGroupComponent } from './components/products/products-by-group/products-by-group.component';
+import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
     {
@@ -18,7 +20,6 @@ const routes: Routes = [
     },
     {
         path: 'account',
-
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'login', component: LoginComponent },
@@ -27,13 +28,30 @@ const routes: Routes = [
         ],
     },
     {
-        path: 'product',
-        component: ProductListComponent,
-    },
-    {
         path: 'product/:id',
         component: ProductDetailComponent,
     },
+    {
+        path: 'products',
+        component: ProductsComponent,
+        children: [
+            {
+                path: 'groups',
+                children: [
+                    { path: '', redirectTo: '1', pathMatch: 'full' },
+                    { path: ':groupId', component: ProductsByGroupComponent },
+                ],
+            },
+            {
+                path: 'categories',
+                children: [
+                    { path: '', redirectTo: '1', pathMatch: 'full' },
+                    { path: ':categoryId', component: ProductsByCategoryComponent },
+                ],
+            },
+        ],
+    },
+
     {
         path: 'order',
         children: [

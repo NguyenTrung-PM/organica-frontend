@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SpinnerService } from 'src/app/services/shared/spinner.service';
 
@@ -8,17 +8,9 @@ import { SpinnerService } from 'src/app/services/shared/spinner.service';
     styleUrls: ['./spinner.component.scss'],
 })
 export class SpinnerComponent implements OnInit, OnDestroy {
-    isLoading: boolean = false;
-    private subscription!: Subscription;
+    @Input() isLoading?: boolean = false;
     constructor(private spinnerService: SpinnerService) {}
 
-    ngOnInit(): void {
-        this.subscription = this.spinnerService.loadingStatus.subscribe((data) => {
-            console.log(data);
-            this.isLoading === data;
-        });
-    }
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
-    }
+    ngOnInit(): void {}
+    ngOnDestroy(): void {}
 }

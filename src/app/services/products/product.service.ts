@@ -8,6 +8,7 @@ import { Content, Group, Image, Product } from 'src/app/shared/interface';
 })
 export class ProductService {
     private URL_PRODUCTS_API = 'http://localhost:8080/api/products';
+    private URL_CATEGORY_API = 'http://localhost:8080/api/categories';
     private URL_GROUPS_API = 'http://localhost:8080/api/groups';
 
     private httpOptions = {
@@ -19,6 +20,10 @@ export class ProductService {
 
     getAllProducts(size?: number): Observable<Content> {
         let URL = `${this.URL_PRODUCTS_API}?size=${size}`;
+        return this.httpClient.get<Content>(URL, this.httpOptions).pipe(catchError(this.handleError));
+    }
+    getAllByCategory(id: number, size?: number): Observable<Content> {
+        let URL = `${this.URL_CATEGORY_API}/${id}/products?size=${size}`;
         return this.httpClient.get<Content>(URL, this.httpOptions).pipe(catchError(this.handleError));
     }
     getProductsDisplay(): Observable<Content> {
@@ -55,6 +60,11 @@ export class ProductService {
 
     getAllGroups(): Observable<Group[]> {
         let URL = this.URL_GROUPS_API;
+        return this.httpClient.get<Group[]>(URL, this.httpOptions).pipe(catchError(this.handleError));
+    }
+
+    getByDiscount(size?: number, page?: number): Observable<any[]> {
+        let URL = `${this.URL_PRODUCTS_API}/discount?size=${size}&page=${page}`;
         return this.httpClient.get<Group[]>(URL, this.httpOptions).pipe(catchError(this.handleError));
     }
     private handleError(error: HttpErrorResponse) {
