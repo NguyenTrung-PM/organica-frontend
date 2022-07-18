@@ -1,34 +1,27 @@
-@import '../../../../scss/abstracts/_mixin.scss';
-@import '../../../../scss/abstracts/variables.scss';
-.order {
+@import '../../../scss/abstracts/_mixin.scss';
+@import '../../../scss/abstracts/variables.scss';
+.cart {
     @include wrapperMain;
 }
 
-.order-wrapper {
+.cart-wrapper {
+    padding: 35px 20px 15px;
     .wrapper-heading {
         text-transform: uppercase;
-        margin-top: 10px;
+        margin: 10px 0;
         h4 {
             font-weight: $font-regular;
         }
     }
-    .order-detail {
-        margin: 15px 0;
-        color: #fff;
-        &-title {
-            margin-right: 10px;
-            font-size: $normal-font-size;
+    .no-cart-wrapper {
+        text-align: center;
+        padding: 35px 0;
+        p {
+            font-size: $small-font-size;
+            margin: 6px 0;
         }
-        &-content {
-            font-size: $normal-font-size;
-        }
-        &-status {
-            color: $white-color;
-            background-color: hsl(0, 0%, 30%);
-            border-radius: 5px;
-            padding: 2px 4px;
-            font-size: $smaller-font-size;
-            line-height: $smaller-font-size;
+        .no-cart-btn {
+            margin-top: 30px;
         }
     }
 }
@@ -58,6 +51,7 @@
 
 .order-item {
     border-bottom: 1px solid $border-color-light;
+    position: relative;
     @include flex-center;
     td {
         display: block;
@@ -70,9 +64,9 @@
     &-name {
         span:first-child {
             text-transform: uppercase;
-            margin-bottom: 6px;
         }
         span {
+            margin-bottom: 6px;
             color: $text-color-light;
         }
     }
@@ -89,4 +83,40 @@
 
 .checkout {
     @include checkout-format;
+}
+
+.checkout-btn {
+    width: 100%;
+}
+
+:host::ng-deep {
+    .no-cart-btn {
+        @include btnPrimary-l;
+    }
+    .checkout-btn {
+        @include btnPrimary-l;
+    }
+    .p-inputnumber-input {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+    .product-sold-out {
+        @include btnDanger-s;
+    }
+    .order-button {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        .p-button-icon {
+            color: $white-color;
+        }
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 }

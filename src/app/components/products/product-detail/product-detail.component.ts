@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { forkJoin, Subscription } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 import { ProductService } from 'src/app/services/products/product.service';
 import { Product, Image, Descriped, Content } from 'src/app/shared/interface';
 
@@ -8,7 +10,7 @@ import { Product, Image, Descriped, Content } from 'src/app/shared/interface';
     templateUrl: './product-detail.component.html',
     styleUrls: ['./product-detail.component.scss'],
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
     images!: Image[] | any;
     describes!: Descriped[] | any;
     id!: number;
@@ -16,6 +18,7 @@ export class ProductDetailComponent implements OnInit {
     products!: Product[] | any;
     quantity: number = 1;
     length!: number;
+    forkJoinSubscription!: Subscription;
     certificates = [
         {
             id: 1,
@@ -39,22 +42,24 @@ export class ProductDetailComponent implements OnInit {
     constructor(private productService: ProductService, private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        this.route.params.subscribe((params: Params) => {
+        this.forkJoinSubscription = this.route.params.subscribe((params: Params) => {
             this.id = +params['id'];
-        });
-        this.productService.getProductById(this.id).subscribe((data) => {
-            this.product = data;
-            this.productService.getImageById(this.id).subscribe((image) => {
-                this.images = image.content;
+            const productId = this.productService.getProductById(this.id);
+            const productAll = this.productService.getAllProducts();
+            const imageId = this.productService.getImageById(this.id);
+            const descId = this.productService.getDescribeById(this.id);
+            forkJoin([productId, imageId, descId, productAll]).subscribe((data) => {
+                this.product = data[0];
+                this.images = data[1].content;
                 this.length = this.images.length;
-            });
-            this.productService.getDescribeById(this.id).subscribe((desc) => {
-                this.describes = desc.content;
+                this.describes = data[2].content;
+                this.products = data[3].content;
             });
         });
-        this.productService.getAllProducts().subscribe((products) => {
-            this.products = products.content;
-        });
+    }
+
+    ngOnDestroy(): void {
+        this.forkJoinSubscription.unsubscribe();
     }
     onChangeQuantity() {
         console.log(this.quantity);

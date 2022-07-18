@@ -4,9 +4,11 @@
             <ng-template styleClass="product-card-img" pTemplate="header">
                 <img src="assets/image/products/{{ product.image }}" alt="" />
             </ng-template>
-            <div *ngIf="product.discount != 0" class="product-card-discount">
-                <img class="discount-img" src="assets/image/img_discount.png" alt="" />
-                <p class="discount-text">{{ product.discount }}</p>
+            <div class="product-card-discount">
+                <div *ngIf="product.discount != 0">
+                    <img class="discount-img" src="assets/image/img_discount.png" alt="" />
+                    <p class="discount-text">{{ product.discount }}</p>
+                </div>
             </div>
 
             <h3 class="product-card-name">{{ product.name }}</h3>
@@ -23,7 +25,7 @@
             <i class="product-favorite-icon fa-solid fa-heart"></i>
         </div>
         <div class="lg:translate-x-100 product-buy">
-            <button pButton pRipple type="button" label="{{ product.quantity != 0 ? 'Mua hàng' : 'Tạm hết' }}" [ngClass]="product.quantity != 0 ? 'product-buy-btn' : 'product-sold-out'" class="p-button-rounded"></button>
+            <button pButton pRipple type="button" label="{{ product.quantity != 0 ? 'Mua hàng' : 'Tạm hết' }}" [ngClass]="product.quantity != 0 ? 'product-buy-btn' : 'product-sold-out'" (click)="addToCart()" class="p-button-rounded"></button>
             <!-- product-sold-out -->
         </div>
     </div>

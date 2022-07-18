@@ -1,0 +1,56 @@
+<div class="grid grid-nogutter cart">
+    <div class="lg:col-8 lg:col-offset-2 md:col-8 md:col-offset-2 sm:col-8 sm:col-offset-2 col-10 col-offset-1">
+        <h3 class="cart-heading"><span>Giỏ hàng</span></h3>
+        <div class="cart-wrapper" *ngIf="cartProducts.length === 0">
+            <div class="no-cart-wrapper">
+                <p>rất tiếc quý khách chưa có sản phẩm trong giỏ hàng.</p>
+                <p>Hãy tiếp tục mua sắm cùng Organica nhé. Xin cám ơn.</p>
+                <button pButton pRipple type="button" [routerLink]="['/']" routerLinkActive="router-link-active" label="Tiếp tục mua sắm" class="p-button-rounded no-cart-btn"></button>
+            </div>
+        </div>
+        <table class="order-table">
+            <tr class="grid grid-nogutter">
+                <ul class="order-list">
+                    <li class="order-item sm:flex flex-wrap block" *ngFor="let item of cartProducts" @fadeOut>
+                        <td class="sm:col-3 col-12 order-item-img"><img src="assets/image/products/{{ item.product.image }}" alt="" /></td>
+                        <td class="sm:col-3 col-12 order-item-name sm:text-left text-center block flex flex-column justify-content-between">
+                            <span>{{ item.product.name }}</span> <span>{{ item.product.unit }}</span>
+                            <button pButton pRipple *ngIf="item.product.quantity === 0" type="button" label="Tạm hết" class="product-sold-out p-button-rounded"></button>
+                        </td>
+                        <td class="md:col-3 sm:col-5 col-12 text-center order-item-quantity">
+                            <p-inputNumber [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [(ngModel)]="item.quantity" (onBlur)="changeQuantity(item, item.quantity)" (onInput)="changeQuantity(item, item.quantity)" [step]="1" [min]="1"
+                                [ariaRequired]="true" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success p-button-sm" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus p-button-sm" mode="decimal">
+                            </p-inputNumber>
+                        </td>
+                        <td class="md:col-3 col-12 sm:text-right text-center order-item-total">
+                            <span>{{ item.subPrice }}</span>
+                        </td>
+                        <button pButton pRipple type="button" icon="pi pi-times" class="order-button p-button-danger" (click)="removeItem(item)"></button>
+                    </li>
+                </ul>
+            </tr>
+        </table>
+        <div class="grid grid-nogutter checkout">
+            <div class="md:col-5 md:col-offset-7 col-12">
+                <div class="checkout-group flex justify-content-between">
+                    <span class="checkout-title">Tạm tính</span>
+                    <span class="checkout-content">{{ totalPrice }}</span>
+                </div>
+                <div class="checkout-group flex justify-content-between">
+                    <span class="checkout-title">Giảm giá</span>
+                    <span class="checkout-content">10%</span>
+                </div>
+
+                <div class="checkout-group flex justify-content-between">
+                    <span class="checkout-title">Phí giao hàng</span>
+                    <span class="checkout-content">30000</span>
+                </div>
+                <div class="checkout-group flex justify-content-between">
+                    <span class="checkout-title checkout-title-total">Tổng cộng</span>
+                    <span class="checkout-content checkout-total">{{ priceCheckout }}</span>
+                </div>
+                <button pButton pRipple type="button" routerLinkActive="router-link-active" label="Thanh toán" class="p-button-rounded checkout-btn" (click)="checkout()"></button>
+            </div>
+        </div>
+    </div>
+</div>
