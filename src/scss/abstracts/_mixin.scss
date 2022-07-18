@@ -54,7 +54,7 @@ $desktop-width-l: 1200px;
         color: $white-color;
         text-transform: uppercase;
     }
-    &:hover {
+    &:hover:not(:disabled) {
         border: 1px solid $first-color;
         background-color: $white-color;
         .p-button-label {
@@ -80,7 +80,7 @@ $desktop-width-l: 1200px;
 }
 
 @mixin btnPrimary-l {
-    padding: 6px 32px;
+    padding: 8px 32px;
     @include btnPrimary;
 }
 
@@ -171,5 +171,46 @@ $desktop-width-l: 1200px;
         top: -4px;
         right: -8px;
         font-size: $smaller-font-size;
+    }
+}
+
+@mixin inputErr {
+    .p-inputtext.ng-invalid.ng-touched.ng-dirty,
+    .p-inputtext.ng-invalid.ng-dirty:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.377);
+    }
+}
+
+@mixin err-message {
+    color: $error-color;
+    display: block;
+    font-size: $smaller-font-size;
+    background-color: $background-error-color;
+    padding: 6px 10px;
+    margin-top: 8px;
+    border-radius: 2px;
+}
+
+@mixin checkout-format {
+    margin: 20px 8px 0 0;
+    .checkout-group {
+        margin-bottom: 20px;
+        .checkout-title {
+            font-size: $medium-font-size;
+            font-weight: $font-bold;
+        }
+        .checkout-title-total {
+            font-size: $large-font-size;
+        }
+        .checkout-content {
+            @include sup-price-s;
+        }
+        .checkout-total {
+            @include sup-price;
+        }
+    }
+    .checkout-group:last-child {
+        padding-top: 20px;
+        border-top: 1px solid $first-color;
     }
 }

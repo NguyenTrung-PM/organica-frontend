@@ -16,6 +16,8 @@ import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 //component
 
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +43,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { ProductsByGroupComponent } from './components/products/products-by-group/products-by-group.component';
 import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
+import { CartComponent } from './components/cart/cart.component';
 const COMPONENTS = [AppComponent, HeaderComponent, FooterComponent, HomeComponent];
 
 const PRIMENGS = [
@@ -56,6 +59,8 @@ const PRIMENGS = [
     GalleriaModule,
     InputNumberModule,
     ProgressSpinnerModule,
+    MessagesModule,
+    MessageModule,
 ];
 
 const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule];
@@ -79,6 +84,7 @@ const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, Forms
         ProductsComponent,
         ProductsByGroupComponent,
         ProductsByCategoryComponent,
+        CartComponent,
     ],
     imports: [...MODULES, ...PRIMENGS],
     providers: [

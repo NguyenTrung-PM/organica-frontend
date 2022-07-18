@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { forbiddenEmailValidator } from 'src/app/directives/validation-label.directive';
 import { Group } from 'src/app/shared/interface';
 
 @Component({
@@ -13,12 +14,24 @@ export class FooterComponent implements OnInit {
         { id: 2, name: 'Trái cây', categories: [] },
         { id: 3, name: 'Thịt & Thủy hải sản', categories: [] },
     ];
-    subcribeForm: FormGroup | any;
+    error: string = '';
+    emailSubcribe!: FormControl;
     constructor() {}
+    //
     ngOnInit(): void {
-        this.subcribeForm = new FormGroup({ emailSubcribe: new FormControl(null, [Validators.required, Validators.email]) });
+        this.emailSubcribe = new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'),
+            forbiddenEmailValidator,
+        ]);
     }
     onSubcribe() {
-        console.log(this.subcribeForm.value);
+        if (this.emailSubcribe.errors !== null) {
+            console.log(this.emailSubcribe.errors);
+        } else {
+            console.log(this.emailSubcribe.value);
+        }
+
+        // this.emailSubcribe.reset();
     }
 }

@@ -89,8 +89,8 @@
     .subcribe-btn {
         background-color: $first-color;
     }
-    .p-inputtext.ng-invalid.ng-touched {
-        box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.377);
+    .error-message {
+        @include err-message;
     }
 }
 
@@ -109,10 +109,12 @@
             cursor: pointer;
             margin-right: 5px;
             display: block;
+            .social-link {
+                transition: all 0.4s ease;
+                display: block;
+            }
             &:hover .social-link {
                 transform: translateY(-10px);
-                display: block;
-                transition: all 0.4s ease;
             }
             i {
                 font-size: 36px;
@@ -128,4 +130,8 @@
             }
         }
     }
+}
+
+:host::ng-deep {
+    @include inputErr;
 }

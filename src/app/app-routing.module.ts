@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/account/login/login.component';
 import { ProfileComponent } from './components/account/profile/profile.component';
+import { CartComponent } from './components/cart/cart.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { OrderDetailComponent } from './components/orders/order-detail/order-detail.component';
@@ -59,6 +60,7 @@ const routes: Routes = [
             { path: 'reorder', component: ReOrderComponent },
         ],
     },
+    { path: 'cart', component: CartComponent },
     {
         path: '**',
         redirectTo: '/home',
