@@ -44,6 +44,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { ProductsByGroupComponent } from './components/products/products-by-group/products-by-group.component';
 import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ProductListComponent } from './components/products/product-list/product-list.component';
 const COMPONENTS = [AppComponent, HeaderComponent, FooterComponent, HomeComponent];
 
 const PRIMENGS = [
@@ -85,6 +86,7 @@ const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, Forms
         ProductsByGroupComponent,
         ProductsByCategoryComponent,
         CartComponent,
+        ProductListComponent,
     ],
     imports: [...MODULES, ...PRIMENGS],
     providers: [

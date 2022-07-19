@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
             {
                 label: 'Sản phẩm',
                 items: this.items,
-                routerLink: '/products',
+                routerLink: '/products/groups',
             },
             {
                 label: 'Combo',
