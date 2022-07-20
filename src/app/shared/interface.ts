@@ -39,3 +39,16 @@ export interface CartProduct {
     quantity: number;
     subPrice: number;
 }
+
+export interface User {
+    usernameOrEmail: string;
+    password: number;
+}
+
+export interface signUpData {
+    email: string;
+    name: string;
+    password: string;
+    phoneNum: string;
+    username: string;
+}

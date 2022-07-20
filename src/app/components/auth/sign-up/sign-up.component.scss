@@ -1,0 +1,55 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
+.sign {
+    @include wrapperMain;
+    &-form {
+        .p-inputgroup {
+            margin: 12px 0;
+            position: relative;
+            .p-inputtext {
+                font-size: $normal-font-size;
+            }
+            &::after {
+                content: '*';
+                color: #f11;
+                position: absolute;
+                height: 12px;
+                right: 15px;
+                top: 11px;
+                width: 5px;
+            }
+        }
+        &-footer {
+            margin: 24px 0;
+        }
+    }
+}
+
+:host::ng-deep {
+    .sign-form-switch {
+        background-color: transparent;
+        border: none;
+        padding: 6px 24px;
+        margin-bottom: 12px;
+        &:hover {
+            background-color: transparent;
+            .p-button-label,
+            .p-button-icon {
+                color: $first-color;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+    .sign-form-forgot {
+        padding: 0;
+        margin-bottom: 24px;
+        .p-button-label {
+            color: $first-color;
+            font-size: $small-font-size;
+        }
+    }
+    .sign-form-submit {
+        width: 100%;
+        @include btnPrimary;
+    }
+}

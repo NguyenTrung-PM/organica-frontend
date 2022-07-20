@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/account/login/login.component';
-import { ProfileComponent } from './components/account/profile/profile.component';
+import { ProfileComponent } from './components/auth/profile/profile.component';
+import { SignInComponent } from './components/auth/sign-in/sign-in.component';
+import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
 import { CartComponent } from './components/cart/cart.component';
 
 import { HomeComponent } from './components/home/home.component';
@@ -19,11 +20,11 @@ const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path: 'account',
+        path: 'auth',
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
-            { path: 'login', component: LoginComponent },
-            { path: 'register', component: LoginComponent },
+            { path: 'sign-in', component: SignInComponent },
+            { path: 'sign-up', component: SignUpComponent },
             { path: 'profile', component: ProfileComponent },
         ],
     },
