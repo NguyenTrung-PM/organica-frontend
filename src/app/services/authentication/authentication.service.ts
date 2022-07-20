@@ -18,13 +18,16 @@ export class AuthenticationService {
         let URL = this.URL_SIGNIN_API;
         this.httpClient
             .post<any>(URL, user)
-            .pipe(catchError(this.handleError))
             .toPromise()
-            .then((_data) => {
-                this.accessToken = _data.accessToken;
-                window.sessionStorage.setItem('token', _data.accessToken);
-                this.$userId.next(this.decodeToken());
-            });
+            .then(
+                (_data) => {
+                    this.accessToken = _data.accessToken;
+                    window.sessionStorage.setItem('token', _data.accessToken);
+                    this.$userId.next(this.decodeToken());
+                },
+                (error) => {
+                },
+            );
     }
 
     signOut() {
@@ -34,7 +37,7 @@ export class AuthenticationService {
 
     signUp(signUpData: signUpData): Observable<any> {
         let URL = `${this.URL_SIGNUP_API}`;
-        return this.httpClient.post<any>(URL, signUpData).pipe(catchError(this.handleError));
+        return this.httpClient.post<any>(URL, signUpData);
     }
 
     decodeToken(): any {
@@ -45,14 +48,5 @@ export class AuthenticationService {
     fetchToken() {
         this.accessToken = window.sessionStorage.getItem('token');
         if (this.accessToken) this.$userId.next(this.decodeToken());
-    }
-
-    private handleError(error: HttpErrorResponse) {
-        if (error.status === 0) {
-            console.error('An error occurred:', error.error);
-        } else {
-            console.error(`Backend returned code ${error.status}, body was: `, error.error);
-        }
-        return throwError(() => new Error('Something bad happened; please try again later.'));
     }
 }

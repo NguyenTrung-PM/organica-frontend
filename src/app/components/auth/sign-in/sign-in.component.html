@@ -2,9 +2,7 @@
     <!-- [@openClose]="loginMode ? 'open' : 'closed'" -->
     <div class="lg:col-8 lg:col-offset-2 md:col-8 md:col-offset-2 sm:col-8 sm:col-offset-2 col-10 col-offset-1">
         <h3 class="sign-heading">
-            <span>
-                Đăng nhập
-            </span>
+            <span> Đăng nhập </span>
         </h3>
         <div class="sign-wrapper">
             <form class="sign-form" [formGroup]="signIn" (ngSubmit)="onSignIn()">
@@ -16,7 +14,7 @@
                         <div class="p-inputgroup">
                             <input type="password" formControlName="password" pInputText placeholder="Mật khẩu" />
                         </div>
-
+                        <span>Chỗ này hiển thị lỗi đăng nhập: {{ errMessage }}</span>
                         <div class="flex flex-column justify-content-between align-items-center">
                             <button
                                 pButton

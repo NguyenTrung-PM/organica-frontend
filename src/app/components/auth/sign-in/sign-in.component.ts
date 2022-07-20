@@ -32,6 +32,7 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 })
 export class SignInComponent implements OnInit {
     signIn!: FormGroup;
+    errMessage!:string;
     constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {}
 
     ngOnInit(): void {
@@ -47,10 +48,14 @@ export class SignInComponent implements OnInit {
 
     onSignIn() {
         this.authenticationService.signIn(this.signIn.value);
-        this.authenticationService.$userId.subscribe((_userId) => {
-            if (_userId) {
-                this.router.navigate(['/home'])
+        this.authenticationService.$userId.subscribe(
+            (_userId) => {
+                if(_userId){
+                    this.router.navigate(['/home']);
+                }else{
+                    this.errMessage = "Vui lòng kiểm tra lại thông tin đăng nhập!"
+                }
             }
-        });
+        );
     }
 }

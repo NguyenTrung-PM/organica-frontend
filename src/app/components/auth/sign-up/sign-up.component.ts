@@ -1,6 +1,7 @@
 // import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
@@ -34,26 +35,17 @@ export class SignUpComponent implements OnInit {
     signMode: boolean = true;
     signIn!: FormGroup;
     signUp!: FormGroup;
-    constructor(private fb: FormBuilder, private authenticationService: AuthenticationService) {}
+
+    errorMessage!: string;
+
+    constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {}
 
     ngOnInit(): void {
-        this.onCreateLoginForm();
         this.onCreateSignUpForm();
     }
 
     onSwitchMode() {
         this.signMode = !this.signMode;
-    }
-
-    onCreateLoginForm(): void {
-        this.signIn = this.fb.group({
-            usernameOrEmail: [null, Validators.required],
-            password: [null, [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$')]],
-        });
-    }
-
-    onSignIn() {
-        this.authenticationService.signIn(this.signIn.value);
     }
 
     onCreateSignUpForm(): void {
@@ -67,8 +59,13 @@ export class SignUpComponent implements OnInit {
     }
 
     onSignUp() {
-        this.authenticationService.signUp(this.signUp.value).subscribe((data) => {
-            console.log(data);
-        });
+        this.authenticationService.signUp(this.signUp.value).toPromise().then(
+            (data) => {
+                this.router.navigate(['/auth/sign-in']);
+            },
+            (errRes) => {
+                this.errorMessage = errRes.error.message;
+            },
+        );
     }
 }
