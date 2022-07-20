@@ -1,5 +1,5 @@
 <header class="header">
-    <p-menubar [model]="menuItem" [autoDisplay]="true">
+    <p-menubar [model]="navMenu" [autoDisplay]="true">
         <ng-template pTemplate="start">
             <span class="logo cursor-pointer" routerLink="/home"></span>
         </ng-template>
@@ -15,10 +15,12 @@
                         </div>
                     </li>
                     <li class="menu__item">
-                        <i class="fa fa-box menu__icon"></i>
+                        <i class="fa fa-dolly menu__icon"></i>
                     </li>
                     <li class="menu__item">
-                        <i [routerLink]="['account']" class="fa fa-user menu__icon"></i>
+                        <!-- <i [routerLink]="['account']" class="fa fa-user menu__icon"></i> -->
+                        <button class="menu__icon" #btn type="button" icon="far fa-user" pButton  (click)="menu.toggle($event)"></button>
+                        <p-tieredMenu #menu [model]="authMenu" [popup]="true" ></p-tieredMenu>
                     </li>
                 </ul>
             </div>

@@ -1,0 +1,34 @@
+<div class="grid grid-nogutter sign">
+    <!-- [@openClose]="loginMode ? 'open' : 'closed'" -->
+    <div class="lg:col-8 lg:col-offset-2 md:col-8 md:col-offset-2 sm:col-8 sm:col-offset-2 col-10 col-offset-1">
+        <h3 class="sign-heading">
+            <span> Đăng nhập </span>
+        </h3>
+        <div class="sign-wrapper">
+            <form class="sign-form" [formGroup]="signIn" (ngSubmit)="onSignIn()">
+                <div class="grid">
+                    <div class="col-10 col-offset-1 mt-6">
+                        <div class="p-inputgroup">
+                            <input type="text" formControlName="usernameOrEmail" pInputText placeholder="Tài khoản hoặc email" />
+                        </div>
+                        <div class="p-inputgroup">
+                            <input type="password" formControlName="password" pInputText placeholder="Mật khẩu" />
+                        </div>
+                        <span>Chỗ này hiển thị lỗi đăng nhập: {{ errMessage }}</span>
+                        <div class="flex flex-column justify-content-between align-items-center">
+                            <button
+                                pButton
+                                pRipple
+                                type="submit"
+                                label="Đăng nhập"
+                                class="p-button-rounded sign-form-submit mt-3 max-w-15rem"
+                                [disabled]="!signIn.valid"></button>
+
+                            <p-button styleClass="sign-form-forgot p-button-link mt-4" label="Quên mật khẩu ?"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

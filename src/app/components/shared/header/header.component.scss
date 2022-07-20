@@ -109,7 +109,7 @@
             border: 1px solid $border-color;
             border-radius: 0.25rem;
 
-            .menu__icon{
+            .menu__icon {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
             }
@@ -159,14 +159,29 @@
         }
     }
 
-    @include desktop{
-        .p-menubar-root-list>.p-menuitem-active>p-menubarsub>.p-submenu-list{
+    .p-button {
+        background: none;
+        border: none;
+    }
+
+    .p-button:enabled:hover {
+        box-shadow: none;
+        background: none;
+        border-color: 1px solid $border-color;
+    }
+
+    .p-button:focus {
+        box-shadow: none;
+    }
+
+    @include desktop {
+        .p-menubar-root-list > .p-menuitem-active > p-menubarsub > .p-submenu-list {
             margin-top: 0.5rem;
             border: 1px solid $first-color;
             border-top: none;
         }
 
-        .p-menubar .p-submenu-list{
+        .p-menubar .p-submenu-list {
             border: 1px solid $first-color;
         }
     }

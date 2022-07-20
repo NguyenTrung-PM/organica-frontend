@@ -14,13 +14,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     items: any = [];
     subscription: Subscription[] = [];
 
-    constructor(private productService: ProductService, private groupService: GroupService) {}
+    constructor(private groupService: GroupService) {}
 
     ngOnInit(): void {
-        this.subscription.push(
-            this.groupService.getAll().subscribe((groups: any[]) => {
+            this.groupService.getAll().toPromise().then((groups: any[]) => {
                 groups.forEach((group) => {
-                    this.groupService.getCategories(group.id).subscribe((categories: any[]) => {
+                    this.groupService.getCategories(group.id).toPromise().then((categories: any[]) => {
                         this.items.push({
                             label: group.name,
                             routerLink: `/products/groups/${group.id}`,
@@ -34,8 +33,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
                         this.menuItem = [...this.items];
                     });
                 });
-            }),
-        );
+            });
     }
 
     ngOnDestroy(): void {

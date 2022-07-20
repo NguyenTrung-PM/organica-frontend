@@ -18,16 +18,16 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-//component
+import { TieredMenuModule } from 'primeng/tieredmenu';
 
+//component
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeCarouselComponent } from './components/shared/home-carousel/home-carousel.component';
-import { LoginComponent } from './components/account/login/login.component';
-import { ProfileComponent } from './components/account/profile/profile.component';
+import { ProfileComponent } from './components/auth/profile/profile.component';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 import { ProductItemComponent } from './components/products/product-item/product-item.component';
@@ -45,7 +45,44 @@ import { ProductsByGroupComponent } from './components/products/products-by-grou
 import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
-const COMPONENTS = [AppComponent, HeaderComponent, FooterComponent, HomeComponent];
+import { AuthenticationService } from './services/authentication/authentication.service';
+import { CartService } from './services/cart/cart.service';
+import { CategoryService } from './services/categories/category.service';
+import { GroupService } from './services/groups/group.service';
+import { ProductService } from './services/products/product.service';
+import { ProvinceService } from './services/provinces/province.service';
+import { SpinnerService } from './services/shared/spinner.service';
+import { LoadingService } from './services/loading.service';
+import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
+import { SignInComponent } from './components/auth/sign-in/sign-in.component';
+import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
+import { UserService } from './services/users/user.service';
+
+const COMPONENTS = [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    HomeCarouselComponent,
+    ProfileComponent,
+    ProductDetailComponent,
+    ProductEditComponent,
+    ProductItemComponent,
+    CutStringsPipe,
+    OrderListComponent,
+    OrderItemComponent,
+    OrderDetailComponent,
+    ReOrderComponent,
+    SpinnerComponent,
+    SidebarComponent,
+    ProductsComponent,
+    ProductsByGroupComponent,
+    ProductsByCategoryComponent,
+    CartComponent,
+    ProductListComponent,
+    SignInComponent,
+    SignUpComponent,
+];
 
 const PRIMENGS = [
     SharedModule,
@@ -62,40 +99,40 @@ const PRIMENGS = [
     ProgressSpinnerModule,
     MessagesModule,
     MessageModule,
+    TieredMenuModule,
 ];
 
 const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule];
 
+const SERVICES = [
+    AuthenticationService,
+    CartService,
+    CategoryService,
+    GroupService,
+    ProductService,
+    ProvinceService,
+    SpinnerService,
+    LoadingService,
+    UserService,
+];
+
+const PROVIDERS = [
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: LoadingInterceptor,
+        multi: true,
+    },
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: HttpHeaderInterceptor,
+        multi: true,
+    },
+];
+
 @NgModule({
-    declarations: [
-        ...COMPONENTS,
-        HomeCarouselComponent,
-        LoginComponent,
-        ProfileComponent,
-        ProductDetailComponent,
-        ProductEditComponent,
-        ProductItemComponent,
-        CutStringsPipe,
-        OrderListComponent,
-        OrderItemComponent,
-        OrderDetailComponent,
-        ReOrderComponent,
-        SpinnerComponent,
-        SidebarComponent,
-        ProductsComponent,
-        ProductsByGroupComponent,
-        ProductsByCategoryComponent,
-        CartComponent,
-        ProductListComponent,
-    ],
+    declarations: [...COMPONENTS],
     imports: [...MODULES, ...PRIMENGS],
-    providers: [
-        {
-            provide:HTTP_INTERCEPTORS,
-            useClass:LoadingInterceptor,
-            multi:true
-        }
-    ],
+    providers: [...SERVICES, ...PROVIDERS],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
