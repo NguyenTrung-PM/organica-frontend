@@ -23,6 +23,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+
 //component
 
 //component
@@ -65,6 +66,7 @@ import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
 import { SignInComponent } from './components/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
 import { UserService } from './services/users/user.service';
+import { SearchComponent } from './components/shared/search/search.component';
 
 const COMPONENTS = [
     AppComponent,
@@ -144,7 +146,7 @@ const PROVIDERS = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS],
+    declarations: [...COMPONENTS, SearchComponent],
     imports: [...MODULES, ...PRIMENGS],
     providers: [...SERVICES, ...PROVIDERS],
     bootstrap: [AppComponent],

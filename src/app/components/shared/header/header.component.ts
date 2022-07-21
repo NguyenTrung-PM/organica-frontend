@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
 import { Observable, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { GroupService } from 'src/app/services/groups/group.service';
+import { SearchService } from 'src/app/services/search/search.service';
 import { UserService } from 'src/app/services/users/user.service';
 
 @Component({
@@ -21,7 +23,14 @@ export class HeaderComponent implements OnInit {
     authMenu: MenuItem[] = [];
     nonUserMenu: MenuItem[] = [];
 
-    constructor(private groupService: GroupService, private authService: AuthenticationService, private userService: UserService) {}
+    constructor(
+        private groupService: GroupService,
+        private authService: AuthenticationService,
+        private userService: UserService,
+        private searchService: SearchService,
+        private router: Router,
+        private route: ActivatedRoute,
+    ) {}
 
     ngOnInit(): void {
         this.onCreateNavMenu();
@@ -135,5 +144,8 @@ export class HeaderComponent implements OnInit {
 
     onToggleSearch() {
         this.toggleSearch = !this.toggleSearch;
+        if (this.searchValue) {
+            this.router.navigate(['products'], { queryParams: { keyword: this.searchValue } });
+        }
     }
 }
