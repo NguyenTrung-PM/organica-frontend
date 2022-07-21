@@ -1,0 +1,15 @@
+<!-- <div *ngFor="let i of products">
+    <h3 class="category-heading">{{ i.title }}</h3> -->
+<app-product-list [products]="products"></app-product-list>
+<div class="grid grid-nogutter cart">
+    <div class="col-12">
+        <div class="cart-wrapper" *ngIf="length === 0">
+            <div class="no-cart-wrapper">
+                <p>rất tiếc không có sản phẩm nào phù hợp.</p>
+                <p>Hãy tiếp tục mua sắm cùng Organica nhé. Xin cám ơn.</p>
+                <button pButton pRipple type="button" [routerLink]="['/']" routerLinkActive="router-link-active" label="Tiếp tục mua sắm" class="p-button-rounded no-cart-btn"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </div> -->

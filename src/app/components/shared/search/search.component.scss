@@ -1,0 +1,33 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
+.cart {
+    @include wrapperMain;
+}
+
+.cart-wrapper {
+    padding: 35px 20px 15px;
+    .wrapper-heading {
+        text-transform: uppercase;
+        margin: 10px 0;
+        h4 {
+            font-weight: $font-regular;
+        }
+    }
+    .no-cart-wrapper {
+        text-align: center;
+        padding: 35px 0;
+        p {
+            font-size: $small-font-size;
+            margin: 6px 0;
+        }
+        .no-cart-btn {
+            margin-top: 30px;
+        }
+    }
+}
+
+:host::ng-deep {
+    .no-cart-btn {
+        @include btnPrimary-l;
+    }
+}
