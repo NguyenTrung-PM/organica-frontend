@@ -75,4 +75,16 @@ export class ProductService {
         }
         return throwError(() => new Error('Something bad happened; please try again later.'));
     }
+    deleteById(id: number) {
+        let URL = `${this.URL_PRODUCTS_API}/${id}`;
+        return this.httpClient.delete<Product>(URL, this.httpOptions).pipe(catchError(this.handleError));
+    }
+    add(product: Product) {
+        let URL = this.URL_PRODUCTS_API;
+        return this.httpClient.post<Product>(URL, product, this.httpOptions).pipe(catchError(this.handleError));
+    }
+    edit(product: Product) {
+        let URL = `${this.URL_PRODUCTS_API}/${product.id}`;
+        return this.httpClient.put<Product>(URL, product, this.httpOptions).pipe(catchError(this.handleError));
+    }
 }

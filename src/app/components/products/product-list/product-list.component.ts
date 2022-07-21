@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Message } from 'primeng/api';
 import { Product } from 'src/app/shared/interface';
 
 @Component({

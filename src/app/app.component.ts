@@ -9,7 +9,7 @@ import { LoadingService } from './services/loading.service';
 export class AppComponent implements OnInit {
     title = 'organica-frontend';
     isLoading?: boolean = true;
-
+    isLogin: boolean = false;
     constructor(private loadingService: LoadingService) {}
 
     ngOnInit() {

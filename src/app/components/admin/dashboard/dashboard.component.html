@@ -1,0 +1,206 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" [routerLink]="['/admin']">
+        <svg width="48" height="50" viewBox="0 0 48 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M33.1548 9.65956L23.9913 4.86169L5.54723 14.5106L0.924465 12.0851L23.9913 0L37.801 7.23403L33.1548 9.65956ZM23.9931 19.3085L42.4255 9.65955L47.0717 12.0851L23.9931 24.1595L10.1952 16.9361L14.8297 14.5106L23.9931 19.3085ZM4.6345 25.8937L0 23.4681V37.9149L23.0669 50V45.1489L4.6345 35.4894V25.8937ZM18.4324 28.2658L0 18.6169V13.7658L23.0669 25.8403V40.2977L18.4324 37.8615V28.2658ZM38.7301 23.468V18.6169L24.9205 25.8403V49.9999L29.555 47.5743V28.2659L38.7301 23.468ZM43.3546 35.4892V16.1914L48.0008 13.7659V37.9148L34.1912 45.1488V40.2977L43.3546 35.4892Z"
+                fill="#616161" />
+        </svg>
+        <span>Organica</span>
+    </a>
+    <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="1">
+        <p-menu styleClass="sidebar" [model]="items"></p-menu>
+    </p-sidebar>
+
+    <a class="p-link layout-menu-button layout-topbar-button lg:hidden" (click)="visibleSidebar1 = true">
+        <i class="pi pi-bars"></i>
+    </a>
+
+    <!-- <a class="p-link layout-topbar-menu-button layout-topbar-button" href="#">
+            <i class="pi pi-ellipsis-v"></i>
+        </a> -->
+
+    <div class="layout-topbar-menu">
+        <a href="#" class="p-link layout-topbar-button">
+            <i class="pi pi-calendar"></i>
+        </a>
+        <a href="#" class="p-link layout-topbar-button">
+            <i class="pi pi-cog"></i>
+        </a>
+        <a href="#" class="p-link layout-topbar-button">
+            <i class="pi pi-user"></i>
+        </a>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="grid grid-nogutter">
+        <div class="lg:col-3 lg:block hidden">
+            <div class="layout-menu-container">
+                <p-menu styleClass="sidebar" [model]="items"></p-menu>
+            </div>
+        </div>
+        <div class="lg:col-9 col-12">
+            <div class="grid">
+                <div class="col-12 lg:col-6 xl:col-3">
+                    <div class="card mb-0">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-500 font-medium mb-3">Orders</span>
+                                <div class="text-900 font-medium text-xl">152</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{ width: '2.5rem', height: '2.5rem' }">
+                                <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
+                            </div>
+                        </div>
+                        <span class="text-green-500 font-medium">24 new </span>
+                        <span class="text-500">since last visit</span>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-6 xl:col-3">
+                    <div class="card mb-0">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-500 font-medium mb-3">Revenue</span>
+                                <div class="text-900 font-medium text-xl">$2.100</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{ width: '2.5rem', height: '2.5rem' }">
+                                <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+                            </div>
+                        </div>
+                        <span class="text-green-500 font-medium">%52+ </span>
+                        <span class="text-500">since last week</span>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-6 xl:col-3">
+                    <div class="card mb-0">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-500 font-medium mb-3">Customers</span>
+                                <div class="text-900 font-medium text-xl">28441</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" [ngStyle]="{ width: '2.5rem', height: '2.5rem' }">
+                                <i class="pi pi-inbox text-cyan-500 text-xl"></i>
+                            </div>
+                        </div>
+                        <span class="text-green-500 font-medium">520 </span>
+                        <span class="text-500">newly registered</span>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-6 xl:col-3">
+                    <div class="card mb-0">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-500 font-medium mb-3">Comments</span>
+                                <div class="text-900 font-medium text-xl">152 Unread</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-purple-100 border-round" [ngStyle]="{ width: '2.5rem', height: '2.5rem' }">
+                                <i class="pi pi-comment text-purple-500 text-xl"></i>
+                            </div>
+                        </div>
+                        <span class="text-green-500 font-medium">85 </span>
+                        <span class="text-500">responded</span>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card">
+                        <h5 class="cart-title">Sản phẩm</h5>
+                        <button pButton pRipple type="button" (click)="showForm((editMode = false), formProduct.value.id)" label="Add" class="cart-btn p-button-raised p-button-success"></button>
+                        <!-- form add product -->
+                        <p-dialog header="Thêm sản phẩm" [(visible)]="display">
+                            <form [formGroup]="formProduct">
+                                <div class="grid mt-2 mb-2">
+                                    <div class="col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <input type="text" id="inputtext" formControlName="image" pInputText />
+                                            <label for="inputtext">Image</label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <input type="text" id="inputtext" formControlName="name" pInputText />
+                                            <label for="inputtext">Name</label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <input type="text" id="inputtext" formControlName="price" pInputText />
+                                            <label for="inputtext">Price</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="grid mt-2">
+                                    <div class="col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <input type="text" id="inputtext" formControlName="discount" pInputText />
+                                            <label for="inputtext">Discount</label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <input type="text" id="inputtext" formControlName="quantity" pInputText />
+                                            <label for="inputtext">Quantity</label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <input type="text" id="inputtext" formControlName="unit" pInputText />
+                                            <label for="inputtext">Unit</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="grid" formGroupName="category">
+                                    <select class="lg:col-3 md:col-3 col-12 lg:mb-0 md:mb-0 mb-3" (change)="onChangeIdCategory()" formControlName="id" name="name">
+                                        <option selected value="0">Category</option>
+                                        <option *ngFor="let category of categories" [value]="category.id">
+                                            {{ category.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <button pButton pRipple type="button" (click)="addProduct()" label="{{ editMode ? 'Edit' : 'Add' }}" class="cart-btn p-button-raised p-button-success"></button>
+                            </form>
+                        </p-dialog>
+                        <!-- form add product -->
+                        <p-confirmDialog header="Xác nhận xóa" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+                        <table class="data-view">
+                            <tr class="grid grid-nogutter data-view-heading">
+                                <th class="col-1">Id</th>
+                                <th class="col-1">Image</th>
+                                <th class="col-4">Name</th>
+                                <th class="col-1">Price</th>
+                                <th class="col-1">Discount</th>
+                                <th class="col-1">Quantity</th>
+                                <th class="col-1">Unit</th>
+                                <th class="col-1">Edit</th>
+                                <th class="col-1">Delete</th>
+                            </tr>
+
+                            <tr class="grid grid-nogutter align-items-center mb-2" *ngFor="let product of products" @fadeOut>
+                                <td class="col-1">
+                                    {{ product.id }}
+                                </td>
+                                <td class="col-1">
+                                    <img src="assets/image/products/{{ product.image }}" class="shadow-4 border-round-md" alt="{{ product.name }}" width="50" />
+                                </td>
+                                <td class="col-4">{{ product.name }}</td>
+                                <td class="col-1">{{ product.price }}</td>
+
+                                <td class="col-1">{{ product.discount }}</td>
+                                <td class="col-1">{{ product.quantity }}</td>
+                                <td class="col-1">{{ product.unit }}</td>
+                                <td class="col-1">
+                                    <button pButton pRipple type="button" icon="pi pi-pencil" (click)="showForm((editMode = true), product.id)" class="cart-btn p-button-rounded p-button-success"></button>
+                                </td>
+                                <td class="col-1">
+                                    <button pButton pRipple type="button" icon="pi pi-trash" (click)="confirm(product.id)" class="cart-btn p-button-rounded p-button-warning"></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
