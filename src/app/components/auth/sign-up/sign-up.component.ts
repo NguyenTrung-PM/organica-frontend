@@ -50,22 +50,46 @@ export class SignUpComponent implements OnInit {
 
     onCreateSignUpForm(): void {
         this.signUp = this.fb.group({
-            username: [null, Validators.required],
-            name: [null, Validators.required],
-            email: [null, Validators.required],
-            phoneNum: [null, Validators.required],
-            password: [null, Validators.required],
+            name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+            username: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+            email: [
+                null,
+                [
+                    Validators.required,
+                    Validators.maxLength(40),
+                    // Validators.pattern(
+                    //     '(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))',
+                    // ),
+                    Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'),
+                ],
+            ],
+            phoneNum: [
+                null,
+                [Validators.required, Validators.pattern('(0[3|5|7|8|9])+([0-9]{8})\\b'), Validators.minLength(10), Validators.maxLength(12)],
+            ],
+            password: [
+                null,
+                [
+                    Validators.required,
+                    Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,}$'),
+                    Validators.minLength(6),
+                    Validators.maxLength(20),
+                ],
+            ],
         });
     }
 
     onSignUp() {
-        this.authenticationService.signUp(this.signUp.value).toPromise().then(
-            (data) => {
-                this.router.navigate(['/auth/sign-in']);
-            },
-            (errRes) => {
-                this.errorMessage = errRes.error.message;
-            },
-        );
+        this.authenticationService
+            .signUp(this.signUp.value)
+            .toPromise()
+            .then(
+                (data) => {
+                    this.router.navigate(['/auth/sign-in']);
+                },
+                (errRes) => {
+                    this.errorMessage = errRes.error.message;
+                },
+            );
     }
 }

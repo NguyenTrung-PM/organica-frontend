@@ -8,30 +8,45 @@
             <form class="sign-form" [formGroup]="signUp" (ngSubmit)="onSignUp()">
                 <div class="grid">
                     <div class="col-10 col-offset-1 mt-3">
-                        <div class="p-inputgroup">
+                        <div class="mb-3">
                             <input type="text" formControlName="name" pInputText placeholder="Họ tên" />
+                            <span class="error-message" *ngIf="signUp.controls['name'].errors && signUp.controls['name'].touched">
+                                {{signUp.controls['name'].errors?.['required'] ?'Vui lòng nhập tên':signUp.controls['name'].errors?.['minlength']?'Tên phải nhiều hơn 3 kí tự ':'Tên không được dài hơn 40 kí tự '}}
+                            </span>
                         </div>
-                        <div class="p-inputgroup">
+                        <div class="mb-3">
                             <input type="text" formControlName="email" pInputText placeholder="Địa chỉ email" />
+                            <span class="error-message" *ngIf="signUp.controls['email'].errors && signUp.controls['email'].touched">
+                                {{signUp.controls['email'].errors?.['required'] ?'Vui lòng nhập địa chỉ email':signUp.controls['email'].errors?.['pattern']?'Địa chỉ email không đúng định dạng':'Địa chỉ email không được dài hơn 40 kí tự'}}
+                            </span>
                         </div>
-                        <div class="p-inputgroup">
+                        <div class="mb-3">
                             <input type="text" formControlName="username" pInputText placeholder="tài khoản" />
+                            <span class="error-message" *ngIf="signUp.controls['username'].errors && signUp.controls['username'].touched">
+                                {{signUp.controls['username'].errors?.['required'] ?'Vui lòng nhập tài khoản':signUp.controls['username'].errors?.['minlength']?'Tài khoản phải nhiều hơn 3 kí tự':'Tài khoản không được dài hơn 15 kí tự'}}
+                            </span>
                         </div>
                         <div class="grid">
                             <div class="col-6">
-                                <div class="p-inputgroup m-0">
+                                <div class="m-0">
                                     <input type="text" formControlName="password" pInputText placeholder="Mật khẩu" />
+                                    <span class="error-message" *ngIf="signUp.controls['password'].errors && signUp.controls['password'].touched">
+                                        {{signUp.controls['password'].errors?.['required'] ?'Vui lòng nhập mật khẩu':signUp.controls['password'].errors?.['minlength']?'Mật khẩu phải nhiều hơn 6 kí tự':signUp.controls['password'].errors?.['pattern']?'Mật khẩu không đúng định dạng':'Mật khẩu không được dài hơn 20 kí tự'}}
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="p-inputgroup m-0">
+                                <div class="m-0">
                                     <input type="text" formControlName="phoneNum" pInputText placeholder="Số điện thoại" />
+                                    <span class="error-message" *ngIf="signUp.controls['phoneNum'].errors && signUp.controls['phoneNum'].touched">
+                                        {{signUp.controls['phoneNum'].errors?.['required'] ?'Vui lòng nhập số điện thoại':signUp.controls['phoneNum'].errors?.['pattern']?'Số điện thoại không đúng định dạng':''}}
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                        <span>Đây là chỗ hiện lỗi của server: {{ errorMessage }}</span>
+                        <span class="error-message" *ngIf="errorMessage && signUp.valid">{{ errorMessage }} </span>
                         <div class="flex flex-column justify-content-between align-items-center">
-                            <button pButton pRipple type="submit" label="Đăng ký" class="p-button-rounded sign-form-submit my-3 max-w-15rem"></button>
+                            <button pButton pRipple type="submit" [disabled]="!signUp.valid" label="Đăng ký" class="p-button-rounded sign-form-submit my-3 max-w-15rem"></button>
                         </div>
                     </div>
                 </div>
