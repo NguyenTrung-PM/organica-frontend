@@ -1,4 +1,5 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './services/authentication/authentication.service';
 import { LoadingService } from './services/loading.service';
 
 @Component({
@@ -9,10 +10,13 @@ import { LoadingService } from './services/loading.service';
 export class AppComponent implements OnInit {
     title = 'organica-frontend';
     isLoading?: boolean = true;
+
     isLogin: boolean = false;
-    constructor(private loadingService: LoadingService) {}
+
+    constructor(private loadingService: LoadingService, private authService: AuthenticationService) {}
 
     ngOnInit() {
+        this.authService.fetchToken();
         this.loadingService.isLoading.subscribe((_x) => {
             setTimeout(() => {
                 this.isLoading = _x;
