@@ -18,7 +18,12 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { MenuModule } from 'primeng/menu';
+import { MegaMenuModule } from 'primeng/megamenu';
+import { SidebarModule } from 'primeng/sidebar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+//component
 
 //component
 import { AppRoutingModule } from './app-routing.module';
@@ -45,6 +50,9 @@ import { ProductsByGroupComponent } from './components/products/products-by-grou
 import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { MessagesComponent } from './components/shared/messages/messages.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { CartService } from './services/cart/cart.service';
 import { CategoryService } from './services/categories/category.service';
@@ -82,6 +90,8 @@ const COMPONENTS = [
     ProductListComponent,
     SignInComponent,
     SignUpComponent,
+    MessagesComponent,
+    DashboardComponent,
 ];
 
 const PRIMENGS = [
@@ -99,6 +109,10 @@ const PRIMENGS = [
     ProgressSpinnerModule,
     MessagesModule,
     MessageModule,
+    MenuModule,
+    MegaMenuModule,
+    SidebarModule,
+    ConfirmDialogModule,
     TieredMenuModule,
 ];
 

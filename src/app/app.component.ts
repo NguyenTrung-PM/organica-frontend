@@ -11,6 +11,8 @@ export class AppComponent implements OnInit {
     title = 'organica-frontend';
     isLoading?: boolean = true;
 
+    isLogin: boolean = false;
+
     constructor(private loadingService: LoadingService, private authService: AuthenticationService) {}
 
     ngOnInit() {

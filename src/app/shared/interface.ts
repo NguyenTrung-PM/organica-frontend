@@ -21,7 +21,7 @@ export interface Product {
     quantity: number;
     quality: number;
     unit: string;
-    categorys: Category[];
+    category: Category;
 }
 
 export interface Descriped {
