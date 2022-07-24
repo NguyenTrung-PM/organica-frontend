@@ -1,5 +1,7 @@
 <!-- <h3 class="category-heading">{{ subTitle }}</h3> -->
 <div class="grid grid-nogutter">
-    <app-product-item class="lg:col-3 sm:col-4 col-6" *ngFor="let productEl of products" [product]="productEl"></app-product-item>
+    <app-product-item class="lg:col-3 sm:col-4 col-6" *ngFor="let productEl of products | paginate: { itemsPerPage: 20, currentPage: currentPage, totalItems: totalElements }" [product]="productEl"></app-product-item>
 </div>
+<pagination-controls *ngIf="totalElements > products.length" previousLabel="Trước " [maxSize]="7" nextLabel="Sau" (pageChange)="pageChange($event)" (pageBoundsCorrection)="currentPage = $event"></pagination-controls>
+
 <!-- <a (click)="loadMore()">Xem thêm 10 sp</a> -->

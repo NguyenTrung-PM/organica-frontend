@@ -11,6 +11,12 @@ export interface Content {
     content: Product[] | Image[] | Descriped[];
     size: number;
     totalElements: number;
+    last: boolean;
+    pageable: Pageable;
+    totalPages: number;
+}
+export interface Pageable {
+    pageNumber: number;
 }
 export interface Product {
     id: number;

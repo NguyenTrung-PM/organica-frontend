@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit {
             {
                 label: 'Sản phẩm',
                 items: this.items,
-                routerLink: '/products/groups',
+                routerLink: '/products',
             },
             {
                 label: 'Combo',
@@ -145,7 +145,7 @@ export class HeaderComponent implements OnInit {
     onToggleSearch() {
         this.toggleSearch = !this.toggleSearch;
         if (this.searchValue) {
-            this.router.navigate(['products'], { queryParams: { keyword: this.searchValue } });
+            this.router.navigate(['products/search'], { queryParams: { keyword: this.searchValue } });
         }
     }
 }

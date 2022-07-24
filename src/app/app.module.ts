@@ -23,8 +23,8 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-
-//component
+//ngx paging angular
+import { NgxPaginationModule } from 'ngx-pagination';
 
 //component
 import { AppRoutingModule } from './app-routing.module';
@@ -67,6 +67,7 @@ import { SignInComponent } from './components/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
 import { UserService } from './services/users/user.service';
 import { SearchComponent } from './components/shared/search/search.component';
+import { ProductsByTotalComponent } from './components/products/products-by-total/products-by-total.component';
 
 const COMPONENTS = [
     AppComponent,
@@ -116,6 +117,7 @@ const PRIMENGS = [
     SidebarModule,
     ConfirmDialogModule,
     TieredMenuModule,
+    NgxPaginationModule,
 ];
 
 const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule];
@@ -146,8 +148,8 @@ const PROVIDERS = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS, SearchComponent],
-    imports: [...MODULES, ...PRIMENGS],
+    declarations: [...COMPONENTS, SearchComponent, ProductsByTotalComponent],
+    imports: [...MODULES, ...PRIMENGS, BrowserAnimationsModule],
     providers: [...SERVICES, ...PROVIDERS],
     bootstrap: [AppComponent],
 })

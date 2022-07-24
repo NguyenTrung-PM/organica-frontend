@@ -17,6 +17,7 @@ import { ProductDetailComponent } from './components/products/product-detail/pro
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
 import { ProductsByGroupComponent } from './components/products/products-by-group/products-by-group.component';
+import { ProductsByTotalComponent } from './components/products/products-by-total/products-by-total.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SearchComponent } from './components/shared/search/search.component';
 
@@ -43,7 +44,8 @@ const routes: Routes = [
         path: 'products',
         component: ProductsComponent,
         children: [
-            { path: '', component: SearchComponent },
+            { path: '', component: ProductsByTotalComponent },
+            { path: 'search', component: SearchComponent },
             {
                 path: 'groups',
                 children: [
