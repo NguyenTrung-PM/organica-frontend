@@ -9,7 +9,7 @@ import { Product } from 'src/app/shared/interface';
     styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-    @Input() products: Product[] = [];
+    @Input() products!: Product[];
     @Input() totalElements!: number;
     @Input() itemsPerPage!: number;
     @Input() currentPage!: number;

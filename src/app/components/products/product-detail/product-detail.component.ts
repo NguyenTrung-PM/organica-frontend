@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { forkJoin, Subscription } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { MessageService } from 'src/app/services/messages/message.service';
 import { ProductService } from 'src/app/services/products/product.service';
 import { Product, Image, Descriped, Content } from 'src/app/shared/interface';
 
@@ -39,7 +41,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
             numVisible: 2,
         },
     ];
-    constructor(private productService: ProductService, private router: Router, private route: ActivatedRoute) {}
+    constructor(
+        private productService: ProductService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private cartService: CartService,
+        private messageService: MessageService,
+    ) {}
 
     ngOnInit(): void {
         this.forkJoinSubscription = this.route.params.subscribe((params: Params) => {
@@ -61,7 +69,18 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.forkJoinSubscription.unsubscribe();
     }
-    onChangeQuantity() {
-        console.log(this.quantity);
+    addToCart() {
+        if (this.product.quantity !== 0) {
+            if (this.cartService.checkItemInCart(this.product) !== -1) {
+                let msgs = [{ severity: 'info', summary: 'Sản phẩm đã có trong giỏ hàng' }];
+                this.messageService.addMessage(msgs);
+            } else {
+                this.cartService.addToCart(this.product);
+                let msgs = [{ severity: 'success', summary: 'Thêm vào giỏ hàng thành công' }];
+
+                this.messageService.addMessage(msgs);
+            }
+            // this.newItemEvent.emit(this.msgs);
+        }
     }
 }

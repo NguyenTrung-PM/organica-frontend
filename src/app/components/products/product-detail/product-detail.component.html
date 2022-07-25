@@ -19,12 +19,12 @@
             </div>
             <div class="product-detail-quantity flex justify-content-around align-items-center">
                 <label for="horizontal ">Số lượng</label>
-                <p-inputNumber [(ngModel)]="quantity" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" [min]="1" [ariaRequired]="true" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                <p-inputNumber [(ngModel)]="quantity" [disabled]="true" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" [min]="1" [ariaRequired]="true" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
                     incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal">
                 </p-inputNumber>
             </div>
 
-            <button pButton pRipple (click)="onChangeQuantity()" type="button" label="{{ product?.quantity != 0 ? 'Cho vào giỏ hàng' : 'Tạm hết' }}" [ngClass]="product?.quantity != 0 ? 'product-buy-btn' : 'product-sold-out'" class="p-button-rounded"></button>
+            <button pButton pRipple (click)="addToCart()" type="button" label="{{ product?.quantity != 0 ? 'Cho vào giỏ hàng' : 'Tạm hết' }}" [ngClass]="product?.quantity != 0 ? 'product-buy-btn' : 'product-sold-out'" class="p-button-rounded"></button>
         </div>
     </div>
 </div>

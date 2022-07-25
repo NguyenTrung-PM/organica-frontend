@@ -15,11 +15,11 @@
                         </div>
                     </li>
                     <li class="menu__item">
-                        <i [routerLink]="['cart']" class="fa fa-box menu__icon"></i>
+                        <i [routerLink]="['cart']" class="fa fa-box menu__icon" pBadge value="{{countProduct}}"></i>
                     </li>
                     <li class="menu__item">
-                        <!-- <i [routerLink]="['account']" class="fa fa-user menu__icon"></i> -->
-                        <button class="menu__icon" #btn type="button" icon="far fa-user" pButton (click)="menu.toggle($event)"></button>
+                        <!-- <i [routerLink]="[ 'account'] " class="fa fa-user menu__icon "></i> -->
+                        <button class="menu__icon" #btn type="button " icon="far fa-user " pButton (click)="menu.toggle($event)"></button>
                         <p-tieredMenu #menu [model]="authMenu" [popup]="true"></p-tieredMenu>
                     </li>
                 </ul>
