@@ -87,4 +87,8 @@ export class ProductService {
         let URL = `${this.URL_PRODUCTS_API}/${product.id}`;
         return this.httpClient.put<Product>(URL, product, this.httpOptions).pipe(catchError(this.handleError));
     }
+    getByPage(page: number): Observable<Content> {
+        let URL = `${this.URL_PRODUCTS_API}?page=${page}`;
+        return this.httpClient.get<Content>(URL, this.httpOptions).pipe(catchError(this.handleError));
+    }
 }

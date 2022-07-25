@@ -16,7 +16,10 @@ import { ReOrderComponent } from './components/orders/re-order/re-order.componen
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
+import { ProductsByDiscountComponent } from './components/products/products-by-discount/products-by-discount.component';
+import { ProductsByFavoriteComponent } from './components/products/products-by-favorite/products-by-favorite.component';
 import { ProductsByGroupComponent } from './components/products/products-by-group/products-by-group.component';
+import { ProductsByTotalComponent } from './components/products/products-by-total/products-by-total.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SearchComponent } from './components/shared/search/search.component';
 
@@ -43,7 +46,10 @@ const routes: Routes = [
         path: 'products',
         component: ProductsComponent,
         children: [
-            { path: '', component: SearchComponent },
+            { path: '', component: ProductsByTotalComponent },
+            { path: 'search', component: SearchComponent },
+            { path: 'discount', component: ProductsByDiscountComponent },
+            { path: 'favorite', component: ProductsByFavoriteComponent },
             {
                 path: 'groups',
                 children: [

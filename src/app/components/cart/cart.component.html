@@ -30,7 +30,7 @@
                 </ul>
             </tr>
         </table>
-        <div class="grid grid-nogutter checkout">
+        <div class="grid grid-nogutter checkout" *ngIf="cartProducts.length !== 0">
             <div class="md:col-5 md:col-offset-7 col-12">
                 <div class="checkout-group flex justify-content-between">
                     <span class="checkout-title">Tạm tính</span>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="checkout-group flex justify-content-between">
                     <span class="checkout-title">Giảm giá</span>
-                    <span class="checkout-content">10%</span>
+                    <span class="checkout-content">0</span>
                 </div>
 
                 <div class="checkout-group flex justify-content-between">

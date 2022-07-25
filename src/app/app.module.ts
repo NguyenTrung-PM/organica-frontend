@@ -23,8 +23,9 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-
-//component
+import { BadgeModule } from 'primeng/badge';
+//ngx paging angular
+import { NgxPaginationModule } from 'ngx-pagination';
 
 //component
 import { AppRoutingModule } from './app-routing.module';
@@ -67,6 +68,9 @@ import { SignInComponent } from './components/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
 import { UserService } from './services/users/user.service';
 import { SearchComponent } from './components/shared/search/search.component';
+import { ProductsByTotalComponent } from './components/products/products-by-total/products-by-total.component';
+import { ProductsByDiscountComponent } from './components/products/products-by-discount/products-by-discount.component';
+import { ProductsByFavoriteComponent } from './components/products/products-by-favorite/products-by-favorite.component';
 
 const COMPONENTS = [
     AppComponent,
@@ -94,6 +98,8 @@ const COMPONENTS = [
     SignUpComponent,
     MessagesComponent,
     DashboardComponent,
+    SearchComponent,
+    ProductsByTotalComponent,
 ];
 
 const PRIMENGS = [
@@ -116,6 +122,8 @@ const PRIMENGS = [
     SidebarModule,
     ConfirmDialogModule,
     TieredMenuModule,
+    NgxPaginationModule,
+    BadgeModule,
 ];
 
 const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule];
@@ -146,7 +154,7 @@ const PROVIDERS = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS, SearchComponent],
+    declarations: [...COMPONENTS, ProductsByDiscountComponent, ProductsByFavoriteComponent],
     imports: [...MODULES, ...PRIMENGS],
     providers: [...SERVICES, ...PROVIDERS],
     bootstrap: [AppComponent],

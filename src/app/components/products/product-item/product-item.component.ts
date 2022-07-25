@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'primeng/api';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 import { MessageService } from 'src/app/services/messages/message.service';
 
 import { ProductService } from 'src/app/services/products/product.service';
@@ -22,6 +23,7 @@ export class ProductItemComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private cartService: CartService,
+        private favoriteService: FavoriteService,
     ) {}
 
     ngOnInit(): void {
@@ -35,18 +37,18 @@ export class ProductItemComponent implements OnInit {
         });
         this.router.navigate(['product', id]);
     }
-    // addToCart() {
-    //     if (this.product.quantity !== 0) {
-    //         if (this.cartService.checkItemInCart(this.product) !== -1) {
-    //             this.msgs = [{ severity: 'info', summary: 'Sản phẩm đã có trong giỏ hàng' }];
-    //         } else {
-    //             this.cartService.addToCart(this.product);
-    //             this.msgs = [{ severity: 'success', summary: 'Thêm vào giỏ hàng thành công' }];
-    //         }
-    //         this.newItemEvent.emit(this.msgs);
-    //     }
-    // }
 
+    addToFavorite() {
+        if (this.favoriteService.checkItemInfavorite(this.product) !== -1) {
+            let msgs = [{ severity: 'info', summary: 'Sản phẩm đã có trong danh sách' }];
+            this.messageService.addMessage(msgs);
+        } else {
+            this.favoriteService.addTofavorite(this.product);
+            let msgs = [{ severity: 'success', summary: 'Đã thêm vào danh sách yêu thích' }];
+
+            this.messageService.addMessage(msgs);
+        }
+    }
     addToCart() {
         if (this.product.quantity !== 0) {
             if (this.cartService.checkItemInCart(this.product) !== -1) {
@@ -58,7 +60,6 @@ export class ProductItemComponent implements OnInit {
 
                 this.messageService.addMessage(msgs);
             }
-            // this.newItemEvent.emit(this.msgs);
         }
     }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { CartProduct, Product } from 'src/app/shared/interface';
 
 @Injectable({
@@ -6,7 +7,10 @@ import { CartProduct, Product } from 'src/app/shared/interface';
 })
 export class CartService {
     cartProducts: CartProduct[] = [];
+    countProductSubject = new BehaviorSubject<number>(0);
+    countProduct = this.countProductSubject.asObservable();
     constructor() {}
+
     addToCart(product: Product) {
         if (product.quantity !== 0) {
             if (this.checkItemInCart(product) !== -1) {
@@ -28,6 +32,7 @@ export class CartService {
         this.cartProducts = user !== null ? JSON.parse(user) : [];
     }
     getCartProducts() {
+        this.countProductSubject.next(this.cartProducts.length);
         return this.cartProducts;
     }
     clearCartStore() {

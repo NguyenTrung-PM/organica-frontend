@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Observable, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { GroupService } from 'src/app/services/groups/group.service';
 import { SearchService } from 'src/app/services/search/search.service';
 import { UserService } from 'src/app/services/users/user.service';
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
     navMenu: MenuItem[] = [];
     authMenu: MenuItem[] = [];
     nonUserMenu: MenuItem[] = [];
-
+    countProduct!: number;
     constructor(
         private groupService: GroupService,
         private authService: AuthenticationService,
@@ -30,12 +31,16 @@ export class HeaderComponent implements OnInit {
         private searchService: SearchService,
         private router: Router,
         private route: ActivatedRoute,
+        private cartService: CartService,
     ) {}
 
     ngOnInit(): void {
         this.onCreateNavMenu();
         this.onCreateNonUserMenu();
         this.fetchUserId();
+        this.cartService.countProduct.subscribe((count) => {
+            this.countProduct = count;
+        });
     }
 
     fetchUserId() {
@@ -77,14 +82,16 @@ export class HeaderComponent implements OnInit {
         this.navMenu = [
             {
                 label: 'Khuyến mãi',
+                routerLink: '/products/discount',
             },
             {
                 label: 'Sản phẩm',
                 items: this.items,
-                routerLink: '/products/groups',
+                routerLink: '/products',
             },
             {
-                label: 'Combo',
+                label: 'Yêu thích',
+                routerLink: '/products/favorite',
             },
             {
                 label: 'Cửa hàng',
@@ -145,7 +152,7 @@ export class HeaderComponent implements OnInit {
     onToggleSearch() {
         this.toggleSearch = !this.toggleSearch;
         if (this.searchValue) {
-            this.router.navigate(['products'], { queryParams: { keyword: this.searchValue } });
+            this.router.navigate(['products/search'], { queryParams: { keyword: this.searchValue } });
         }
     }
 }

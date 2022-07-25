@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
         this.getResult(this.valueSearch);
 
         this.router.events.pipe(filter((e) => e instanceof ActivationEnd)).subscribe((event: ActivationEnd | any) => {
-            this.valueSearch = this.valueSearch = event.snapshot.queryParams['keyword'];
+            this.valueSearch = event.snapshot.queryParams['keyword'];
             this.getResult(this.valueSearch);
         });
         // this.router.events.subscribe((event) => {
