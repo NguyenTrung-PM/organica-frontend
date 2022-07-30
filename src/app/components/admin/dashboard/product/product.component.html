@@ -1,0 +1,143 @@
+<!-- layout manager -->
+<div class="card mt-3">
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="showForm((editMode = false), formProduct.value.id)"></button>
+            <button pButton pRipple label="" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name', 'category.name']" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id" currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} mục"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between align-items-center">
+                <h5 class="p-m-0">Quản lí sản phẩm</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr class="grid grid-nogutter align-items-center">
+                <th class="col-1">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th class="col-1">Image</th>
+                <th class="col-2" pSortableColumn="name" width="250">
+                    Name
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
+
+                <th class="col-1" pSortableColumn="price">
+                    Price
+                    <p-sortIcon field="price"></p-sortIcon>
+                </th>
+                <th class="col-1" pSortableColumn="discount">
+                    Discount
+                    <p-sortIcon field="discount"></p-sortIcon>
+                </th>
+                <th class="col-1" pSortableColumn="quantity">
+                    Quantity
+                    <p-sortIcon field="quantity"></p-sortIcon>
+                </th>
+                <th class="col-1" pSortableColumn="unit">
+                    Unit
+                    <p-sortIcon field="unit"></p-sortIcon>
+                </th>
+                <th class="col-4" pSortableColumn="category.id" width="195">
+                    Category
+                    <p-sortIcon field="category.id"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr class="grid grid-nogutter align-items-center">
+                <td class="col-1">
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                </td>
+                <td class="col-1">
+                    <img src="assets/image/products/{{ product.image }}" class="shadow-4 border-round-md" alt="{{ product.name }}" width="50" />
+                </td>
+                <td class="col-2">{{ product.name }}</td>
+                <td class="col-1">{{ product.price | currency: 'VND' }}</td>
+                <td class="col-1">{{ product.discount }}</td>
+                <td class="col-1">{{ product.quantity }}</td>
+                <td class="col-1">{{ product.unit }}</td>
+                <td class="col-3">{{ product.category.id }}-{{ product.category.name }}</td>
+                <!-- <td>
+                                <p-rating [(ngModel)]="product.quality" [readonly]="true" [cancel]="false"></p-rating>
+                            </td> -->
+                <td class="col-1">
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mb-1" (click)="showForm((editMode = true), product.id)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- hihi -->
+<!-- <p-toast></p-toast> -->
+
+<p-dialog [(visible)]="display" header="{{ editMode ? 'Sửa sản phẩm' : 'Thêm sản phẩm' }}" [modal]="true" styleClass="p-fluid">
+    <form [formGroup]="formProduct">
+        <img *ngIf="formProduct.value.image && editMode" src="assets/image/products/{{ formProduct.value.image }}" class="block mx-auto shadow-4 border-round-md" alt="{{ formProduct.value.name }}" width="200" />
+
+        <div class="grid mt-5 mb-5">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="image" pInputText />
+                    <label for="inputtext">Image</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="name" pInputText />
+                    <label for="inputtext">Name</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="price" pInputText />
+                    <label for="inputtext">Price</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid mb-2">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="discount" pInputText />
+                    <label for="inputtext">Discount</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="quantity" pInputText />
+                    <label for="inputtext">Quantity</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="unit" pInputText />
+                    <label for="inputtext">Unit</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid" formGroupName="category">
+            <div class="col-12">
+                <select class="lg:col-3 md:col-3 col-12 lg:mb-0 md:mb-0 mb-3" (change)="onChangeIdCategory()" formControlName="id" name="name">
+                    <option selected value="0">Category</option>
+                    <option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="flex justify-content-between">
+            <button pButton pRipple type="button" (click)="addProduct()" label="{{ editMode ? 'Edit' : 'Add' }}" class="p-button-raised p-button-success"></button>
+        </div>
+    </form>
+</p-dialog>
+
+<p-confirmDialog header="Xác nhận xóa" icon="pi pi-exclamation-triangle"></p-confirmDialog>

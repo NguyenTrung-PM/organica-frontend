@@ -24,6 +24,14 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { BadgeModule } from 'primeng/badge';
+import { TableModule } from 'primeng/table';
+//
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { RatingModule } from 'primeng/rating';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SliderModule } from 'primeng/slider';
 //ngx paging angular
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -71,6 +79,8 @@ import { SearchComponent } from './components/shared/search/search.component';
 import { ProductsByTotalComponent } from './components/products/products-by-total/products-by-total.component';
 import { ProductsByDiscountComponent } from './components/products/products-by-discount/products-by-discount.component';
 import { ProductsByFavoriteComponent } from './components/products/products-by-favorite/products-by-favorite.component';
+import { ProductComponent } from './components/admin/dashboard/product/product.component';
+import { UserComponent } from './components/admin/dashboard/user/user.component';
 
 const COMPONENTS = [
     AppComponent,
@@ -124,6 +134,14 @@ const PRIMENGS = [
     TieredMenuModule,
     NgxPaginationModule,
     BadgeModule,
+    TableModule,
+    //
+    ToastModule,
+    ToolbarModule,
+    RatingModule,
+    ContextMenuModule,
+    MultiSelectModule,
+    SliderModule,
 ];
 
 const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule];
@@ -154,7 +172,7 @@ const PROVIDERS = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS, ProductsByDiscountComponent, ProductsByFavoriteComponent],
+    declarations: [...COMPONENTS, ProductsByDiscountComponent, ProductsByFavoriteComponent, ProductComponent, UserComponent],
     imports: [...MODULES, ...PRIMENGS],
     providers: [...SERVICES, ...PROVIDERS],
     bootstrap: [AppComponent],
