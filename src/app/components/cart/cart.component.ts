@@ -1,6 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { UserService } from 'src/app/services/users/user.service';
 import { CartProduct, Product } from 'src/app/shared/interface';
 
 @Component({
@@ -14,12 +17,29 @@ export class CartComponent implements OnInit {
     priceCheckout: number = 0;
     cartProducts: CartProduct[] = [];
 
-    constructor(private cartService: CartService) {}
+    constructor(private cartService: CartService, private authService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.getProductInStore();
         this.getTotal();
+        this.checkCart();
+        this.checkCart();
     }
+
+    checkCart() {
+        this.authService.$userId
+            .pipe(
+                switchMap((userId) => {
+                    return this.cartService.getCurrentByUserId(userId);
+                }),
+            )
+            .subscribe(
+                (data) => {
+                   this.cartProducts = data.orderItems;
+                },
+            );
+    }
+
     getProductInStore() {
         this.cartService.getCartStore();
         this.cartProducts = this.cartService.getCartProducts();

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
 import { Observable, switchMap } from 'rxjs';
@@ -21,7 +22,12 @@ export class HeaderComponent implements OnInit {
     authMenu: MenuItem[] = [];
     nonUserMenu: MenuItem[] = [];
 
-    constructor(private groupService: GroupService, private authService: AuthenticationService, private userService: UserService) {}
+    constructor(
+        private groupService: GroupService,
+        private authService: AuthenticationService,
+        private userService: UserService,
+        private router: Router,
+    ) {}
 
     ngOnInit(): void {
         this.onCreateNavMenu();
@@ -135,5 +141,11 @@ export class HeaderComponent implements OnInit {
 
     onToggleSearch() {
         this.toggleSearch = !this.toggleSearch;
+    }
+
+    onGoToCart(): void {
+        this.authService.$userId.subscribe((_userId) => {
+            return _userId ? this.router.navigate(['/cart']) : this.router.navigate(['/auth/sign-in']);
+        });
     }
 }

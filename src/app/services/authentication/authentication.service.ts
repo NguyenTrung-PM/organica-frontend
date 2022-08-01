@@ -44,7 +44,6 @@ export class AuthenticationService {
 
     decodeToken(): any {
         var decoded: any = jwt_decode(this.accessToken);
-        console.log(decoded);
         //decoded JTW will have an object {sub(userId), iat and exp(expired)}
         return decoded.sub;
     }
