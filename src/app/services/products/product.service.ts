@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { Content, Group, Image, Product } from 'src/app/shared/interface';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class ProductService {
             'Content-Type': 'application/json',
         }),
     };
+
     constructor(private httpClient: HttpClient) {}
 
     getAllProducts(size?: number): Observable<Content> {
@@ -86,5 +87,9 @@ export class ProductService {
     edit(product: Product) {
         let URL = `${this.URL_PRODUCTS_API}/${product.id}`;
         return this.httpClient.put<Product>(URL, product, this.httpOptions).pipe(catchError(this.handleError));
+    }
+    getByPage(page: number): Observable<Content> {
+        let URL = `${this.URL_PRODUCTS_API}?page=${page}`;
+        return this.httpClient.get<Content>(URL, this.httpOptions).pipe(catchError(this.handleError));
     }
 }

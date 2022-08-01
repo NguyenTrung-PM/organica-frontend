@@ -1,5 +1,21 @@
+@import '../../../../scss/abstracts/_mixin.scss';
+@import '../../../../scss/abstracts/variables.scss';
 .messageCart {
     position: fixed;
     top: 0;
     width: 100%;
+}
+
+:host::ng-deep {
+    .ngx-pagination {
+        text-align: center;
+        li {
+            color: #fff;
+        }
+    }
+    .ngx-pagination .current {
+        background-color: $first-color;
+    }
+    .pagination-previous {
+    }
 }

@@ -1,0 +1,126 @@
+<!-- layout manager -->
+<div class="card mt-3">
+    <p-table #dt [value]="users" [rows]="10" [paginator]="true" [globalFilterFields]="['name', 'email', 'phoneNumber', 'username']" [rowHover]="true" dataKey="id" currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} người dùng" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between align-items-center">
+                <h5 class="p-m-0">Quản lí người dùng</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr class="grid grid-nogutter align-items-center">
+                <th class="col-2" pSortableColumn="name" width="200">
+                    Name
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
+
+                <th class="col-2" pSortableColumn="email">
+                    Email
+                    <p-sortIcon field="email"></p-sortIcon>
+                </th>
+                <th class="col-2">Phone</th>
+                <th class="col-2" pSortableColumn="username">
+                    Username
+                    <p-sortIcon field="username"></p-sortIcon>
+                </th>
+                <th class="col-1">Password</th>
+                <th class="col-3" pSortableColumn="addresses" width="150">
+                    Addresses
+                    <p-sortIcon field="addresses"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr class="grid grid-nogutter align-items-center">
+                <td class="col-2" width="200">{{ user.name }}</td>
+                <td class="col-2">{{ user.email }}</td>
+                <td class="col-2">{{ user.phoneNumber }}</td>
+                <td class="col-2">{{ user.username }}</td>
+                <td class="col-1">{{ user.password }}</td>
+                <td class="col-2">{{ user.addresses[0].provinceCity }}</td>
+
+                <td class="col-1">
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success" (click)="showForm((editMode = true), user.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- <p-toast></p-toast> -->
+
+<p-dialog [(visible)]="display" header="{{ editMode ? 'Chi tiết người dùng' : 'Thêm người dùng' }}" [modal]="true" styleClass="p-fluid">
+    <form [formGroup]="formUsers">
+        <div class="grid mt-5 mb-5">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="name" pInputText />
+                    <label for="inputtext">Name</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="email" pInputText />
+                    <label for="inputtext">Email</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="phoneNumber" pInputText />
+                    <label for="inputtext">Phone Number</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="username" pInputText />
+                    <label for="inputtext">Username</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="password" pInputText />
+                    <label for="inputtext">Password</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-4" formArrayName="roles">
+                <div class="field-checkbox" [formGroupName]="i" *ngFor="let role of roleControls; let i = index">
+                    <input type="checkbox" name="name" formControlName="name" />
+                    <label>{{ role.value.name }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="grid mt-5">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="createdAt" pInputText />
+                    <label for="inputtext">Created At</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid mt-5 mb-5">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" formControlName="updatedAt" pInputText />
+                    <label for="inputtext">Updated At</label>
+                </span>
+            </div>
+        </div>
+        <!--  -->
+        <div class="grid">
+            <div class="col-12" formArrayName="addresses">
+                <div class="field-checkbox" [formGroupName]="i" *ngFor="let address of addressControls; let i = index">
+                    <i class="infor-icon fa-solid fa-location-dot"></i>
+                    <label>{{ address.value.street }}, {{ address.value.town }}, {{ address.value.district }}, {{ address.value.provinceCity }}</label
+                    >
+                </div>
+            </div>
+        </div>
+        <!--  -->
+    </form>
+</p-dialog>

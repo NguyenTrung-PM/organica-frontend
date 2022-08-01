@@ -23,7 +23,17 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-//component
+import { BadgeModule } from 'primeng/badge';
+import { TableModule } from 'primeng/table';
+//
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { RatingModule } from 'primeng/rating';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SliderModule } from 'primeng/slider';
+//ngx paging angular
+import { NgxPaginationModule } from 'ngx-pagination';
 
 //component
 import { AppRoutingModule } from './app-routing.module';
@@ -65,6 +75,12 @@ import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
 import { SignInComponent } from './components/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
 import { UserService } from './services/users/user.service';
+import { SearchComponent } from './components/shared/search/search.component';
+import { ProductsByTotalComponent } from './components/products/products-by-total/products-by-total.component';
+import { ProductsByDiscountComponent } from './components/products/products-by-discount/products-by-discount.component';
+import { ProductsByFavoriteComponent } from './components/products/products-by-favorite/products-by-favorite.component';
+import { ProductComponent } from './components/admin/dashboard/product/product.component';
+import { UserComponent } from './components/admin/dashboard/user/user.component';
 
 const COMPONENTS = [
     AppComponent,
@@ -92,6 +108,8 @@ const COMPONENTS = [
     SignUpComponent,
     MessagesComponent,
     DashboardComponent,
+    SearchComponent,
+    ProductsByTotalComponent,
 ];
 
 const PRIMENGS = [
@@ -114,6 +132,16 @@ const PRIMENGS = [
     SidebarModule,
     ConfirmDialogModule,
     TieredMenuModule,
+    NgxPaginationModule,
+    BadgeModule,
+    TableModule,
+    //
+    ToastModule,
+    ToolbarModule,
+    RatingModule,
+    ContextMenuModule,
+    MultiSelectModule,
+    SliderModule,
 ];
 
 const MODULES = [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule];
@@ -144,7 +172,7 @@ const PROVIDERS = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS],
+    declarations: [...COMPONENTS, ProductsByDiscountComponent, ProductsByFavoriteComponent, ProductComponent, UserComponent],
     imports: [...MODULES, ...PRIMENGS],
     providers: [...SERVICES, ...PROVIDERS],
     bootstrap: [AppComponent],

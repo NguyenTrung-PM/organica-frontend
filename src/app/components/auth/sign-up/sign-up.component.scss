@@ -25,6 +25,10 @@
     }
 }
 
+.error-message {
+    @include err-message;
+}
+
 :host::ng-deep {
     .sign-form-switch {
         background-color: transparent;
@@ -52,4 +56,9 @@
         width: 100%;
         @include btnPrimary;
     }
+    .p-inputtext {
+        display: block;
+        width: 100%;
+    }
+    @include inputErr;
 }

@@ -8,9 +8,15 @@ export interface Category {
     name: string;
 }
 export interface Content {
-    content: Product[] | Image[] | Descriped[];
+    content: Product[] | Image[] | Descriped[] | User[];
     size: number;
     totalElements: number;
+    last: boolean;
+    pageable: Pageable;
+    totalPages: number;
+}
+export interface Pageable {
+    pageNumber: number;
 }
 export interface Product {
     id: number;
@@ -44,7 +50,28 @@ export interface User {
     usernameOrEmail: string;
     password: number;
 }
-
+export interface User2 {
+    id: number;
+    name: string;
+    email: string;
+    phoneNumber: string;
+    username: string;
+    password: string;
+    addresses: Address[];
+    createdAt: string;
+    updatedAt: string;
+    roles: Role[];
+}
+export interface Address {
+    provinceCity: string;
+    district: string;
+    town: string;
+    street: string;
+}
+export interface Role {
+    id: number;
+    name: string;
+}
 export interface signUpData {
     email: string;
     name: string;

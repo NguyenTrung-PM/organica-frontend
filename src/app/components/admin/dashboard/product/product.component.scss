@@ -1,0 +1,29 @@
+@import '../../../../../scss/abstracts/_mixin.scss';
+@import '../../../../../scss/abstracts/variables.scss';
+.card {
+    background-color: var(--surface-card);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 5px #00000005, 0 0 2px #0000000d, 0 1px 4px #00000014 !important;
+    .cart-title {
+        margin: 0 0 16px 0;
+        font-size: $big-font-size;
+    }
+}
+
+:host::ng-deep {
+    .p-datatable .p-datatable-tbody>tr {
+        border-bottom: 1px solid $border-color;
+    }
+    .p-datatable .p-datatable-tbody>tr>td {
+        border: none;
+    }
+    .p-datatable .p-datatable-thead>tr {
+        border-bottom: 1px solid $border-color;
+        height: 100%;
+    }
+    .p-datatable .p-datatable-thead>tr>th {
+        border: none;
+    }
+}

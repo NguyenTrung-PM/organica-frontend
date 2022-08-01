@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { CartProduct, Product } from 'src/app/shared/interface';
 
 @Injectable({
@@ -10,7 +11,8 @@ export class CartService {
     private URL_ORDERS_API = 'http://localhost:8080/api/orders';
 
     cartProducts: CartProduct[] = [];
-
+countProductSubject = new BehaviorSubject<number>(0);
+    countProduct = this.countProductSubject.asObservable();
     constructor(private httpClient: HttpClient) {}
 
     getCurrentByUserId(id: number): Observable<any> {
@@ -48,6 +50,7 @@ export class CartService {
         this.cartProducts = user !== null ? JSON.parse(user) : [];
     }
     getCartProducts() {
+        this.countProductSubject.next(this.cartProducts.length);
         return this.cartProducts;
     }
     clearCartStore() {
