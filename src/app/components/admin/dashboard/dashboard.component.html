@@ -17,11 +17,7 @@
         <i class="pi pi-bars"></i>
     </a>
 
-    <!-- <a class="p-link layout-topbar-menu-button layout-topbar-button" href="#">
-            <i class="pi pi-ellipsis-v"></i>
-        </a> -->
-
-    <div class="layout-topbar-menu">
+    <!-- <div class="layout-topbar-menu">
         <a href="#" class="p-link layout-topbar-button">
             <i class="pi pi-calendar"></i>
         </a>
@@ -31,176 +27,46 @@
         <a href="#" class="p-link layout-topbar-button">
             <i class="pi pi-user"></i>
         </a>
-    </div>
+    </div> -->
 </div>
+
 <div class="wrapper">
     <div class="grid grid-nogutter">
-        <div class="lg:col-3 lg:block hidden">
+        <div class="lg:col-2 lg:block hidden">
             <div class="layout-menu-container">
                 <p-menu styleClass="sidebar" [model]="items"></p-menu>
             </div>
         </div>
-        <div class="lg:col-9 col-12">
+        <div class="lg:col-10 col-12">
             <div class="grid">
-                <div class="col-12 lg:col-6 xl:col-3">
+                <div class="col-12 lg:col-6 xl:col-6">
                     <div class="card mb-0">
                         <div class="flex justify-content-between mb-3">
                             <div>
-                                <span class="block text-500 font-medium mb-3">Orders</span>
-                                <div class="text-900 font-medium text-xl">152</div>
+                                <span class="block text-500 font-medium mb-3">Người dùng</span>
+                                <div class="text-900 font-medium text-xl">{{ userLength }}</div>
                             </div>
                             <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{ width: '2.5rem', height: '2.5rem' }">
-                                <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
+                                <i class="pi pi-user text-blue-500 text-xl"></i>
                             </div>
                         </div>
-                        <span class="text-green-500 font-medium">24 new </span>
-                        <span class="text-500">since last visit</span>
                     </div>
                 </div>
-                <div class="col-12 lg:col-6 xl:col-3">
+                <div class="col-12 lg:col-6 xl:col-6">
                     <div class="card mb-0">
                         <div class="flex justify-content-between mb-3">
                             <div>
-                                <span class="block text-500 font-medium mb-3">Revenue</span>
-                                <div class="text-900 font-medium text-xl">$2.100</div>
+                                <span class="block text-500 font-medium mb-3">Sản phẩm</span>
+                                <div class="text-900 font-medium text-xl">{{ productLength }}</div>
                             </div>
                             <div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{ width: '2.5rem', height: '2.5rem' }">
-                                <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+                                <i class="pi pi-shopping-cart text-orange-500 text-xl"></i>
                             </div>
                         </div>
-                        <span class="text-green-500 font-medium">%52+ </span>
-                        <span class="text-500">since last week</span>
-                    </div>
-                </div>
-                <div class="col-12 lg:col-6 xl:col-3">
-                    <div class="card mb-0">
-                        <div class="flex justify-content-between mb-3">
-                            <div>
-                                <span class="block text-500 font-medium mb-3">Customers</span>
-                                <div class="text-900 font-medium text-xl">28441</div>
-                            </div>
-                            <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" [ngStyle]="{ width: '2.5rem', height: '2.5rem' }">
-                                <i class="pi pi-inbox text-cyan-500 text-xl"></i>
-                            </div>
-                        </div>
-                        <span class="text-green-500 font-medium">520 </span>
-                        <span class="text-500">newly registered</span>
-                    </div>
-                </div>
-                <div class="col-12 lg:col-6 xl:col-3">
-                    <div class="card mb-0">
-                        <div class="flex justify-content-between mb-3">
-                            <div>
-                                <span class="block text-500 font-medium mb-3">Comments</span>
-                                <div class="text-900 font-medium text-xl">152 Unread</div>
-                            </div>
-                            <div class="flex align-items-center justify-content-center bg-purple-100 border-round" [ngStyle]="{ width: '2.5rem', height: '2.5rem' }">
-                                <i class="pi pi-comment text-purple-500 text-xl"></i>
-                            </div>
-                        </div>
-                        <span class="text-green-500 font-medium">85 </span>
-                        <span class="text-500">responded</span>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="card">
-                        <h5 class="cart-title">Sản phẩm</h5>
-                        <button pButton pRipple type="button" (click)="showForm((editMode = false), formProduct.value.id)" label="Add" class="cart-btn p-button-raised p-button-success"></button>
-                        <!-- form add product -->
-                        <p-dialog header="Thêm sản phẩm" [(visible)]="display">
-                            <form [formGroup]="formProduct">
-                                <div class="grid mt-2 mb-2">
-                                    <div class="col-12 md:col-4">
-                                        <span class="p-float-label">
-                                            <input type="text" id="inputtext" formControlName="image" pInputText />
-                                            <label for="inputtext">Image</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4">
-                                        <span class="p-float-label">
-                                            <input type="text" id="inputtext" formControlName="name" pInputText />
-                                            <label for="inputtext">Name</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4">
-                                        <span class="p-float-label">
-                                            <input type="text" id="inputtext" formControlName="price" pInputText />
-                                            <label for="inputtext">Price</label>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="grid mt-2">
-                                    <div class="col-12 md:col-4">
-                                        <span class="p-float-label">
-                                            <input type="text" id="inputtext" formControlName="discount" pInputText />
-                                            <label for="inputtext">Discount</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4">
-                                        <span class="p-float-label">
-                                            <input type="text" id="inputtext" formControlName="quantity" pInputText />
-                                            <label for="inputtext">Quantity</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4">
-                                        <span class="p-float-label">
-                                            <input type="text" id="inputtext" formControlName="unit" pInputText />
-                                            <label for="inputtext">Unit</label>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="grid" formGroupName="category">
-                                    <select class="lg:col-3 md:col-3 col-12 lg:mb-0 md:mb-0 mb-3" (change)="onChangeIdCategory()" formControlName="id" name="name">
-                                        <option selected value="0">Category</option>
-                                        <option *ngFor="let category of categories" [value]="category.id">
-                                            {{ category.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <button pButton pRipple type="button" (click)="addProduct()" label="{{ editMode ? 'Edit' : 'Add' }}" class="cart-btn p-button-raised p-button-success"></button>
-                            </form>
-                        </p-dialog>
-                        <!-- form add product -->
-                        <p-confirmDialog header="Xác nhận xóa" icon="pi pi-exclamation-triangle"></p-confirmDialog>
-
-                        <table class="data-view">
-                            <tr class="grid grid-nogutter data-view-heading">
-                                <th class="col-1">Id</th>
-                                <th class="col-1">Image</th>
-                                <th class="col-4">Name</th>
-                                <th class="col-1">Price</th>
-                                <th class="col-1">Discount</th>
-                                <th class="col-1">Quantity</th>
-                                <th class="col-1">Unit</th>
-                                <th class="col-1">Edit</th>
-                                <th class="col-1">Delete</th>
-                            </tr>
-
-                            <tr class="grid grid-nogutter align-items-center mb-2" *ngFor="let product of products" @fadeOut>
-                                <td class="col-1">
-                                    {{ product.id }}
-                                </td>
-                                <td class="col-1">
-                                    <img src="assets/image/products/{{ product.image }}" class="shadow-4 border-round-md" alt="{{ product.name }}" width="50" />
-                                </td>
-                                <td class="col-4">{{ product.name }}</td>
-                                <td class="col-1">{{ product.price }}</td>
-
-                                <td class="col-1">{{ product.discount }}</td>
-                                <td class="col-1">{{ product.quantity }}</td>
-                                <td class="col-1">{{ product.unit }}</td>
-                                <td class="col-1">
-                                    <button pButton pRipple type="button" icon="pi pi-pencil" (click)="showForm((editMode = true), product.id)" class="cart-btn p-button-rounded p-button-success"></button>
-                                </td>
-                                <td class="col-1">
-                                    <button pButton pRipple type="button" icon="pi pi-trash" (click)="confirm(product.id)" class="cart-btn p-button-rounded p-button-warning"></button>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>

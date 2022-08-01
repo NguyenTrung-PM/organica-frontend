@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { Content, Group, Image, Product } from 'src/app/shared/interface';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class ProductService {
             'Content-Type': 'application/json',
         }),
     };
+
     constructor(private httpClient: HttpClient) {}
 
     getAllProducts(size?: number): Observable<Content> {

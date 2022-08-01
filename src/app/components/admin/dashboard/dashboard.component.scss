@@ -82,20 +82,29 @@
 
 .wrapper {
     background-color: #edf1f5;
-    padding: calc(5rem + 28px) 28px 0;
+    padding: 5rem 25px;
 }
 
 :host::ng-deep {
+    .p-button-label,
+    .p-button-icon {
+        color: $white-color;
+    }
     .p-menu {
         width: 90%;
         border-radius: 8px;
     }
-    .card {
-        .cart-btn {
-            span {
-                color: $white-color;
-            }
-        }
+    .card {}
+    select {
+        border: 1px solid $border-color-light;
+        border-radius: 3px;
+    }
+    .p-paginator .p-paginator-current,
+    .p-paginator .p-paginator-pages .p-paginator-page {
+        color: $text-color-dark;
+    }
+    .p-datatable .p-datatable-tbody>tr>td {
+        // line-height: 50px;
     }
 }
 

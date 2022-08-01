@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { ProductComponent } from './components/admin/dashboard/product/product.component';
+import { UserComponent } from './components/admin/dashboard/user/user.component';
 
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { SignInComponent } from './components/auth/sign-in/sign-in.component';
@@ -28,7 +30,15 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
     },
-    { path: 'admin', component: DashboardComponent },
+    {
+        path: 'admin',
+        component: DashboardComponent,
+        children: [
+            { path: '', redirectTo: 'users', pathMatch: 'full' },
+            { path: 'users', component: UserComponent },
+            { path: 'products', component: ProductComponent },
+        ],
+    },
     {
         path: 'auth',
         children: [
