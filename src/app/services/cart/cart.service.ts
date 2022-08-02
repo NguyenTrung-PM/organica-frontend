@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { CartProduct, Product } from 'src/app/shared/interface';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
     providedIn: 'root',
@@ -11,16 +13,22 @@ export class CartService {
     private URL_ORDERS_API = 'http://localhost:8080/api/orders';
 
     cartProducts: CartProduct[] = [];
-countProductSubject = new BehaviorSubject<number>(0);
+    countProductSubject = new BehaviorSubject<number>(0);
     countProduct = this.countProductSubject.asObservable();
-    constructor(private httpClient: HttpClient) {}
 
+    constructor(private httpClient: HttpClient, private authService: AuthenticationService, private router: Router) {}
+
+
+
+
+    //==================API=================
     getCurrentByUserId(id: number): Observable<any> {
-        let URL = `${this.URL_ORDERS_API}?userId=${id}`;
+        let URL = `${this.URL_ORDERS_API}/${id}`;
         return this.httpClient.get<any>(URL);
     }
-    createCart(id: number) {
-        let URL = `${this.URL_ORDERS_API}?userId=${id}`;
+
+    getNow(productId: number, userId: number): Observable<any> {
+        let URL = `${this.URL_ORDERS_API}/${productId}/${userId}`;
         return this.httpClient.get<any>(URL);
     }
 
@@ -29,44 +37,19 @@ countProductSubject = new BehaviorSubject<number>(0);
         return this.httpClient.get<any>(URL);
     }
 
-    addToCart(product: Product) {
-        if (product.quantity !== 0) {
-            if (this.checkItemInCart(product) !== -1) {
-                // let index = this.checkItemInCart(product);
-                // this.cartProducts[index].quantity++;
-            } else {
-                this.cartProducts.push({ product, quantity: 1, subPrice: product.price });
-            }
-
-            this.setCartStore();
-        }
+    updateItem(itemId: number, cartItem: any) {
+        let URL = `${this.URL_ORDERS_API}/${itemId}`;
+        return this.httpClient.put<any>(URL, cartItem);
     }
 
-    setCartStore() {
-        localStorage.setItem('cart_key', JSON.stringify(this.cartProducts));
+    removeItem(itemId: number) {
+        let URL = `${this.URL_ORDERS_API}/${itemId}`;
+        return this.httpClient.delete<any>(URL);
     }
-    getCartStore() {
-        const user = localStorage.getItem('cart_key');
-        this.cartProducts = user !== null ? JSON.parse(user) : [];
-    }
-    getCartProducts() {
-        this.countProductSubject.next(this.cartProducts.length);
-        return this.cartProducts;
-    }
-    clearCartStore() {
-        this.cartProducts = [];
 
-        localStorage.removeItem('cart_key');
+    addItem(userId: number, cartItem: any) {
+        let URL = `${this.URL_ORDERS_API}/add/${userId}`;
+        return this.httpClient.post<any>(URL, cartItem);
     }
-    removeItemStore(cartProduct: CartProduct) {
-        const index = this.cartProducts.findIndex((o: any) => o.product.id === cartProduct.product.id);
 
-        if (index !== -1) {
-            this.cartProducts.splice(index, 1);
-            this.setCartStore();
-        }
-    }
-    checkItemInCart(product: Product) {
-        return this.cartProducts.findIndex((o: any) => o.product.id === product.id);
-    }
 }

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { forkJoin, Subscription } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { ProductService } from 'src/app/services/products/product.service';
@@ -21,6 +22,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     quantity: number = 1;
     length!: number;
     forkJoinSubscription!: Subscription;
+    itemInCart!: any;
+    userId!: number;
     certificates = [
         {
             id: 1,
@@ -47,6 +50,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private cartService: CartService,
         private messageService: MessageService,
+        private authService:AuthenticationService
     ) {}
 
     ngOnInit(): void {
@@ -69,18 +73,34 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.forkJoinSubscription.unsubscribe();
     }
-    addToCart() {
-        if (this.product.quantity !== 0) {
-            if (this.cartService.checkItemInCart(this.product) !== -1) {
-                let msgs = [{ severity: 'info', summary: 'Sản phẩm đã có trong giỏ hàng' }];
-                this.messageService.addMessage(msgs);
-            } else {
-                this.cartService.addToCart(this.product);
-                let msgs = [{ severity: 'success', summary: 'Thêm vào giỏ hàng thành công' }];
+    addToCart(product: Product) {
+        this.authService.$userId.subscribe((_userId) => {
+            this.userId = _userId;
+        });
 
-                this.messageService.addMessage(msgs);
-            }
-            // this.newItemEvent.emit(this.msgs);
+        if (this.userId) {
+            //ti fix
+            this.cartService.getNow(product.id, this.userId).subscribe(data =>{
+                this.itemInCart = data
+            })
+
+            this.itemInCart = {
+                userId: this.userId,
+                product: product,
+                quantity: 1,
+                ordered: false,
+            };
+
+            this.cartService.addItem(this.userId, this.itemInCart).subscribe(
+                (data) => {
+                    console.log(data);
+                },
+                (error) => {
+                    console.log(error);
+                },
+            );
+        } else {
+            this.router.navigate(['auth/sign-in']);
         }
     }
 }
