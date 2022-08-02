@@ -11,7 +11,7 @@
             <table class="grid grid-nogutter wrapper-content">
                 <tr class="bg-white hidden lg:block md:block lg:col-12 md:col-12">
                     <div class="grid grid-nogutter wrapper-content-heading">
-                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Mã đơn hàng</th>
+                        <th class="lg:col-2 md:col-2 sm:col-12 col-12">Mã sản phẩm</th>
                         <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày đặt</th>
                         <th class="lg:col-2 md:col-2 sm:col-12 col-12">Tình trạng</th>
                         <th class="lg:col-2 md:col-2 sm:col-12 col-12">Ngày giao</th>
@@ -20,7 +20,7 @@
                     </div>
                 </tr>
                 <ul class="wrapper-content-list" style="width: 100%">
-                    <li class="grid grid-nogutter wrapper-content-item">
+                    <li class="grid grid-nogutter wrapper-content-item" *ngFor="let cartHistory of cartHistorys">
                         <tr class="block bg-white lg:hidden md:hidden sm:col-6 col-6">
                             <div class="grid grid-nogutter item-heading">
                                 <th class="lg:col-2 md:col-2 sm:col-12 col-12">Mã đơn hàng</th>
@@ -33,12 +33,12 @@
                         </tr>
                         <tr class="bg-white lg:col-12 md:col-12 sm:col-6 col-6">
                             <div class="grid grid-nogutter item-content">
-                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">00c-455acd</td>
-                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">10/5/2022</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">{{cartHistory.id}}</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">{{cartHistory.orderAt|date}}</td>
                                 <td class="lg:col-2 md:col-2 sm:col-12 col-12">Mới</td>
-                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">12/05/2022</td>
+                                <td class="lg:col-2 md:col-2 sm:col-12 col-12">1{{cartHistory.orderAt|date}}</td>
                                 <td class="lg:col-2 md:col-2 sm:col-6 col-6"><a class="item-link" [routerLink]="['/order/detail']">Chi tiết</a></td>
-                                <td class="lg:col-2 md:col-2 sm:col-6 col-6"><a class="item-link" [routerLink]="['/order/reorder']">Đặt lại</a></td>
+                                <td class="lg:col-2 md:col-2 sm:col-6 col-6">{{cartHistory.product.name}}</td>
                             </div>
                         </tr>
                     </li>
@@ -82,15 +82,15 @@
                     <div class="delivery-item-infor">
                         <div class="infor">
                             <i class="infor-icon fa-solid fa-user"></i>
-                            <label for="">Nguyễn Quốc Việt</label>
+                            <label for="">{{users?.name}}</label>
                         </div>
-                        <div class="infor">
+                        <div class="infor" *ngFor="let address of users?.addresses">
                             <i class="infor-icon fa-solid fa-location-dot"></i>
-                            <label for="">71/12/1/7 đường số 5, phường Linh Xuân, thành phố Thủ Đức</label>
+                            <label for="">{{address?.street}}, {{address?.town}}, {{address?.district}}, {{address?.provinceCity}}</label>
                         </div>
                         <div class="infor">
                             <i class="infor-icon fa-solid fa-phone"></i>
-                            <label for="">0919306791</label>
+                            <label for="">{{users?.phoneNumber}}</label>
                         </div>
                         <div class="infor">
                             <i class="infor-icon infor-icon-checked fa-solid fa-circle-check"></i>

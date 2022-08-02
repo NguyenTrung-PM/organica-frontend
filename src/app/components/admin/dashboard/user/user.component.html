@@ -22,11 +22,11 @@
                     <p-sortIcon field="email"></p-sortIcon>
                 </th>
                 <th class="col-2">Phone</th>
-                <th class="col-2" pSortableColumn="username">
+                <th class="col-3" pSortableColumn="username">
                     Username
                     <p-sortIcon field="username"></p-sortIcon>
                 </th>
-                <th class="col-1">Password</th>
+                <!-- <th class="col-1">Password</th> -->
                 <th class="col-3" pSortableColumn="addresses" width="150">
                     Addresses
                     <p-sortIcon field="addresses"></p-sortIcon>
@@ -39,7 +39,7 @@
                 <td class="col-2">{{ user.email }}</td>
                 <td class="col-2">{{ user.phoneNumber }}</td>
                 <td class="col-2">{{ user.username }}</td>
-                <td class="col-1">{{ user.password }}</td>
+                <!-- <td class="col-1">{{ user.password }}</td> -->
                 <td class="col-2">{{ user.addresses[0].provinceCity }}</td>
 
                 <td class="col-1">
