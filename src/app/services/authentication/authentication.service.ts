@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { signUpData, User } from 'src/app/shared/interface';
 import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 @Injectable({
     providedIn: 'root',
 })
@@ -12,7 +13,7 @@ export class AuthenticationService {
     public $userId = new BehaviorSubject<any>(null);
     public accessToken!: any;
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient, private router: Router) {}
 
     signIn(user: User) {
         let URL = this.URL_SIGNIN_API;
@@ -25,13 +26,14 @@ export class AuthenticationService {
                     window.sessionStorage.setItem('token', _data.accessToken);
                     this.$userId.next(this.decodeToken());
                 },
-                (error) => {
-                },
+                (error) => {},
             );
     }
 
     signOut() {
+        this.router.navigate(['/auth/sign-in']);
         this.accessToken = null;
+        this.$userId.next(null);
         window.sessionStorage.removeItem('token');
     }
 
@@ -42,6 +44,7 @@ export class AuthenticationService {
 
     decodeToken(): any {
         var decoded: any = jwt_decode(this.accessToken);
+        //decoded JTW will have an object {sub(userId), iat and exp(expired)}
         return decoded.sub;
     }
 

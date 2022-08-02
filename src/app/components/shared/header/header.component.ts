@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, Subscription, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { GroupService } from 'src/app/services/groups/group.service';
@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/users/user.service';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
     searchValue: string = '';
     toggleSearch: boolean = true;
     items: any[] = [];
@@ -24,6 +24,9 @@ export class HeaderComponent implements OnInit {
     authMenu: MenuItem[] = [];
     nonUserMenu: MenuItem[] = [];
     countProduct!: number;
+
+    subs: Subscription[] = [];
+
     constructor(
         private groupService: GroupService,
         private authService: AuthenticationService,
@@ -53,6 +56,14 @@ export class HeaderComponent implements OnInit {
             .subscribe((_user) => {
                 this.onCreateUserMenu(_user);
             });
+    }
+
+    goToCart() {
+        this.subs.push(
+            this.authService.$userId.subscribe((_userId) => {
+                return _userId ? this.router.navigateByUrl('/cart') : this.router.navigateByUrl('/home');
+            }),
+        );
     }
 
     onCreateNavMenu(): void {
@@ -154,5 +165,17 @@ export class HeaderComponent implements OnInit {
         if (this.searchValue) {
             this.router.navigate(['products/search'], { queryParams: { keyword: this.searchValue } });
         }
+    }
+
+    onGoToCart(): void {
+        this.authService.$userId.subscribe((_userId) => {
+            return _userId ? this.router.navigate(['/cart']) : this.router.navigate(['/auth/sign-in']);
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.subs.forEach((_sub) => {
+            _sub.unsubscribe();
+        });
     }
 }

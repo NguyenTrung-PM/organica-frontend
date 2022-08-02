@@ -3,10 +3,12 @@ export interface Group {
     name: string;
     categories: Category[];
 }
+
 export interface Category {
     id: number;
     name: string;
 }
+
 export interface Content {
     content: Product[] | Image[] | Descriped[] | User[];
     size: number;
@@ -15,9 +17,11 @@ export interface Content {
     pageable: Pageable;
     totalPages: number;
 }
+
 export interface Pageable {
     pageNumber: number;
 }
+
 export interface Product {
     id: number;
     name: string;
@@ -35,21 +39,26 @@ export interface Descriped {
     title: string;
     content: string;
 }
+
 export interface Image {
     id: number;
     source: string;
 }
 
 export interface CartProduct {
-    product: Product;
+    id: number;
+    userId: number;
     quantity: number;
-    subPrice: number;
+    product: Product;
+    orderAt: any;
+    ordered: boolean;
 }
 
 export interface User {
     usernameOrEmail: string;
     password: number;
 }
+
 export interface User2 {
     id: number;
     name: string;
@@ -62,20 +71,32 @@ export interface User2 {
     updatedAt: string;
     roles: Role[];
 }
+
 export interface Address {
     provinceCity: string;
     district: string;
     town: string;
     street: string;
 }
+
 export interface Role {
     id: number;
     name: string;
 }
+
 export interface signUpData {
     email: string;
     name: string;
     password: string;
     phoneNum: string;
     username: string;
+}
+
+export interface orderItem {
+    id?: number;
+    userId: number;
+    quantity: number;
+    product: Product;
+    orderAt?: string;
+    ordered: boolean;
 }

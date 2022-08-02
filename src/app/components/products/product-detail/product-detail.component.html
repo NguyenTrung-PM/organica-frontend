@@ -24,7 +24,7 @@
                 </p-inputNumber>
             </div>
 
-            <button pButton pRipple (click)="addToCart()" type="button" label="{{ product?.quantity != 0 ? 'Cho vào giỏ hàng' : 'Tạm hết' }}" [ngClass]="product?.quantity != 0 ? 'product-buy-btn' : 'product-sold-out'" class="p-button-rounded"></button>
+            <button pButton pRipple (click)="addToCart(product)" type="button" label="{{ product?.quantity != 0 ? 'Cho vào giỏ hàng' : 'Tạm hết' }}" [ngClass]="product?.quantity != 0 ? 'product-buy-btn' : 'product-sold-out'" class="p-button-rounded"></button>
         </div>
     </div>
 </div>
