@@ -58,12 +58,12 @@ export class ProfileComponent implements OnInit {
                 console.log(this.users);
 
                 this.createAccount();
+                this.cartService.getHistoryByUserId(this.userId).subscribe((data) => {
+                    this.cartHistorys = data;
+                });
             });
 
-        this.cartService.getHistoryByUserId(this.userId).subscribe((data) => {
-            this.cartHistorys = data;
-            console.log(this.cartHistorys);
-        });
+        
     }
 
     addDelivery() {
