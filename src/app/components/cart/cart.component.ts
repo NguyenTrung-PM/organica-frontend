@@ -22,7 +22,12 @@ export class CartComponent implements OnInit, OnDestroy {
 
     subscriptions: Subscription[] = [];
 
-    constructor(private router: Router,private cartService: CartService, private authService: AuthenticationService, private messageService: MessageService) {}
+    constructor(
+        private router: Router,
+        private cartService: CartService,
+        private authService: AuthenticationService,
+        private messageService: MessageService,
+    ) {}
 
     ngOnInit(): void {
         this.checkCart();
@@ -52,9 +57,7 @@ export class CartComponent implements OnInit, OnDestroy {
         });
         let msgs = [{ severity: 'success', summary: 'Đặt hàng thành công' }];
         this.messageService.addMessage(msgs);
-        this.router.navigate(['/auth/profile'])
-
-
+        this.router.navigate(['/auth/profile']);
     }
 
     removeItem(itemId: number) {

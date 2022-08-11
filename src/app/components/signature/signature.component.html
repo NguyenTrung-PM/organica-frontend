@@ -1,0 +1,13 @@
+<div class="flex justify-content-center align-items-center mt-8">
+    <div class="flex flex-column">
+        <p class="mb-6">Signature</p>
+        <div class="flex flex-row">
+            <p class="mr-1 mb-3">Hash SHA-1:</p>
+            <p>{{hashValue}}</p>
+        </div>
+        <div>
+            <textarea pInputTextarea [rows]="10" [cols]="100" [(ngModel)]="signature" class="textarea mb-3" placeholder="Signature here"></textarea>
+        </div>
+        <button pButton pRipple type="button" (click)="check()" label="Thanh toán" class="p-button-rounded checkout-btn"></button>
+    </div>
+</div>
