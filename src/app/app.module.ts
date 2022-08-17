@@ -81,6 +81,7 @@ import { ProductsByDiscountComponent } from './components/products/products-by-d
 import { ProductsByFavoriteComponent } from './components/products/products-by-favorite/products-by-favorite.component';
 import { ProductComponent } from './components/admin/dashboard/product/product.component';
 import { UserComponent } from './components/admin/dashboard/user/user.component';
+import { SignatureComponent } from './components/signature/signature.component';
 
 const COMPONENTS = [
     AppComponent,
@@ -172,7 +173,7 @@ const PROVIDERS = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS, ProductsByDiscountComponent, ProductsByFavoriteComponent, ProductComponent, UserComponent],
+    declarations: [...COMPONENTS, ProductsByDiscountComponent, ProductsByFavoriteComponent, ProductComponent, UserComponent, SignatureComponent],
     imports: [...MODULES, ...PRIMENGS],
     providers: [...SERVICES, ...PROVIDERS],
     bootstrap: [AppComponent],

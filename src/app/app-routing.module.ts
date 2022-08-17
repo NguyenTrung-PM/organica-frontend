@@ -24,6 +24,8 @@ import { ProductsByGroupComponent } from './components/products/products-by-grou
 import { ProductsByTotalComponent } from './components/products/products-by-total/products-by-total.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SearchComponent } from './components/shared/search/search.component';
+import { SignatureComponent } from './components/signature/signature.component';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
     {
@@ -33,6 +35,7 @@ const routes: Routes = [
     {
         path: 'admin',
         component: DashboardComponent,
+        canActivate: [AuthGuard],
         children: [
             { path: '', redirectTo: 'users', pathMatch: 'full' },
             { path: 'users', component: UserComponent },
@@ -86,6 +89,7 @@ const routes: Routes = [
         ],
     },
     { path: 'cart', component: CartComponent },
+    { path: 'signature', component: SignatureComponent },
     {
         path: '**',
         redirectTo: '/home',

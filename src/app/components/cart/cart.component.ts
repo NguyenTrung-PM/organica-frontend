@@ -1,8 +1,10 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { MessageService } from 'src/app/services/messages/message.service';
 import { UserService } from 'src/app/services/users/user.service';
 import { CartProduct, Product } from 'src/app/shared/interface';
 
@@ -20,7 +22,12 @@ export class CartComponent implements OnInit, OnDestroy {
 
     subscriptions: Subscription[] = [];
 
-    constructor(private cartService: CartService, private authService: AuthenticationService) {}
+    constructor(
+        private router: Router,
+        private cartService: CartService,
+        private authService: AuthenticationService,
+        private messageService: MessageService,
+    ) {}
 
     ngOnInit(): void {
         this.checkCart();
@@ -43,16 +50,19 @@ export class CartComponent implements OnInit, OnDestroy {
     }
 
     checkout() {
-        console.log(this.cartProducts);
         this.cartProducts.forEach((_item) => {
             _item.ordered = true;
             this.cartService.updateItem(_item.id, _item).subscribe((_data) => {});
+            this.checkCart();
         });
+        let msgs = [{ severity: 'success', summary: 'Đặt hàng thành công' }];
+        this.messageService.addMessage(msgs);
+        this.router.navigate(['/auth/profile']);
     }
 
     removeItem(itemId: number) {
         const remove = this.cartService.removeItem(itemId).subscribe(() => {
-            this.checkCart()
+            this.checkCart();
             this.getTotalPrice();
         });
         this.subscriptions.push(remove);

@@ -1,7 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs';
 import { forbiddenEmailValidator } from 'src/app/directives/validation-label.directive';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { ProvinceService } from 'src/app/services/provinces/province.service';
+import { UserService } from 'src/app/services/users/user.service';
+import { User2 } from 'src/app/shared/interface';
 import { District, Province, Ward } from 'src/app/shared/province-interface';
 
 @Component({
@@ -20,15 +25,45 @@ export class ProfileComponent implements OnInit {
     provinces!: Province[];
     districts!: District[];
     wards!: Ward[];
-
+    users!: User2;
+    userId!: number;
     formDelivery!: FormGroup;
-    accountForm!: FormGroup;
-    constructor(private provinceService: ProvinceService, private fb: FormBuilder) {}
+    accountForm: FormGroup = this.fb.group({
+        name: [''],
+        phone: [''],
+        email: [''],
+    });
+    cartHistorys: any;
+    constructor(
+        private provinceService: ProvinceService,
+        private fb: FormBuilder,
+        private authService: AuthenticationService,
+        private userService: UserService,
+        private cartService: CartService,
+    ) {}
 
     ngOnInit(): void {
         this.getAllProvince();
-        this.createAccount();
+        // this.createAccount();
         this.initFormDelivery();
+        this.authService.$userId
+            .pipe(
+                switchMap((_userId) => {
+                    this.userId = _userId;
+                    return this.userService.getById(_userId);
+                }),
+            )
+            .subscribe((data) => {
+                this.users = data;
+                console.log(this.users);
+
+                this.createAccount();
+                this.cartService.getHistoryByUserId(this.userId).subscribe((data) => {
+                    this.cartHistorys = data;
+                });
+            });
+
+        
     }
 
     addDelivery() {
@@ -116,24 +151,29 @@ export class ProfileComponent implements OnInit {
 
     createAccount() {
         this.accountForm = this.fb.group({
-            name: [null, Validators.required],
-            phone: [null, [Validators.required, Validators.pattern('(0[3|5|7|8|9])+([0-9]{8})\\b')]],
-            email: [null, [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'), forbiddenEmailValidator]],
+            name: [this.users.name, Validators.required],
+            phone: [this.users.phoneNumber, [Validators.required, Validators.pattern('(0[3|5|7|8|9])+([0-9]{8})\\b')]],
+            email: [
+                this.users.email,
+                [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'), forbiddenEmailValidator],
+            ],
         });
     }
     initFormDelivery() {
         if (this.editModeDelivery) {
             this.formDelivery = this.fb.group({
-                name: ['null', Validators.required],
-                phone: ['null', [Validators.required, Validators.pattern('(0[3|5|7|8|9])+([0-9]{8})\\b')]],
+                name: [this.users.name, Validators.required],
+                phone: [this.users.phoneNumber, [Validators.required, Validators.pattern('(0[3|5|7|8|9])+([0-9]{8})\\b')]],
                 address: this.fb.group({
                     selectedCodeProvince: [0, Validators.min(1)],
                     selectedCodeDistrict: [0, Validators.min(1)],
                     selectedCodeWard: [0, Validators.min(1)],
                 }),
 
-                street: ['null', Validators.required],
+                street: [this.users.addresses[0].street, Validators.required],
             });
+            console.log(this.formDelivery.value);
+            
         } else {
             this.formDelivery = this.fb.group({
                 name: [null, Validators.required],

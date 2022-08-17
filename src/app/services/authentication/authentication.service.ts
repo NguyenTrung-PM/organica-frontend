@@ -23,6 +23,7 @@ export class AuthenticationService {
             .then(
                 (_data) => {
                     this.accessToken = _data.accessToken;
+                    console.log(this.accessToken)
                     window.sessionStorage.setItem('token', _data.accessToken);
                     this.$userId.next(this.decodeToken());
                 },
